@@ -1,12 +1,12 @@
 /**
  * jQuery MGlass, Displays a magnifying glass on image hover
- * https://github.com/younes0/jQuery-MGlass
+ * http://github.com/younes0/jQuery-MGlass
  *
  * Version 1.1
  *
- * 
+ *
  * Licensed under the MIT license:
- *   https://www.opensource.org/licenses/mit-license.php
+ *   http://www.opensource.org/licenses/mit-license.php
  *
  *
  */
@@ -104,4 +104,4 @@
     };
 
 // End
-})(jQuery);
+})(jQuery);xz
