@@ -104,4 +104,4 @@
     };
 
 // End
-})(jQuery);xz
+})(jQuery);
