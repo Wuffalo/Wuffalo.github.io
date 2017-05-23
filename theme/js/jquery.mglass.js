@@ -1,14 +1,14 @@
 /**
  * jQuery MGlass, Displays a magnifying glass on image hover
  * http://github.com/younes0/jQuery-MGlass
- *
+ * 
  * Version 1.1
- *
- *
+ *  
+ * 
  * Licensed under the MIT license:
  *   http://www.opensource.org/licenses/mit-license.php
  *
- *
+ * 
  */
 (function($) {
 
@@ -21,27 +21,27 @@
 			speed: 150,
 			wrapper: true
        };
-
+	
         var plugin = this, $element = $(element);
-
+		
 		plugin.settings = {};
-
-
+		
+		
         // Constructor
         plugin.init = function() {
 
 			plugin.settings = $.extend({}, defaults, options);
-
+						
 			if (plugin.settings.wrapper) {
 				$element.wrap('<div class="mglassWrapper" />');
 			}
 
-			var
-				h = $element.height(),
+			var 
+				h = $element.height(), 
 				w = $element.width()
 			;
 
-			var overlayStyle = 'width: '+w+'px; height: '+h+'px;';
+			var overlayStyle = 'width: '+w+'px; height: '+h+'px;'; 
 
 			// CSS3 transition Support ?
 			if (typeof $.css3Transitions === 'undefined') {
@@ -67,7 +67,7 @@
 				);
 			}
 
-
+		
 		},
 
 		plugin.supportsTransitions = function() {
