@@ -15,9 +15,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"/>
-    <link rel="stylesheet" href="https://wuffalo.github.io/theme/css/jquery.mglass.css"/>
-    <link rel="stylesheet" href="https://wuffalo.github.io/theme/css/pygment-solarized-dark.css"/>
-    <link rel="stylesheet" href="https://wuffalo.github.io/theme/css/style.css"/>
+    <link rel="stylesheet" href="/theme/css/jquery.mglass.css"/>
+    <link rel="stylesheet" href="/theme/css/style.tango.css"/>
+    <link rel="stylesheet" href="/theme/css/style.css"/>
 
     <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
@@ -25,8 +25,8 @@
     <link href='https://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'/>
 
 
-    <link rel="icon" href="https://wuffalo.github.io/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="https://wuffalo.github.io/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
     <!-- Feeds -->
 
@@ -38,13 +38,13 @@
     <div class="container">
 
       <div class="page-header">
-          <a href="https://wuffalo.github.io" class="avatar-container pull-left">
+          <a href="" class="avatar-container pull-left">
             <div class="avatar  animate ">
               <div class="side"><img src="/images/User-icon.png" class="img-responsive"/></div>
                 <div class="side back"><p class="text-center">carpe per diem</p></div>
             </div>
           </a>
-        <h1><a href="https://wuffalo.github.io">Nothing but Wolf</a> <small>Click around!</small></h1>
+        <h1><a href="">Nothing but Wolf</a> <small>Click around!</small></h1>
       </div>
 
       <nav class="navbar navbar-default">
@@ -57,7 +57,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="https://wuffalo.github.io" title="Click around!">Nothing but Wolf</a>
+          <a class="navbar-brand" href="" title="Click around!">Nothing but Wolf</a>
         </div>
 
         <!-- Menus and search forms -->
@@ -65,21 +65,21 @@
 
           <ul class="nav navbar-nav">
 <li >
-                  <a href="https://wuffalo.github.io/about-me/">About Me</a>
+                  <a href="/about-me/">About Me</a>
                 </li>
 <li >
-                  <a href="https://wuffalo.github.io/category/dietfitness/">Diet&Fitness</a>
+                  <a href="/category/dietfitness/">Diet&Fitness</a>
                 </li>
 <li >
-                  <a href="https://wuffalo.github.io/category/hardware/">Hardware</a>
+                  <a href="/category/hardware/">Hardware</a>
                 </li>
 <li  class="active" >
-                  <a href="https://wuffalo.github.io/category/projects/">Projects <span class="sr-only">(current)</span></a>
+                  <a href="/category/projects/">Projects <span class="sr-only">(current)</span></a>
                 </li>
           </ul>
 
 
-            <form class="navbar-form navbar-right" role="search" action="https://wuffalo.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);">
+            <form class="navbar-form navbar-right" role="search" action="/search.html" onsubmit="return validateForm(this.elements['q'].value);">
               <div class="form-group">
                 <div class="input-group">
                   <input type="text" name="q" id="tipue_search_input" class="form-control search-query" placeholder="Search" required />
@@ -100,12 +100,12 @@
 
     <div class="container main">
       <!-- Enable show/hide toggler -->
-      <script src="https://wuffalo.github.io/theme/js/show_hide_toggler.js" type="text/javascript"></script>
+      <script src="/theme/js/show_hide_toggler.js" type="text/javascript"></script>
 
       <div class="row">
         <div class=" col-md-9  ">
   <h1>
-    <a href="https://wuffalo.github.io/brs-part-one.html" rel="bookmark" title="Permalink to BRS Part One">BRS Part One</a>
+    <a href="/brs-part-one.html" rel="bookmark" title="Permalink to BRS Part One">BRS Part One</a>
   </h1>
         </div>
       </div>
@@ -125,7 +125,130 @@
 <p>The advantage of this calculator is it allows the user to retrieve reserve or active duty pay rates. User input determines which pay table is relevant and which particular pay on the chart to return.</p>
 <hr>
 <p>The program to do this is written in Python and the code is as follows with corresponding commenting.</p>
-<p>[gist:id=1d891e1cd9ed480be96b654ee9d7a841,GIST_PYGMENTS_STYLE='tango']</p>
+<div class="gist">
+    <script src='https://gist.github.com/1d891e1cd9ed480be96b654ee9d7a841.js'></script>
+    <noscript>
+        <pre><code>#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
+'''
+2017 US military service base pay calculator
+W
+'''
+'''Imports, and source tables------------------------------------------------'''
+import pandas as pd
+import sys
+import math
+
+AE_read = pd.read_csv('E_2017pay.csv')
+AE1 = pd.DataFrame(AE_read)
+AE = AE1.set_index('Years')
+
+AO_read = pd.read_csv('O_2017pay.csv')
+AO1 = pd.DataFrame(AO_read)
+AO = AO1.set_index('Years')
+
+RE_read = pd.read_csv('RE_2017pay.csv')
+RE1 = pd.DataFrame(RE_read)
+RE = RE1.set_index('Years')
+
+RO_read = pd.read_csv('RO_2017pay.csv')
+RO1 = pd.DataFrame(RO_read)
+RO = RO1.set_index('Years')
+
+'''Using input and calculated values, searches specific chart for corresponding value'''
+def find_pay(rank,years,active,enlisted):
+    if active == 1:
+        if enlisted == 1:
+            pay = AE.loc[years,rank]
+            return pay
+        elif enlisted == 0:
+            pay = AO.loc[years,rank]
+            return pay
+    elif active == 0:
+        if enlisted == 1:
+            pay = RE.loc[years,rank]
+            return pay
+        elif enlisted == 0:
+            pay = RO.loc[years,rank]
+            return pay
+
+'''Once user inputs service years, calculates experience pay range they belong to'''
+def determine_years(service):
+    if 0 <= service < 2:
+        years = 'Under 2'
+    elif 2 <= service < 3:
+        years = 'Over 2'
+    elif 3 <= service < 4:
+        years = 'Over 3'
+    elif 4 <= service < 6:
+        years = 'Over 4'
+    elif 6 <= service < 8:
+        years = 'Over 6'
+    elif 8 <= service < 10:
+        years = 'Over 8'
+    elif 10 <= service < 12:
+        years = 'Over 10'
+    elif 12 <= service < 14:
+        years = 'Over 12'
+    elif 14 <= service < 16:
+        years = 'Over 14'
+    elif 16 <= service < 18:
+        years = 'Over 16'
+    elif 18 <= service < 20:
+        years = 'Over 18'
+    elif 20 <= service < 22:
+        years = 'Over 20'
+    elif 22 <= service < 24:
+        years = 'Over 22'
+    elif 24 <= service < 26:
+        years = 'Over 24'
+    elif 26 <= service < 30:
+        years = 'Over 26'
+    elif 30 <= service < 34:
+        years = 'Over 30'
+    elif 34 <= service < 38:
+        years = 'Over 34'
+    elif 38 <= service <= 40:
+        years = 'Over 38'
+    elif service < 0 and service > 40:
+        print "Service years was entered incorrectly. Must be >0 and <40."
+    return years
+
+'''---------Main body of program---------------------------------------------'''
+separator = ' '                                 #separator of input values is space
+
+print "Please enter rank followed by years in service."
+print "Format is 'E-1' space #, ex: O-5 20 or 'E-3 6'"
+user_input = raw_input(": ").split(separator)                           #reads in rank and service years
+rank = user_input[0]
+service = user_input[1]
+active_input = raw_input("Active duty, Y? Reserve is N.: ").lower()     #reads active duty or not
+
+if  active_input in ("yes", "y"):               #Assigns rest of program's active/reserve references
+    active = 1
+    D = 'n active duty '
+elif active_input in ("no", "n"):
+    active = 0
+    D = ' reserve '
+else:sys.exit("Please try again with Y or N for active duty answer.")
+
+enlist = str(user_input[0])                     #This body determines whether user's rank is enlisted or officer
+if ord(enlist[0]) == ord('E'):
+    enlisted = 1
+else: enlisted = 0
+
+rank = str(rank)                                #Prepares user inputs for function calls with correct data types
+service = int(service)
+
+years = determine_years(service)                #Takes user's service years and assigns experience pay range
+pay = find_pay(rank,years,active,enlisted)      #Looks up correct chart and cell value for rank, years in, active or reserve, and enlisted or officer
+
+
+if math.isnan(pay):                             #Prints a summary statement if there exists a base pay for user input, or an error message
+    print "There doesn't exist a base pay for that rank with those years of service"
+else: print "The 2017 base pay for a"+D+rank+" with "+str(service)+" years of service is: ", '${:,.2f}'.format(pay)</code></pre>
+    </noscript>
+</div>
 <hr>
 <p>The next project in this series will be data analysis to examine system wide costs and savings.</p>
   </div>
@@ -186,7 +309,7 @@
 				id="pcs-comment-form-button-submit"
 				>Post via email</button>
 
-			<a href="https://wuffalo.github.io/feeds/comment.brs-part-one.atom.xml">
+			<a href="/feeds/comment.brs-part-one.atom.xml">
 				Comment Atom Feed
 			</a>
 	</form>
@@ -195,7 +318,7 @@
 </section>
 
 			<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript" src="https://wuffalo.github.io/theme/js/comments.js"></script>
+	<script type="text/javascript" src="/theme/js/comments.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			CommentSystem.email_user   = "waminskey";
@@ -222,7 +345,7 @@
     <h3>Related content</h3>
     <!-- TODO: Use fancier related layout, as in https://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/ -->
     <ul>
-        <li><a href="https://wuffalo.github.io/my-first-blog-ill-use-pelican.html">My first blog, I'll use Pelican!</a></li>
+        <li><a href="/my-first-blog-ill-use-pelican.html">My first blog, I'll use Pelican!</a></li>
       </ul>
 
 
@@ -235,13 +358,13 @@
 
       <p><address>
         <i class="fa fa-user"></i> By
-          <a href="https://wuffalo.github.io/author/wolf.html" rel="author">Wolf</a>
+          <a href="/author/wolf.html" rel="author">Wolf</a>
       </address></p>
 
     <hr/>
 
       <p>
-              <a href="https://wuffalo.github.io/category/projects/" rel="tag"
+              <a href="/category/projects/" rel="tag"
                   data-toggle="tooltip" class="label label-info"
                   title="2 articles in this category">Projects</a>
             <a href="/tag/python/" data-toggle="tooltip"
@@ -302,9 +425,9 @@
           <div class="col-md-2">
             <h5>Browse content by</h5>
             <ul class="list-unstyled">
-                <li><a href="https://wuffalo.github.io/categories/index.html"><i class="fa fa-tags"></i> Categories</a></li>
-                <li><a href="https://wuffalo.github.io/archives/index.html"><i class="fa fa-calendar"></i> Dates</a></li>
-                <li><a href="https://wuffalo.github.io/tags/index.html"><i class="fa fa-tag"></i> Tags</a></li>
+                <li><a href="/categories/index.html"><i class="fa fa-tags"></i> Categories</a></li>
+                <li><a href="/archives/index.html"><i class="fa fa-calendar"></i> Dates</a></li>
+                <li><a href="/tags/index.html"><i class="fa fa-tag"></i> Tags</a></li>
             </ul>
           </div>
 
@@ -340,8 +463,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.min.js"></script>
-    <script src="https://wuffalo.github.io/theme/js/jquery.mglass.js"></script>
-    <script src="https://wuffalo.github.io/theme/js/application.js"></script>
+    <script src="/theme/js/jquery.mglass.js"></script>
+    <script src="/theme/js/application.js"></script>
 
   </body>
 </html>
