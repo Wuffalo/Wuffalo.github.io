@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>  My first blog, I'll use Pelican!
+    <title>  BRS Part 1
  | Nothing but Wolf</title>
 
     <meta name="author" content="Wolf"/>
@@ -103,7 +103,7 @@
       <div class="row">
         <div class=" col-md-9  ">
   <h1>
-    <a href="/my-first-blog-ill-use-pelican.html" rel="bookmark" title="Permalink to My first blog, I&#39;ll use Pelican!">My first blog, I'll use Pelican!</a>
+    <a href="/brs-part-1.html" rel="bookmark" title="Permalink to BRS Part 1">BRS Part 1</a>
   </h1>
         </div>
       </div>
@@ -114,30 +114,142 @@
   
 
   <div>
-    <p>I realized learning things and making projects doesn't mean much if I can't talk about and display my work. So after some research I learned I don't need to specialize in front end development or website design or javascript to build a presentable website. This is part of the progress of software becoming more user friendly and accessible. Higher level languages and static page generators!</p>
-<p>There are some great articles about static pages vs. dynamic ones out there and I'm a total amateur so I'll just <a href="https://www.smashingmagazine.com/2015/11/modern-static-website-generators-next-big-thing/">link one here</a>.</p>
+    <p>Blended Retirement System costs, financial analysis of the US Military's new retirement system effective 2018</p>
+<p>This is a multi-stage analysis of the new retirement system for all military personel going into effect January 1, 2018. Part one is a programming project in Python adding a calculator to the Department of Defense's website at <a href="https://militarypay.defense.gov/Calculators/" title="DoD Calculators">militarypay.defense.gov</a></p>
+<p>Under the previous system retirement was only awarded after 20 years of service, either active duty years or a combination including reserve 'good years'. A good year defined as meeting sufficient reserve service requirements.</p>
+<p>The new system will be a combination of pension, bonus and investment fund matching. Since only 17% of servicemembers stay to retire after 20 years, this new system will affect and potentially benefit the majority of servicemembers.</p>
 <hr>
-<h3>Why use a static blog?</h3>
-<p>I'm interested in something that is quick, efficient, small footprint so whatever I ultimately produce can be viewed quickly and not waste time bogged down in a database heavy website. I don't have anything against a dynamic site, and my next project will be to make a django based one on AWS. For now though a simple blog meant to present data science projects can perfectly be done on a static site.</p>
-<p>As of now the blog is not finished, and I'm not an expert on everything I've done so far. This article is more of a journal on some of the things I've done so far.</p>
+<p>The calculator takes in multiple pay tables saved as csv files, one of the simplest data storage formats. These tables therefore take up minimal space and can be read and wrote to by any system.</p>
+<p>The advantage of this calculator is it allows the user to retrieve reserve or active duty pay rates. User input determines which pay table is relevant and which particular pay on the chart to return.</p>
 <hr>
-<p>Some great resources here. Check out Nafiul Islam's <a href="https://nafiulis.me/making-a-static-blog-with-pelican.html">pelican setup guide</a>.</p>
+<p>The program to do this is written in Python and the code is as follows with corresponding commenting.</p>
+<p><button class="toggle-start-hidden">Show/hide</button></p>
+<div class="gist">
+    <script src='https://gist.github.com/1d891e1cd9ed480be96b654ee9d7a841.js'></script>
+    <noscript>
+        <pre><code>#!/usr/bin/env python2
+# -*- coding: utf-8 -*-
+'''
+2017 US military service base pay calculator
+W
+'''
+'''Imports, and source tables------------------------------------------------'''
+import pandas as pd
+import sys
+import math
+
+AE_read = pd.read_csv('E_2017pay.csv')
+AE1 = pd.DataFrame(AE_read)
+AE = AE1.set_index('Years')
+
+AO_read = pd.read_csv('O_2017pay.csv')
+AO1 = pd.DataFrame(AO_read)
+AO = AO1.set_index('Years')
+
+RE_read = pd.read_csv('RE_2017pay.csv')
+RE1 = pd.DataFrame(RE_read)
+RE = RE1.set_index('Years')
+
+RO_read = pd.read_csv('RO_2017pay.csv')
+RO1 = pd.DataFrame(RO_read)
+RO = RO1.set_index('Years')
+
+'''Using input and calculated values, searches specific chart for corresponding value'''
+def find_pay(rank,years,active,enlisted):
+    if active == 1:
+        if enlisted == 1:
+            pay = AE.loc[years,rank]
+            return pay
+        elif enlisted == 0:
+            pay = AO.loc[years,rank]
+            return pay
+    elif active == 0:
+        if enlisted == 1:
+            pay = RE.loc[years,rank]
+            return pay
+        elif enlisted == 0:
+            pay = RO.loc[years,rank]
+            return pay
+
+'''Once user inputs service years, calculates experience pay range they belong to'''
+def determine_years(service):
+    if 0 <= service < 2:
+        years = 'Under 2'
+    elif 2 <= service < 3:
+        years = 'Over 2'
+    elif 3 <= service < 4:
+        years = 'Over 3'
+    elif 4 <= service < 6:
+        years = 'Over 4'
+    elif 6 <= service < 8:
+        years = 'Over 6'
+    elif 8 <= service < 10:
+        years = 'Over 8'
+    elif 10 <= service < 12:
+        years = 'Over 10'
+    elif 12 <= service < 14:
+        years = 'Over 12'
+    elif 14 <= service < 16:
+        years = 'Over 14'
+    elif 16 <= service < 18:
+        years = 'Over 16'
+    elif 18 <= service < 20:
+        years = 'Over 18'
+    elif 20 <= service < 22:
+        years = 'Over 20'
+    elif 22 <= service < 24:
+        years = 'Over 22'
+    elif 24 <= service < 26:
+        years = 'Over 24'
+    elif 26 <= service < 30:
+        years = 'Over 26'
+    elif 30 <= service < 34:
+        years = 'Over 30'
+    elif 34 <= service < 38:
+        years = 'Over 34'
+    elif 38 <= service <= 40:
+        years = 'Over 38'
+    elif service < 0 and service > 40:
+        print "Service years was entered incorrectly. Must be >0 and <40."
+    return years
+
+'''---------Main body of program---------------------------------------------'''
+separator = ' '                                 #separator of input values is space
+
+print "Please enter rank followed by years in service."
+print "Format is 'E-1' space #, ex: O-5 20 or 'E-3 6'"
+user_input = raw_input(": ").split(separator)                           #reads in rank and service years
+rank = user_input[0]
+service = user_input[1]
+active_input = raw_input("Active duty, Y? Reserve is N.: ").lower()     #reads active duty or not
+
+if  active_input in ("yes", "y"):               #Assigns rest of program's active/reserve references
+    active = 1
+    D = 'n active duty '
+elif active_input in ("no", "n"):
+    active = 0
+    D = ' reserve '
+else:sys.exit("Please try again with Y or N for active duty answer.")
+
+enlist = str(user_input[0])                     #This body determines whether user's rank is enlisted or officer
+if ord(enlist[0]) == ord('E'):
+    enlisted = 1
+else: enlisted = 0
+
+rank = str(rank)                                #Prepares user inputs for function calls with correct data types
+service = int(service)
+
+years = determine_years(service)                #Takes user's service years and assigns experience pay range
+pay = find_pay(rank,years,active,enlisted)      #Looks up correct chart and cell value for rank, years in, active or reserve, and enlisted or officer
+
+
+if math.isnan(pay):                             #Prints a summary statement if there exists a base pay for user input, or an error message
+    print "There doesn't exist a base pay for that rank with those years of service"
+else: print "The 2017 base pay for a"+D+rank+" with "+str(service)+" years of service is: ", '${:,.2f}'.format(pay)</code></pre>
+    </noscript>
+</div>
 <hr>
-<h3>Start-up</h3>
-<p>Download Python which should include pip which is a package manager.</p>
-<p>Using pip install Pelican.</p>
-<p>Use the quick set up, I chose to say Yes to uploading it to a Github page one day.</p>
-<p>Once I had a test site I started looking for a theme. It's fun to learn by picking things apart, a lot better than digging around in docs and failing a million ways.</p>
-<h3>Themes</h3>
-<p>Pelican has a repository of <a href="https://github.com/getpelican/pelican-themes">default themes</a> you can choose. They recommend downloading the whole thing which I did but now seems rather unnecessary. I started by using foundation-default-colours.</p>
-<p>I poked around in the theme but then found features in another blog I wanted to work with.</p>
-<p>So off to <a href="https://github.com/kdeldycke/kevin-deldycke-blog">kevin-deldycke-blog</a> I went. It's not a default theme but it was one I wanted to work with.</p>
-<h3>Customization</h3>
-<p>It took a few days to start getting something clean but customized.</p>
-<p>I changed the backgrounds to some Japanese inspired patterns that look subtle and organized to me.</p>
-<p>Changed the Pygment to the solarized light instead of the solarized dark, dark code background was too jarring.</p>
-<p>Then I found tango is a nice default Pygment so I compiled it to a css and inserted it.</p>
-<p>The theme was coded to option allow a Disqus comment section but after some research and just plain preference I decided to use <a href="https://github.com/getpelican/pelican-plugins/tree/master/pelican_comment_system">a static comment system</a>. This is a rather weird setup which won't scale well, but it's very nice for what I want now. No account needed to comment, full markdown support for comments, all personal information and data handling is performed by me not an independent service. The downside is comments aren't immediately posted and the stock handling is I have to review and add the comment manually. I may make this automatic but handling comments manually is appealing right now.</p>
+<p>The next project in this series will be data analysis to examine system wide costs and savings.</p>
   </div>
 
   	<style>
@@ -196,7 +308,7 @@
 				id="pcs-comment-form-button-submit"
 				>Post via email</button>
 
-			<a href="/feeds/comment.my-first-blog-ill-use-pelican.atom.xml">
+			<a href="/feeds/comment.brs-part-1.atom.xml">
 				Comment Atom Feed
 			</a>
 	</form>
@@ -221,7 +333,7 @@
 				function( event )
 				{
 					event.preventDefault();
-					$(location).attr('href', CommentSystem.getMailtoLink("my-first-blog-ill-use-pelican"));
+					$(location).attr('href', CommentSystem.getMailtoLink("brs-part-1"));
 				}
 			);
 		});
@@ -232,7 +344,7 @@
     <h3>Related content</h3>
     <!-- TODO: Use fancier related layout, as in https://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/ -->
     <ul>
-        <li><a href="/brs-part-1.html">BRS Part 1</a></li>
+        <li><a href="/my-first-blog-ill-use-pelican.html">My first blog, I'll use Pelican!</a></li>
       </ul>
 
 
@@ -241,7 +353,7 @@
           <div class="col-md-3">
   <div class="well">
 
-    <p><abbr title="2017-05-01T00:00:00-05:00"><i class="fa fa-calendar"></i> Mon 01 May 2017</abbr></p>
+    <p><abbr title="2017-06-07T00:00:00-05:00"><i class="fa fa-calendar"></i> Wed 07 June 2017</abbr></p>
 
       <p><address>
         <i class="fa fa-user"></i> By
@@ -257,39 +369,24 @@
             <a href="/tag/python/" data-toggle="tooltip"
       class="label label-default"
       title="2 articles with this tag">python</a>
-            <a href="/tag/website/" data-toggle="tooltip"
+            <a href="/tag/project/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">website</a>
-            <a href="/tag/static-blog/" data-toggle="tooltip"
+      title="1 article with this tag">project</a>
+            <a href="/tag/calculator/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">static blog</a>
-            <a href="/tag/blog/" data-toggle="tooltip"
+      title="1 article with this tag">calculator</a>
+            <a href="/tag/brs/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">blog</a>
-            <a href="/tag/pelican/" data-toggle="tooltip"
+      title="1 article with this tag">BRS</a>
+            <a href="/tag/data-analysis/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">Pelican</a>
-            <a href="/tag/site/" data-toggle="tooltip"
+      title="1 article with this tag">data analysis</a>
+            <a href="/tag/csv/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">site</a>
-            <a href="/tag/jquery/" data-toggle="tooltip"
+      title="1 article with this tag">csv</a>
+            <a href="/tag/test-tag/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">jquery</a>
-            <a href="/tag/pygment/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">pygment</a>
-            <a href="/tag/theme/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">theme</a>
-            <a href="/tag/style/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">style</a>
-            <a href="/tag/css/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">css</a>
-            <a href="/tag/html/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">html</a>
+      title="1 article with this tag">test tag</a>
       </p>
       <hr/>
 
