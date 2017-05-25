@@ -127,130 +127,7 @@
 <h3>Code</h3>
 <p>The program to do this is written in Python and the code is as follows with corresponding commenting.</p>
 <p><button class="toggle-start-hidden">Show/hide</button></p>
-<div class="gist">
-    <script src='https://gist.github.com/1d891e1cd9ed480be96b654ee9d7a841.js'></script>
-    <noscript>
-        <pre><code>#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-'''
-2017 US military service base pay calculator
-W
-'''
-'''Imports, and source tables------------------------------------------------'''
-import pandas as pd
-import sys
-import math
-
-AE_read = pd.read_csv('E_2017pay.csv')
-AE1 = pd.DataFrame(AE_read)
-AE = AE1.set_index('Years')
-
-AO_read = pd.read_csv('O_2017pay.csv')
-AO1 = pd.DataFrame(AO_read)
-AO = AO1.set_index('Years')
-
-RE_read = pd.read_csv('RE_2017pay.csv')
-RE1 = pd.DataFrame(RE_read)
-RE = RE1.set_index('Years')
-
-RO_read = pd.read_csv('RO_2017pay.csv')
-RO1 = pd.DataFrame(RO_read)
-RO = RO1.set_index('Years')
-
-'''Using input and calculated values, searches specific chart for corresponding value'''
-def find_pay(rank,years,active,enlisted):
-    if active == 1:
-        if enlisted == 1:
-            pay = AE.loc[years,rank]
-            return pay
-        elif enlisted == 0:
-            pay = AO.loc[years,rank]
-            return pay
-    elif active == 0:
-        if enlisted == 1:
-            pay = RE.loc[years,rank]
-            return pay
-        elif enlisted == 0:
-            pay = RO.loc[years,rank]
-            return pay
-
-'''Once user inputs service years, calculates experience pay range they belong to'''
-def determine_years(service):
-    if 0 <= service < 2:
-        years = 'Under 2'
-    elif 2 <= service < 3:
-        years = 'Over 2'
-    elif 3 <= service < 4:
-        years = 'Over 3'
-    elif 4 <= service < 6:
-        years = 'Over 4'
-    elif 6 <= service < 8:
-        years = 'Over 6'
-    elif 8 <= service < 10:
-        years = 'Over 8'
-    elif 10 <= service < 12:
-        years = 'Over 10'
-    elif 12 <= service < 14:
-        years = 'Over 12'
-    elif 14 <= service < 16:
-        years = 'Over 14'
-    elif 16 <= service < 18:
-        years = 'Over 16'
-    elif 18 <= service < 20:
-        years = 'Over 18'
-    elif 20 <= service < 22:
-        years = 'Over 20'
-    elif 22 <= service < 24:
-        years = 'Over 22'
-    elif 24 <= service < 26:
-        years = 'Over 24'
-    elif 26 <= service < 30:
-        years = 'Over 26'
-    elif 30 <= service < 34:
-        years = 'Over 30'
-    elif 34 <= service < 38:
-        years = 'Over 34'
-    elif 38 <= service <= 40:
-        years = 'Over 38'
-    elif service < 0 and service > 40:
-        print "Service years was entered incorrectly. Must be >0 and <40."
-    return years
-
-'''---------Main body of program---------------------------------------------'''
-separator = ' '                                 #separator of input values is space
-
-print "Please enter rank followed by years in service."
-print "Format is 'E-1' space #, ex: O-5 20 or 'E-3 6'"
-user_input = raw_input(": ").split(separator)                           #reads in rank and service years
-rank = user_input[0]
-service = user_input[1]
-active_input = raw_input("Active duty, Y? Reserve is N.: ").lower()     #reads active duty or not
-
-if  active_input in ("yes", "y"):               #Assigns rest of program's active/reserve references
-    active = 1
-    D = 'n active duty '
-elif active_input in ("no", "n"):
-    active = 0
-    D = ' reserve '
-else:sys.exit("Please try again with Y or N for active duty answer.")
-
-enlist = str(user_input[0])                     #This body determines whether user's rank is enlisted or officer
-if ord(enlist[0]) == ord('E'):
-    enlisted = 1
-else: enlisted = 0
-
-rank = str(rank)                                #Prepares user inputs for function calls with correct data types
-service = int(service)
-
-years = determine_years(service)                #Takes user's service years and assigns experience pay range
-pay = find_pay(rank,years,active,enlisted)      #Looks up correct chart and cell value for rank, years in, active or reserve, and enlisted or officer
-
-
-if math.isnan(pay):                             #Prints a summary statement if there exists a base pay for user input, or an error message
-    print "There doesn't exist a base pay for that rank with those years of service"
-else: print "The 2017 base pay for a"+D+rank+" with "+str(service)+" years of service is: ", '${:,.2f}'.format(pay)</code></pre>
-    </noscript>
-</div>
+<p>[gist:id=1d891e1cd9ed480be96b654ee9d7a841]</p>
 <hr>
 <h3>Screenshots</h3>
 <p>[Active Enlisted]</p>
@@ -264,6 +141,8 @@ else: print "The 2017 base pay for a"+D+rank+" with "+str(service)+" years of se
 <p>The next project in this series will be data analysis to examine system wide costs and savings.</p>
   </div>
 
+    BRS Part 1, Wolf, Projects
+  
   	<style>
 #pcs-comment-form input,
 #pcs-comment-form textarea {
