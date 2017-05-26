@@ -120,13 +120,48 @@
 <h2>Dual boot</h2>
 <hr>
 <h3>openSUSE</h3>
+<p><img alt="openSUSE logo" src="/images/article-images/Opensuse-logo600x600.png"></p>
 <p>This desktop was one I built and had installed Win7 with an eventual Win10 upgrade. The goal therefore was to install openSUSE alongside my existing Windows 10.</p>
 <p>To make a long story short, this turned out to be impossible as my main drive was MBR formatted. What I needed to dual boot easily was a GPT formatted drive. <a href="https://www.howtogeek.com/193669/whats-the-difference-between-gpt-and-mbr-when-partitioning-a-drive/">Here is an article discussing the differences.</a> Now there are some unofficial utilities that claim to migrate files in a reformat safely. But the confidence wasn't there so I decided to do a rescue operation of the C drive, take out everything I wanted and just reformat entirely to GPT. I have a laptop that I used to write a openSUSE distro in USB boot drive. I chose Leap as it is the <a href="https://www.opensuse.org/">stable released version</a> they offer. They also offer Tumbleweed which is the more experimental rolling version featuring the latest, also claimed to be stable.</p>
 <hr>
 <h3>Installation</h3>
-<p>I wrote to the usb using <a href="https://rufus.akeo.ie/">Rufus</a> which specializes in creating bootable USB drives. Now the openSUSE was easy to find and download, but wiping my C drive meant I would have to redownload Windows. This is where the hell begins. Ok, I'll save you the trouble. aaaaaaaaaaaaaa UEFI</p>
+<p>I wrote to the usb using <a href="https://rufus.akeo.ie/">Rufus</a> which specializes in creating bootable USB drives.</p>
+<p><em>Need to find your Windows key?</em> Check out this <a href="http://www.thewindowsclub.com/find-windows-10-product-key-using-vb-script">VB script</a> courtesy of thewindowsclub. Here is the code itself. Open a text file and paste in this code and save as a .vbs file. Then just click the file to generate it. I should note here are some <a href="http://www.thewindowsclub.com/find-windows-product-key">simpler methods.</a></p>
+<p><button class="toggle-start-hidden">Show/hide Windows key finder vbs script</button></p>
+<div class="highlight"><pre><span></span>Set WshShell = CreateObject(&quot;WScript.Shell&quot;)
+MsgBox ConvertToKey(WshShell.RegRead(&quot;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\DigitalProductId&quot;))
+
+Function ConvertToKey(Key)
+Const KeyOffset = 52
+i = 28
+Chars = &quot;BCDFGHJKMPQRTVWXY2346789&quot;
+Do
+Cur = 0
+x = 14
+Do
+Cur = Cur * 256
+Cur = Key(x + KeyOffset) + Cur
+Key(x + KeyOffset) = (Cur \ 24) And 255
+Cur = Cur Mod 24
+x = x -1
+Loop While x &gt;= 0
+i = i -1
+KeyOutput = Mid(Chars, Cur + 1, 1) &amp; KeyOutput
+If (((29 - i) Mod 6) = 0) And (i &lt;&gt; -1) Then
+i = i -1
+KeyOutput = &quot;-&quot; &amp; KeyOutput
+End If
+Loop While i &gt;= 0
+ConvertToKey = KeyOutput
+End Function
+</pre></div>
+
+<hr>
 <p>Once you have a copy of Windows that corresponds to what you are licensed to use, you might want to go ahead and find your windows key for after the installation when you need to reactivate. If you're simply wiping your drive and reinstalling then Windows will very likely automatically activate your copy. They monitor your hardware signature and will approve it if nothing has changed drastically. You may expect some hassle if some parts change and have to speak to customer service if a lot has changed. I don't know the entire policy since thankfully I didn't need to use my product key as it was automatically activated. But you should follow earlier directions and store your Windows key just in case.</p>
-<p>Ok now that you have your two USB boot drives, one with Windows, one with your linux distro. (You could also just use the same one, but two is simpler). Install Windows first, openSUSE does a decent job of detecting an existing OS and Windows is territorial. Alright you've installed Windows. That was the easy part. Now put in your linux USB and boot from it. Since you went through the trouble of ensuring a GPT format, this should be rather easy. Choosing ntfs or so. The option you chose when creating Rufus should've specified UEFI for the boot drive. </p>
+<p><em>But wait, having trouble getting a Windows copy?</em> Windows really doesn't want to serve their OS for people, I imagine the server costs would be unfathomable. So almost no matter how botched your copy is or what weird situation you're in, Windows doesn't want to give you a copy, they just keep improving their reinstall software. There is a solution, check out <a href="https://www.heidoc.net/joomla/technology-science/microsoft/67-microsoft-">Windows ISO Downloader from heidoc</a> It worked great for me. Armed with a windows key and a copy of Windows, I pulled the trigger and reformatted by C drive completely. (I am working on a SSD here for anyone curious.)</p>
+<hr>
+<p>Ok now that you have your two USB boot drives, one with Windows, one with your linux distro. (You could also just use the same one, but two is simpler). Install Windows first, openSUSE does a decent job of detecting an existing OS and Windows is territorial. Alright you've installed Windows. That was the easy part. Now put in your linux USB and boot from it. Since you went through the trouble of ensuring a GPT format, this should be rather easy. Choosing the recommended Btrfs file format will create an almost countless assortment of partitions. Sticking with ntfs cuts it down to 3 partitions. The option you chose when creating your USB with Rufus should've specified UEFI for the boot drive, it's the default. Once you finish the installation prompts for both operating systems you will face an option upon booting up to choose which installed boot drive to access. My openSUSE is the default which starts after a countdown.</p>
+<p>Well that was it, wasn't too bad. I use KDE which is a nice gui or "desktop environment" and the recommended one for openSUSE, haven't found an error yet. </p>
   </div>
 
   <!-- Article Footer from plug-in -->
