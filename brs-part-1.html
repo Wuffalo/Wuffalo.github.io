@@ -115,14 +115,13 @@
 
   <div>
     <p>Blended Retirement System costs, financial analysis of the US Military's new retirement system effective 2018</p>
-<h2>What is being studied?</h2>
 <p>This is a multi-stage analysis of the new retirement system for all military personel going into effect January 1, 2018. Part one is a programming project in Python adding a calculator to the Department of Defense's website at <a href="https://militarypay.defense.gov/Calculators/" title="DoD Calculators">militarypay.defense.gov</a></p>
 <p>Under the previous system retirement was only awarded after 20 years of service, either active duty years or a combination including reserve 'good years'. A good year defined as meeting sufficient reserve service requirements.</p>
 <p>The new system will be a combination of pension, bonus and investment fund matching. Since only 17% of service members stay to retire after 20 years, this new system will affect and potentially benefit the majority of service members.</p>
 <hr>
 <h3>Calculator</h3>
 <p>The calculator takes in multiple pay tables saved as csv files, one of the simplest data storage formats. These tables therefore take up minimal space and can be read and wrote to by any system.</p>
-<p>The advantage of this calculator is it allows the user to retrieve reserve or active duty pay rates. User input determines which pay table is relevant and which particular pay on the chart to return.</p>
+<p>The advantage of this calculator is it allows the user to retrieve reserve <em>or</em> active duty pay rates. User input determines which pay table is relevant and which particular pay on the chart to return.</p>
 <hr>
 <h3>Code</h3>
 <p>The program to do this is written in Python and the code is as follows with corresponding commenting.</p>
@@ -130,19 +129,28 @@
 <p>[gist:id=1d891e1cd9ed480be96b654ee9d7a841]</p>
 <hr>
 <h3>Screenshots</h3>
-<p>[Active Enlisted]</p>
-<p>[Active Officer]</p>
-<p>[Reserve Enlisted]</p>
-<p>[Reserve Officer]</p>
-<p>[Input]</p>
-<p>[Output]</p>
-<p>[Error]</p>
+<p>Here is a snapshot of the pay table for active duty enlisted soldiers represented in raw CSV
+<img alt="Active Enlisted" src="/images/article-images/E_snapshot.png"></p>
+<hr>
+<p>Here is a snapshot of the pay table for reserve officers automatically formatted in an excel application
+<img alt="Reserve Officer" src="/images/article-images/RO_snapshot.png"></p>
+<hr>
+<p>Here is the input prompt when the program is ran
+<img alt="Input" src="/images/article-images/input_snapshot.png"></p>
+<hr>
+<p>Following the first input there is a secondary input, after both are entered the ouput lists the pay rate for the selected rank, years of experience and active or reserve duty selection
+<img alt="Output" src="/images/article-images/output_snapshot.png"></p>
+<hr>
+<p>If an input follows appropriate formatting but doesn't choose a valid pay rate, an error note is returned
+<img alt="Error" src="/images/article-images/error_snapshot.png"></p>
+<hr>
 <h3>Conclusion</h3>
 <p>The next project in this series will be data analysis to examine system wide costs and savings.</p>
   </div>
 
-    BRS Part 1, Wolf, Projects
-  
+  <!-- Article Footer from plug-in -->
+    <strong>Article: "BRS Part 1" by Wolf, in Projects</strong>
+
   	<style>
 #pcs-comment-form input,
 #pcs-comment-form textarea {
@@ -275,9 +283,6 @@
             <a href="/tag/csv/" data-toggle="tooltip"
       class="label label-default"
       title="1 article with this tag">csv</a>
-            <a href="/tag/test-tag/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">test tag</a>
       </p>
       <hr/>
 
