@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>  BRS Part 1
+    <title>  How to install an openSUSE distro with dual boot
  | Nothing but Wolf</title>
 
     <meta name="author" content="Wolf"/>
@@ -70,11 +70,11 @@
 <li >
                   <a href="https://wuffalo.github.io/category/dietfitness/">Diet&Fitness</a>
                 </li>
-<li >
-                  <a href="https://wuffalo.github.io/category/hardware/">Hardware</a>
-                </li>
 <li  class="active" >
-                  <a href="https://wuffalo.github.io/category/projects/">Projects <span class="sr-only">(current)</span></a>
+                  <a href="https://wuffalo.github.io/category/hardware/">Hardware <span class="sr-only">(current)</span></a>
+                </li>
+<li >
+                  <a href="https://wuffalo.github.io/category/projects/">Projects</a>
                 </li>
           </ul>
 
@@ -103,7 +103,7 @@
       <div class="row">
         <div class=" col-md-9  ">
   <h1>
-    <a href="https://wuffalo.github.io/brs-part-1.html" rel="bookmark" title="Permalink to BRS Part 1">BRS Part 1</a>
+    <a href="https://wuffalo.github.io/how-to-install-an-opensuse-distro-with-dual-boot.html" rel="bookmark" title="Permalink to How to install an openSUSE distro with dual boot">How to install an openSUSE distro with dual boot</a>
   </h1>
         </div>
       </div>
@@ -114,162 +114,23 @@
   
 
   <div>
-    <p>Blended Retirement System costs, financial analysis of the US Military's new retirement system effective 2018</p>
-<p>This is a multi-stage analysis of the new retirement system for all military personel going into effect January 1, 2018. Part one is a programming project in Python adding a calculator to the Department of Defense's website at <a href="https://militarypay.defense.gov/Calculators/" title="DoD Calculators">militarypay.defense.gov</a></p>
-<p>Under the previous system retirement was only awarded after 20 years of service, either active duty years or a combination including reserve 'good years'. A good year defined as meeting sufficient reserve service requirements.</p>
-<p>The new system will be a combination of pension, bonus and investment fund matching. Since only 17% of service members stay to retire after 20 years, this new system will affect and potentially benefit the majority of service members.</p>
+    <p>I pulled out my old desktop and decided to put a linux distro on it so I could learn some popular database operating systems.</p>
+<p>Not sure I want to go into how to select one here, too many articles on it already. According to my research some good personal distros seem to be Ubuntu or Fedora, and some more commercial oriented ones (still free) are CentOS or openSUSE. A good paid one appears to be Redhat, CentOS is the freeware version (no support included).</p>
+<p>I decided to go with openSUSE, but I will likely be working with CentOS as well.</p>
+<h2>Dual boot</h2>
 <hr>
-<h3>Calculator</h3>
-<p>The calculator takes in multiple pay tables saved as csv files, one of the simplest data storage formats. These tables therefore take up minimal space and can be read and wrote to by any system.</p>
-<p>The advantage of this calculator is it allows the user to retrieve reserve <em>or</em> active duty pay rates. User input determines which pay table is relevant and which particular pay on the chart to return.</p>
+<h3>openSUSE</h3>
+<p>This desktop was one I built and had installed Win7 with an eventual Win10 upgrade. The goal therefore was to install openSUSE alongside my existing Windows 10.</p>
+<p>To make a long story short, this turned out to be impossible as my main drive was MBR formatted. What I needed to dual boot easily was a GPT formatted drive. <a href="https://www.howtogeek.com/193669/whats-the-difference-between-gpt-and-mbr-when-partitioning-a-drive/">Here is an article discussing the differences.</a> Now there are some unofficial utilities that claim to migrate files in a reformat safely. But the confidence wasn't there so I decided to do a rescue operation of the C drive, take out everything I wanted and just reformat entirely to GPT. I have a laptop that I used to write a openSUSE distro in USB boot drive. I chose Leap as it is the <a href="https://www.opensuse.org/">stable released version</a> they offer. They also offer Tumbleweed which is the more experimental rolling version featuring the latest, also claimed to be stable.</p>
 <hr>
-<h3>Code</h3>
-<p>The program to do this is written in Python and the code is as follows with corresponding commenting.</p>
-<p><button class="toggle-start-hidden">Show/hide</button></p>
-<div class="highlight"><pre><span></span>#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-&#39;&#39;&#39;
-2017 US military service base pay calculator
-W
-&#39;&#39;&#39;
-&#39;&#39;&#39;Imports, and source tables------------------------------------------------&#39;&#39;&#39;
-import pandas as pd
-import sys
-import math
-
-AE_read = pd.read_csv(&#39;E_2017pay.csv&#39;)
-AE1 = pd.DataFrame(AE_read)
-AE = AE1.set_index(&#39;Years&#39;)
-
-AO_read = pd.read_csv(&#39;O_2017pay.csv&#39;)
-AO1 = pd.DataFrame(AO_read)
-AO = AO1.set_index(&#39;Years&#39;)
-
-RE_read = pd.read_csv(&#39;RE_2017pay.csv&#39;)
-RE1 = pd.DataFrame(RE_read)
-RE = RE1.set_index(&#39;Years&#39;)
-
-RO_read = pd.read_csv(&#39;RO_2017pay.csv&#39;)
-RO1 = pd.DataFrame(RO_read)
-RO = RO1.set_index(&#39;Years&#39;)
-
-&#39;&#39;&#39;Using input and calculated values, searches specific chart for corresponding value&#39;&#39;&#39;
-def find_pay(rank,years,active,enlisted):
-    if active == 1:
-        if enlisted == 1:
-            pay = AE.loc[years,rank]
-            return pay
-        elif enlisted == 0:
-            pay = AO.loc[years,rank]
-            return pay
-    elif active == 0:
-        if enlisted == 1:
-            pay = RE.loc[years,rank]
-            return pay
-        elif enlisted == 0:
-            pay = RO.loc[years,rank]
-            return pay
-
-&#39;&#39;&#39;Once user inputs service years, calculates experience pay range they belong to&#39;&#39;&#39;
-def determine_years(service):
-    if 0 &lt;= service &lt; 2:
-        years = &#39;Under 2&#39;
-    elif 2 &lt;= service &lt; 3:
-        years = &#39;Over 2&#39;
-    elif 3 &lt;= service &lt; 4:
-        years = &#39;Over 3&#39;
-    elif 4 &lt;= service &lt; 6:
-        years = &#39;Over 4&#39;
-    elif 6 &lt;= service &lt; 8:
-        years = &#39;Over 6&#39;
-    elif 8 &lt;= service &lt; 10:
-        years = &#39;Over 8&#39;
-    elif 10 &lt;= service &lt; 12:
-        years = &#39;Over 10&#39;
-    elif 12 &lt;= service &lt; 14:
-        years = &#39;Over 12&#39;
-    elif 14 &lt;= service &lt; 16:
-        years = &#39;Over 14&#39;
-    elif 16 &lt;= service &lt; 18:
-        years = &#39;Over 16&#39;
-    elif 18 &lt;= service &lt; 20:
-        years = &#39;Over 18&#39;
-    elif 20 &lt;= service &lt; 22:
-        years = &#39;Over 20&#39;
-    elif 22 &lt;= service &lt; 24:
-        years = &#39;Over 22&#39;
-    elif 24 &lt;= service &lt; 26:
-        years = &#39;Over 24&#39;
-    elif 26 &lt;= service &lt; 30:
-        years = &#39;Over 26&#39;
-    elif 30 &lt;= service &lt; 34:
-        years = &#39;Over 30&#39;
-    elif 34 &lt;= service &lt; 38:
-        years = &#39;Over 34&#39;
-    elif 38 &lt;= service &lt;= 40:
-        years = &#39;Over 38&#39;
-    elif service &lt; 0 and service &gt; 40:
-        print &quot;Service years was entered incorrectly. Must be &gt;0 and &lt;40.&quot;
-    return years
-
-&#39;&#39;&#39;---------Main body of program---------------------------------------------&#39;&#39;&#39;
-separator = &#39; &#39;                                 #separator of input values is space
-
-print &quot;Please enter rank followed by years in service.&quot;
-print &quot;Format is &#39;E-1&#39; space #, ex: O-5 20 or &#39;E-3 6&#39;&quot;
-user_input = raw_input(&quot;: &quot;).split(separator)                           #reads in rank and service years
-rank = user_input[0]
-service = user_input[1]
-active_input = raw_input(&quot;Active duty, Y? Reserve is N.: &quot;).lower()     #reads active duty or not
-
-if  active_input in (&quot;yes&quot;, &quot;y&quot;):               #Assigns rest of program&#39;s active/reserve references
-    active = 1
-    D = &#39;n active duty &#39;
-elif active_input in (&quot;no&quot;, &quot;n&quot;):
-    active = 0
-    D = &#39; reserve &#39;
-else:sys.exit(&quot;Please try again with Y or N for active duty answer.&quot;)
-
-enlist = str(user_input[0])                     #This body determines whether user&#39;s rank is enlisted or officer
-if ord(enlist[0]) == ord(&#39;E&#39;):
-    enlisted = 1
-else: enlisted = 0
-
-rank = str(rank)                                #Prepares user inputs for function calls with correct data types
-service = int(service)
-
-years = determine_years(service)                #Takes user&#39;s service years and assigns experience pay range
-pay = find_pay(rank,years,active,enlisted)      #Looks up correct chart and cell value for rank, years in, active or reserve, and enlisted or officer
-
-
-if math.isnan(pay):                             #Prints a summary statement if there exists a base pay for user input, or an error message
-    print &quot;There doesn&#39;t exist a base pay for that rank with those years of service&quot;
-else: print &quot;The 2017 base pay for a&quot;+D+rank+&quot; with &quot;+str(service)+&quot; years of service is: &quot;, &#39;${:,.2f}&#39;.format(pay)
-</pre></div>
-
-<hr>
-<h3>Screenshots</h3>
-<p>Here is a snapshot of the pay table for active duty enlisted soldiers represented in raw CSV
-<img alt="Active Enlisted" src="/images/article-images/E_snapshot.PNG"></p>
-<hr>
-<p>Here is a snapshot of the pay table for reserve officers automatically formatted in an excel application
-<img alt="Reserve Officer" src="/images/article-images/RO_snapshot.PNG"></p>
-<hr>
-<p>Here is the input prompt when the program is ran
-<img alt="Input" src="/images/article-images/input_snapshot.PNG"></p>
-<hr>
-<p>Following the first input there is a secondary input, after both are entered the ouput lists the pay rate for the selected rank, years of experience and active or reserve duty selection
-<img alt="Output" src="/images/article-images/output_snapshot.PNG"></p>
-<hr>
-<p>If an input follows appropriate formatting but doesn't choose a valid pay rate, an error note is returned
-<img alt="Error" src="/images/article-images/error_snapshot.PNG"></p>
-<hr>
-<h3>Conclusion</h3>
-<p>The next project in this series will be data analysis to examine system wide costs and savings.</p>
+<h3>Installation</h3>
+<p>I wrote to the usb using <a href="https://rufus.akeo.ie/">Rufus</a> which specializes in creating bootable USB drives. Now the openSUSE was easy to find and download, but wiping my C drive meant I would have to redownload Windows. This is where the hell begins. Ok, I'll save you the trouble. aaaaaaaaaaaaaa UEFI</p>
+<p>Once you have a copy of Windows that corresponds to what you are licensed to use, you might want to go ahead and find your windows key for after the installation when you need to reactivate. If you're simply wiping your drive and reinstalling then Windows will very likely automatically activate your copy. They monitor your hardware signature and will approve it if nothing has changed drastically. You may expect some hassle if some parts change and have to speak to customer service if a lot has changed. I don't know the entire policy since thankfully I didn't need to use my product key as it was automatically activated. But you should follow earlier directions and store your Windows key just in case.</p>
+<p>Ok now that you have your two USB boot drives, one with Windows, one with your linux distro. (You could also just use the same one, but two is simpler). Install Windows first, openSUSE does a decent job of detecting an existing OS and Windows is territorial. Alright you've installed Windows. That was the easy part. Now put in your linux USB and boot from it. Since you went through the trouble of ensuring a GPT format, this should be rather easy. Choosing ntfs or so. The option you chose when creating Rufus should've specified UEFI for the boot drive. </p>
   </div>
 
   <!-- Article Footer from plug-in -->
-    <strong>Article: "BRS Part 1" by Wolf, in Projects</strong>
+    <strong>Article: "How to install an openSUSE distro with dual boot" by Wolf, in Hardware</strong>
 
   	<style>
 #pcs-comment-form input,
@@ -327,7 +188,7 @@ else: print &quot;The 2017 base pay for a&quot;+D+rank+&quot; with &quot;+str(se
 				id="pcs-comment-form-button-submit"
 				>Post via email</button>
 
-			<a href="https://wuffalo.github.io/feeds/comment.brs-part-1.atom.xml">
+			<a href="https://wuffalo.github.io/feeds/comment.how-to-install-an-opensuse-distro-with-dual-boot.atom.xml">
 				Comment Atom Feed
 			</a>
 	</form>
@@ -352,7 +213,7 @@ else: print &quot;The 2017 base pay for a&quot;+D+rank+&quot; with &quot;+str(se
 				function( event )
 				{
 					event.preventDefault();
-					$(location).attr('href', CommentSystem.getMailtoLink("brs-part-1"));
+					$(location).attr('href', CommentSystem.getMailtoLink("how-to-install-an-opensuse-distro-with-dual-boot"));
 				}
 			);
 		});
@@ -360,11 +221,6 @@ else: print &quot;The 2017 base pay for a&quot;+D+rank+&quot; with &quot;+str(se
 
 
 
-    <h3>Related content</h3>
-    <!-- TODO: Use fancier related layout, as in https://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/ -->
-    <ul>
-        <li><a href="https://wuffalo.github.io/my-first-blog-ill-use-pelican.html">My first blog, I'll use Pelican!</a></li>
-      </ul>
 
 
         </div>
@@ -372,7 +228,7 @@ else: print &quot;The 2017 base pay for a&quot;+D+rank+&quot; with &quot;+str(se
           <div class="col-md-3">
   <div class="well">
 
-    <p><abbr title="2017-06-07T00:00:00-05:00"><i class="fa fa-calendar"></i> Wed 07 June 2017</abbr></p>
+    <p><abbr title="2017-03-10T00:00:00-06:00"><i class="fa fa-calendar"></i> Fri 10 March 2017</abbr></p>
 
       <p><address>
         <i class="fa fa-user"></i> By
@@ -382,27 +238,9 @@ else: print &quot;The 2017 base pay for a&quot;+D+rank+&quot; with &quot;+str(se
     <hr/>
 
       <p>
-              <a href="https://wuffalo.github.io/category/projects/" rel="tag"
+              <a href="https://wuffalo.github.io/category/hardware/" rel="tag"
                   data-toggle="tooltip" class="label label-info"
-                  title="2 articles in this category">Projects</a>
-            <a href="/tag/python/" data-toggle="tooltip"
-      class="label label-default"
-      title="2 articles with this tag">python</a>
-            <a href="/tag/project/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">project</a>
-            <a href="/tag/calculator/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">calculator</a>
-            <a href="/tag/brs/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">BRS</a>
-            <a href="/tag/data-analysis/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">data analysis</a>
-            <a href="/tag/csv/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">csv</a>
+                  title="2 articles in this category">Hardware</a>
       </p>
       <hr/>
 
