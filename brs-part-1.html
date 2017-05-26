@@ -126,125 +126,125 @@
 <h3>Code</h3>
 <p>The program to do this is written in Python and the code is as follows with corresponding commenting.</p>
 <p><button class="toggle-start-hidden">Show/hide</button></p>
-<div class="highlight"><pre><span></span>#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-&#39;&#39;&#39;
-2017 US military service base pay calculator
-W
-&#39;&#39;&#39;
-&#39;&#39;&#39;Imports, and source tables------------------------------------------------&#39;&#39;&#39;
-import pandas as pd
-import sys
-import math
+<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python2</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">2017 US military service base pay calculator</span>
+<span class="sd">W</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">&#39;&#39;&#39;Imports, and source tables------------------------------------------------&#39;&#39;&#39;</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">math</span>
 
-AE_read = pd.read_csv(&#39;E_2017pay.csv&#39;)
-AE1 = pd.DataFrame(AE_read)
-AE = AE1.set_index(&#39;Years&#39;)
+<span class="n">AE_read</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;E_2017pay.csv&#39;</span><span class="p">)</span>
+<span class="n">AE1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AE_read</span><span class="p">)</span>
+<span class="n">AE</span> <span class="o">=</span> <span class="n">AE1</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
 
-AO_read = pd.read_csv(&#39;O_2017pay.csv&#39;)
-AO1 = pd.DataFrame(AO_read)
-AO = AO1.set_index(&#39;Years&#39;)
+<span class="n">AO_read</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;O_2017pay.csv&#39;</span><span class="p">)</span>
+<span class="n">AO1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">AO_read</span><span class="p">)</span>
+<span class="n">AO</span> <span class="o">=</span> <span class="n">AO1</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
 
-RE_read = pd.read_csv(&#39;RE_2017pay.csv&#39;)
-RE1 = pd.DataFrame(RE_read)
-RE = RE1.set_index(&#39;Years&#39;)
+<span class="n">RE_read</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;RE_2017pay.csv&#39;</span><span class="p">)</span>
+<span class="n">RE1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">RE_read</span><span class="p">)</span>
+<span class="n">RE</span> <span class="o">=</span> <span class="n">RE1</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
 
-RO_read = pd.read_csv(&#39;RO_2017pay.csv&#39;)
-RO1 = pd.DataFrame(RO_read)
-RO = RO1.set_index(&#39;Years&#39;)
+<span class="n">RO_read</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;RO_2017pay.csv&#39;</span><span class="p">)</span>
+<span class="n">RO1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">RO_read</span><span class="p">)</span>
+<span class="n">RO</span> <span class="o">=</span> <span class="n">RO1</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
 
-&#39;&#39;&#39;Using input and calculated values, searches specific chart for corresponding value&#39;&#39;&#39;
-def find_pay(rank,years,active,enlisted):
-    if active == 1:
-        if enlisted == 1:
-            pay = AE.loc[years,rank]
-            return pay
-        elif enlisted == 0:
-            pay = AO.loc[years,rank]
-            return pay
-    elif active == 0:
-        if enlisted == 1:
-            pay = RE.loc[years,rank]
-            return pay
-        elif enlisted == 0:
-            pay = RO.loc[years,rank]
-            return pay
+<span class="sd">&#39;&#39;&#39;Using input and calculated values, searches specific chart for corresponding value&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">find_pay</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span><span class="n">years</span><span class="p">,</span><span class="n">active</span><span class="p">,</span><span class="n">enlisted</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">active</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">enlisted</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">pay</span> <span class="o">=</span> <span class="n">AE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">years</span><span class="p">,</span><span class="n">rank</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">pay</span>
+        <span class="k">elif</span> <span class="n">enlisted</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">pay</span> <span class="o">=</span> <span class="n">AO</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">years</span><span class="p">,</span><span class="n">rank</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">pay</span>
+    <span class="k">elif</span> <span class="n">active</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">enlisted</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">pay</span> <span class="o">=</span> <span class="n">RE</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">years</span><span class="p">,</span><span class="n">rank</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">pay</span>
+        <span class="k">elif</span> <span class="n">enlisted</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">pay</span> <span class="o">=</span> <span class="n">RO</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">years</span><span class="p">,</span><span class="n">rank</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">pay</span>
 
-&#39;&#39;&#39;Once user inputs service years, calculates experience pay range they belong to&#39;&#39;&#39;
-def determine_years(service):
-    if 0 &lt;= service &lt; 2:
-        years = &#39;Under 2&#39;
-    elif 2 &lt;= service &lt; 3:
-        years = &#39;Over 2&#39;
-    elif 3 &lt;= service &lt; 4:
-        years = &#39;Over 3&#39;
-    elif 4 &lt;= service &lt; 6:
-        years = &#39;Over 4&#39;
-    elif 6 &lt;= service &lt; 8:
-        years = &#39;Over 6&#39;
-    elif 8 &lt;= service &lt; 10:
-        years = &#39;Over 8&#39;
-    elif 10 &lt;= service &lt; 12:
-        years = &#39;Over 10&#39;
-    elif 12 &lt;= service &lt; 14:
-        years = &#39;Over 12&#39;
-    elif 14 &lt;= service &lt; 16:
-        years = &#39;Over 14&#39;
-    elif 16 &lt;= service &lt; 18:
-        years = &#39;Over 16&#39;
-    elif 18 &lt;= service &lt; 20:
-        years = &#39;Over 18&#39;
-    elif 20 &lt;= service &lt; 22:
-        years = &#39;Over 20&#39;
-    elif 22 &lt;= service &lt; 24:
-        years = &#39;Over 22&#39;
-    elif 24 &lt;= service &lt; 26:
-        years = &#39;Over 24&#39;
-    elif 26 &lt;= service &lt; 30:
-        years = &#39;Over 26&#39;
-    elif 30 &lt;= service &lt; 34:
-        years = &#39;Over 30&#39;
-    elif 34 &lt;= service &lt; 38:
-        years = &#39;Over 34&#39;
-    elif 38 &lt;= service &lt;= 40:
-        years = &#39;Over 38&#39;
-    elif service &lt; 0 and service &gt; 40:
-        print &quot;Service years was entered incorrectly. Must be &gt;0 and &lt;40.&quot;
-    return years
+<span class="sd">&#39;&#39;&#39;Once user inputs service years, calculates experience pay range they belong to&#39;&#39;&#39;</span>
+<span class="k">def</span> <span class="nf">determine_years</span><span class="p">(</span><span class="n">service</span><span class="p">):</span>
+    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Under 2&#39;</span>
+    <span class="k">elif</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 2&#39;</span>
+    <span class="k">elif</span> <span class="mi">3</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 3&#39;</span>
+    <span class="k">elif</span> <span class="mi">4</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 4&#39;</span>
+    <span class="k">elif</span> <span class="mi">6</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 6&#39;</span>
+    <span class="k">elif</span> <span class="mi">8</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 8&#39;</span>
+    <span class="k">elif</span> <span class="mi">10</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 10&#39;</span>
+    <span class="k">elif</span> <span class="mi">12</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">14</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 12&#39;</span>
+    <span class="k">elif</span> <span class="mi">14</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 14&#39;</span>
+    <span class="k">elif</span> <span class="mi">16</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 16&#39;</span>
+    <span class="k">elif</span> <span class="mi">18</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 18&#39;</span>
+    <span class="k">elif</span> <span class="mi">20</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">22</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 20&#39;</span>
+    <span class="k">elif</span> <span class="mi">22</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">24</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 22&#39;</span>
+    <span class="k">elif</span> <span class="mi">24</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">26</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 24&#39;</span>
+    <span class="k">elif</span> <span class="mi">26</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">30</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 26&#39;</span>
+    <span class="k">elif</span> <span class="mi">30</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">34</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 30&#39;</span>
+    <span class="k">elif</span> <span class="mi">34</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">38</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 34&#39;</span>
+    <span class="k">elif</span> <span class="mi">38</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 38&#39;</span>
+    <span class="k">elif</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">service</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s2">&quot;Service years was entered incorrectly. Must be &gt;0 and &lt;40.&quot;</span>
+    <span class="k">return</span> <span class="n">years</span>
 
-&#39;&#39;&#39;---------Main body of program---------------------------------------------&#39;&#39;&#39;
-separator = &#39; &#39;                                 #separator of input values is space
+<span class="sd">&#39;&#39;&#39;---------Main body of program---------------------------------------------&#39;&#39;&#39;</span>
+<span class="n">separator</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>                                 <span class="c1">#separator of input values is space</span>
 
-print &quot;Please enter rank followed by years in service.&quot;
-print &quot;Format is &#39;E-1&#39; space #, ex: O-5 20 or &#39;E-3 6&#39;&quot;
-user_input = raw_input(&quot;: &quot;).split(separator)                           #reads in rank and service years
-rank = user_input[0]
-service = user_input[1]
-active_input = raw_input(&quot;Active duty, Y? Reserve is N.: &quot;).lower()     #reads active duty or not
+<span class="k">print</span> <span class="s2">&quot;Please enter rank followed by years in service.&quot;</span>
+<span class="k">print</span> <span class="s2">&quot;Format is &#39;E-1&#39; space #, ex: O-5 20 or &#39;E-3 6&#39;&quot;</span>
+<span class="n">user_input</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>                           <span class="c1">#reads in rank and service years</span>
+<span class="n">rank</span> <span class="o">=</span> <span class="n">user_input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">service</span> <span class="o">=</span> <span class="n">user_input</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">active_input</span> <span class="o">=</span> <span class="nb">raw_input</span><span class="p">(</span><span class="s2">&quot;Active duty, Y? Reserve is N.: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>     <span class="c1">#reads active duty or not</span>
 
-if  active_input in (&quot;yes&quot;, &quot;y&quot;):               #Assigns rest of program&#39;s active/reserve references
-    active = 1
-    D = &#39;n active duty &#39;
-elif active_input in (&quot;no&quot;, &quot;n&quot;):
-    active = 0
-    D = &#39; reserve &#39;
-else:sys.exit(&quot;Please try again with Y or N for active duty answer.&quot;)
+<span class="k">if</span>  <span class="n">active_input</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">):</span>               <span class="c1">#Assigns rest of program&#39;s active/reserve references</span>
+    <span class="n">active</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="s1">&#39;n active duty &#39;</span>
+<span class="k">elif</span> <span class="n">active_input</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;no&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">):</span>
+    <span class="n">active</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="s1">&#39; reserve &#39;</span>
+<span class="k">else</span><span class="p">:</span><span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Please try again with Y or N for active duty answer.&quot;</span><span class="p">)</span>
 
-enlist = str(user_input[0])                     #This body determines whether user&#39;s rank is enlisted or officer
-if ord(enlist[0]) == ord(&#39;E&#39;):
-    enlisted = 1
-else: enlisted = 0
+<span class="n">enlist</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">user_input</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>                     <span class="c1">#This body determines whether user&#39;s rank is enlisted or officer</span>
+<span class="k">if</span> <span class="nb">ord</span><span class="p">(</span><span class="n">enlist</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">):</span>
+    <span class="n">enlisted</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">else</span><span class="p">:</span> <span class="n">enlisted</span> <span class="o">=</span> <span class="mi">0</span>
 
-rank = str(rank)                                #Prepares user inputs for function calls with correct data types
-service = int(service)
+<span class="n">rank</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span>                                <span class="c1">#Prepares user inputs for function calls with correct data types</span>
+<span class="n">service</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
 
-years = determine_years(service)                #Takes user&#39;s service years and assigns experience pay range
-pay = find_pay(rank,years,active,enlisted)      #Looks up correct chart and cell value for rank, years in, active or reserve, and enlisted or officer
+<span class="n">years</span> <span class="o">=</span> <span class="n">determine_years</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>                <span class="c1">#Takes user&#39;s service years and assigns experience pay range</span>
+<span class="n">pay</span> <span class="o">=</span> <span class="n">find_pay</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span><span class="n">years</span><span class="p">,</span><span class="n">active</span><span class="p">,</span><span class="n">enlisted</span><span class="p">)</span>      <span class="c1">#Looks up correct chart and cell value for rank, years in, active or reserve, and enlisted or officer</span>
 
 
-if math.isnan(pay):                             #Prints a summary statement if there exists a base pay for user input, or an error message
-    print &quot;There doesn&#39;t exist a base pay for that rank with those years of service&quot;
-else: print &quot;The 2017 base pay for a&quot;+D+rank+&quot; with &quot;+str(service)+&quot; years of service is: &quot;, &#39;${:,.2f}&#39;.format(pay)
+<span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">pay</span><span class="p">):</span>                             <span class="c1">#Prints a summary statement if there exists a base pay for user input, or an error message</span>
+    <span class="k">print</span> <span class="s2">&quot;There doesn&#39;t exist a base pay for that rank with those years of service&quot;</span>
+<span class="k">else</span><span class="p">:</span> <span class="k">print</span> <span class="s2">&quot;The 2017 base pay for a&quot;</span><span class="o">+</span><span class="n">D</span><span class="o">+</span><span class="n">rank</span><span class="o">+</span><span class="s2">&quot; with &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">service</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; years of service is: &quot;</span><span class="p">,</span> <span class="s1">&#39;${:,.2f}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pay</span><span class="p">)</span>
 </pre></div>
 
 <hr>
