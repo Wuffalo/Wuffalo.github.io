@@ -74,6 +74,9 @@
 <li >
                   <a href="https://wuffalo.github.io/category/projects/">Projects</a>
                 </li>
+<li >
+                  <a href="https://wuffalo.github.io/category/software/">Software</a>
+                </li>
           </ul>
 
 
@@ -120,6 +123,28 @@
     <hr/>
     <article>
       <header>
+        <h2><a href="https://wuffalo.github.io/measuring-program-time-timeit-module.html" rel="bookmark" title="Permalink to Measuring program time (timeit module)">Measuring program time (timeit module)</a></h2>
+      </header>
+      <div><p>I've been using python's timeit module for some testing, wanted to keep track here of timeit and any other methods I come across. Here's an example usage.</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">timeit</span>
+
+<span class="n">start</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
+
+<span class="c1">#</span>
+
+<span class="n">stop</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">stop</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+</pre></div>
+
+<p>Note: default_timer uses time.perf_counter() defined here</p>
+<blockquote>
+<p>Return the value (in fractional …</p></blockquote></div>
+      <div><a class="btn btn-primary" href="https://wuffalo.github.io/measuring-program-time-timeit-module.html"><strong>➟ Read more</strong></a></div>
+    </article>
+    <hr/>
+    <article>
+      <header>
         <h2><a href="https://wuffalo.github.io/why-overspend-for-smoothies.html" rel="bookmark" title="Permalink to Why overspend for smoothies?">Why overspend for smoothies?</a></h2>
       </header>
       <div><p>Smoothies are liquid snacks that generally taste great, and an easy way to pack in what you should be having.</p>
@@ -144,15 +169,6 @@
       <div><a class="btn btn-primary" href="https://wuffalo.github.io/my-first-blog-ill-use-pelican.html"><strong>➟ Read more</strong></a></div>
     </article>
     <hr/>
-    <article>
-      <header>
-        <h2><a href="https://wuffalo.github.io/how-to-install-an-opensuse-distro-with-dual-boot.html" rel="bookmark" title="Permalink to How to install an openSUSE distro with dual boot">How to install an openSUSE distro with dual boot</a></h2>
-      </header>
-      <div><p>I pulled out my old desktop and decided to put a linux distro on it so I could learn some popular database operating systems.</p>
-<p>Not sure I want to go into how to select one here, too many articles on it already. According to my research some good personal distros …</p></div>
-      <div><a class="btn btn-primary" href="https://wuffalo.github.io/how-to-install-an-opensuse-distro-with-dual-boot.html"><strong>➟ Read more</strong></a></div>
-    </article>
-    <hr/>
 
   <nav>
     <ul class="pagination">
@@ -165,14 +181,22 @@
 <li class="active">
             <a href="https://wuffalo.github.io/index.html"
               rel="
- first  last ">
+ first ">
               1
                 <span class="sr-only">(current)</span>
             </a>
           </li>
+<li class="">
+            <a href="https://wuffalo.github.io/index2.html"
+              rel="
+ last  next ">
+              2
+            </a>
+          </li>
 
-        <li class="disabled">
-          <a aria-label="Next" rel="next">
+        <li>
+          <a href="https://wuffalo.github.io/index2.html"
+              aria-label="Next" rel="next">
             <span aria-hidden="true">&rarr;</span>
           </a>
         </li>

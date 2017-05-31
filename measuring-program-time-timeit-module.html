@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>  Articles by Wolf
+    <title>  Measuring program time (timeit module)
  | Nothing but Wolf</title>
 
     <meta name="author" content="Wolf"/>
@@ -75,8 +76,8 @@
 <li >
                   <a href="https://wuffalo.github.io/category/projects/">Projects</a>
                 </li>
-<li >
-                  <a href="https://wuffalo.github.io/category/software/">Software</a>
+<li  class="active" >
+                  <a href="https://wuffalo.github.io/category/software/">Software <span class="sr-only">(current)</span></a>
                 </li>
           </ul>
 
@@ -103,33 +104,20 @@
     <div class="container main">
 
       <div class="row">
-        <div class=" col-md-12  ">
+        <div class=" col-md-9  ">
   <h1>
-    <a href="https://wuffalo.github.io/author/wolf.html" rel="bookmark" title="Permalink to Wolf's articles">Articles by Wolf</a>
+    <a href="https://wuffalo.github.io/measuring-program-time-timeit-module.html" rel="bookmark" title="Permalink to Measuring program time (timeit module)">Measuring program time (timeit module)</a>
   </h1>
         </div>
       </div>
 
       <div class="row">
 
-        <div class=" col-md-12 " id="content" role="main">
+        <div class=" col-md-9 " id="content" role="main">
+  
 
-    <h2>Articles</h2>
-
-    <article>
-      <header>
-        <h2><a href="https://wuffalo.github.io/brs-part-1.html" rel="bookmark" title="Permalink to BRS Part 1">BRS Part 1</a></h2>
-      </header>
-      <div><p>Blended Retirement System costs, financial analysis of the US Military's new retirement system effective 2018</p>
-<p>This is a multi-stage analysis of the new retirement system for all military personel going into effect January 1, 2018. Part one is a programming project in Python adding a calculator to the Department of …</p></div>
-      <div><a class="btn btn-primary" href="https://wuffalo.github.io/brs-part-1.html"><strong>➟ Read more</strong></a></div>
-    </article>
-    <hr/>
-    <article>
-      <header>
-        <h2><a href="https://wuffalo.github.io/measuring-program-time-timeit-module.html" rel="bookmark" title="Permalink to Measuring program time (timeit module)">Measuring program time (timeit module)</a></h2>
-      </header>
-      <div><p>I've been using python's timeit module for some testing, wanted to keep track here of timeit and any other methods I come across. Here's an example usage.</p>
+  <div>
+    <p>I've been using python's timeit module for some testing, wanted to keep track here of timeit and any other methods I come across. Here's an example usage.</p>
 <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">timeit</span>
 
 <span class="n">start</span> <span class="o">=</span> <span class="n">timeit</span><span class="o">.</span><span class="n">default_timer</span><span class="p">()</span>
@@ -143,72 +131,179 @@
 
 <p>Note: default_timer uses time.perf_counter() defined here</p>
 <blockquote>
-<p>Return the value (in fractional …</p></blockquote></div>
-      <div><a class="btn btn-primary" href="https://wuffalo.github.io/measuring-program-time-timeit-module.html"><strong>➟ Read more</strong></a></div>
-    </article>
-    <hr/>
-    <article>
-      <header>
-        <h2><a href="https://wuffalo.github.io/why-overspend-for-smoothies.html" rel="bookmark" title="Permalink to Why overspend for smoothies?">Why overspend for smoothies?</a></h2>
-      </header>
-      <div><p>Smoothies are liquid snacks that generally taste great, and an easy way to pack in what you should be having.</p>
-<p>Now if you search Costco for smoothie mix you'll find a bag of <a href="https://www.raderfarms.com/">https://www.raderfarms.com/</a> fresh start smoothie mix in a 3 lbs (48 oz) bag sold for …</p></div>
-      <div><a class="btn btn-primary" href="https://wuffalo.github.io/why-overspend-for-smoothies.html"><strong>➟ Read more</strong></a></div>
-    </article>
-    <hr/>
-    <article>
-      <header>
-        <h2><a href="https://wuffalo.github.io/buying-guide-for-a-budget-gaming-pc.html" rel="bookmark" title="Permalink to Buying Guide for a budget gaming PC">Buying Guide for a budget gaming PC</a></h2>
-      </header>
-      <div><p>Goals: This is a gaming PC that can play most modern games on the maximum settings. This is also a self-build and every cost saving is used.</p>
-<p>This guide is a bit outdated since I built this a few years ago, the focus is to show how to price check …</p></div>
-      <div><a class="btn btn-primary" href="https://wuffalo.github.io/buying-guide-for-a-budget-gaming-pc.html"><strong>➟ Read more</strong></a></div>
-    </article>
-    <hr/>
-    <article>
-      <header>
-        <h2><a href="https://wuffalo.github.io/my-first-blog-ill-use-pelican.html" rel="bookmark" title="Permalink to My first blog, I&#39;ll use Pelican!">My first blog, I'll use Pelican!</a></h2>
-      </header>
-      <div><p>I realized learning things and making projects doesn't mean much if I can't talk about and display my work. So after some research I learned I don't need to specialize in front end development or website design or javascript to build a presentable website. This is part of the progress …</p></div>
-      <div><a class="btn btn-primary" href="https://wuffalo.github.io/my-first-blog-ill-use-pelican.html"><strong>➟ Read more</strong></a></div>
-    </article>
-    <hr/>
+<p>Return the value (in fractional seconds) of a performance counter, i.e. a clock with the highest available resolution to measure a short duration. It does include time elapsed during sleep and is system-wide. The reference point of the returned value is undefined, so that only the difference between the results of consecutive calls is valid.</p>
+</blockquote>
+<hr>
+<h3>Linux</h3>
+<p>Since I am using linux I can also use a built in bash command of 'time' and run the python program from the command line.</p>
+<blockquote>
+<p>$ time python program.py</p>
+</blockquote>
+<p>This will return output similar to the following.</p>
+<blockquote>
+<p>real  0m4.139s
+user  0m0.301s
+sys   0m0.053s</p>
+</blockquote>
+<p>A good explanation is found <a href="https://stackoverflow.com/questions/556405/what-do-real-user-and-sys-mean-in-the-output-of-time1">here on stackoverflow</a>.</p>
+<blockquote>
+<p><em>Real</em> is wall clock time - time from start to finish of the call. This is all elapsed time including time slices used by other processes and time the process spends blocked (for example if it is waiting for I/O to complete).</p>
+<p><em>User</em> is the amount of CPU time spent in user-mode code (outside the kernel) within the process. This is only actual CPU time used in executing the process. Other processes and time the process spends blocked do not count towards this figure.</p>
+<p><em>Sys</em> is the amount of CPU time spent in the kernel within the process. This means executing CPU time spent in system calls within the kernel, as opposed to library code, which is still running in user-space. Like 'user', this is only CPU time used by the process. See below for a brief description of kernel mode (also known as 'supervisor' mode) and the system call mechanism.</p>
+</blockquote>
+<p><a href="https://www.lifewire.com/command-return-time-command-4054237">Here is a good article about formatting options</a>.</p>
+<hr>
+<p>Summary, time is a good benchmarking tool I will be using from the command line, and timeit is one I can insert into my programs and measure any segment I need. <a href="https://docs.python.org/3/library/timeit.html#timeit.default_timer">timeit Documentation here</a>. </p>
+  </div>
 
-  <nav>
-    <ul class="pagination">
-        <li class="disabled">
-          <a aria-label="Previous" rel="prev">
-            <span aria-hidden="true">&larr;</span>
-          </a>
-        </li>
+  <!-- Article Footer from plug-in -->
+    <strong>Article: "Measuring program time (timeit module)" by Wolf, in Software</strong>
 
-<li class="active">
-            <a href="https://wuffalo.github.io/author/wolf.html"
-              rel="
- first ">
-              1
-                <span class="sr-only">(current)</span>
-            </a>
-          </li>
-<li class="">
-            <a href="https://wuffalo.github.io/author/wolf2.html"
-              rel="
- last  next ">
-              2
-            </a>
-          </li>
+  	<style>
+#pcs-comment-form input,
+#pcs-comment-form textarea {
+	width: 100%;
+}
+#pcs-comment-form-display-replyto {
+	border: solid 1px black;
+	padding: 2px;
+}
+#pcs-comment-form-display-replyto p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+#pcs-comments ul {
+	list-style: none;
+}
+#pcs-comments .comment-left {
+	display: table-cell;
+	padding-right: 10px;
+}
+#pcs-comments .comment-body {
+	display: table-cell;
+	vertical-align: top;
+	width: 100%;
+}
+</style>
 
-        <li>
-          <a href="https://wuffalo.github.io/author/wolf2.html"
-              aria-label="Next" rel="next">
-            <span aria-hidden="true">&rarr;</span>
-          </a>
-        </li>
-    </ul>
-  </nav>
+	<section id="pcs-comments">
+	<header>
+		<h2>Comments</h2>
+		<hr/>
+	</header>
+		<p>There are no comments yet.</p>
+	<section>
+	<form id="pcs-comment-form" action="#">
+		<legend>Add a Comment</legend>
+		<input type="hidden" id="pcs-comment-form-input-replyto">
+		<fieldset>
+			<label for="pcs-comment-form-input-name">Name</label>
+			<input  id="pcs-comment-form-input-name" type="text" placeholder="Enter your name or nickname" />
+		</fieldset>
+		<fieldset>
+			<label for="pcs-comment-form-input-website">Website</label>
+			<input  id="pcs-comment-form-input-website" type="text" placeholder="Enter your website (optional)" />
+		</fieldset>
+		<fieldset>
+			<label   for="pcs-comment-form-input-textarea">Your Comment</label>
+			<textarea id="pcs-comment-form-input-textarea" rows="5" style="resize:vertical;" placeholder="Your comment"></textarea>
+			<p>You can use the <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> syntax to format your comment.</p>
+			<div style="display: none; " id="pcs-comment-form-display-replyto"></div>
+		</fieldset>
+
+		<button type="submit"
+				id="pcs-comment-form-button-submit"
+				>Post via email</button>
+
+			<a href="https://wuffalo.github.io/feeds/comment.measuring-program-time-timeit-module.atom.xml">
+				Comment Atom Feed
+			</a>
+	</form>
+</section>
+
+</section>
+
+			<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="https://wuffalo.github.io/theme/js/comments.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			CommentSystem.email_user   = "contact.wolf.site";
+			CommentSystem.email_domain = "gmail.com";
+			CommentSystem.display_replyto_html = function(comment_content, article_slug, author) {
+				return ''
+					+ '<button style="float:right;" onclick="CommentSystem.cancelReply(); return false;" title="Cancel the reply">'
+					+ 	'×'
+					+ '</button>'
+					+ '<p>This comment will be posted as a reply to \'<a title="'+comment_content+'" href="#comment-'+article_slug+'">'+author+'</a>\'</p>';
+			};
+			$('#pcs-comment-form').on("submit",
+				function( event )
+				{
+					event.preventDefault();
+					$(location).attr('href', CommentSystem.getMailtoLink("measuring-program-time-timeit-module"));
+				}
+			);
+		});
+	</script>
+
+
+
+    <h3>Related content</h3>
+    <!-- TODO: Use fancier related layout, as in https://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/ -->
+    <ul>
+        <li><a href="https://wuffalo.github.io/brs-part-1.html">BRS Part 1</a></li>
+        <li><a href="https://wuffalo.github.io/my-first-blog-ill-use-pelican.html">My first blog, I'll use Pelican!</a></li>
+        <li><a href="https://wuffalo.github.io/buying-guide-for-a-budget-gaming-pc.html">Buying Guide for a budget gaming PC</a></li>
+      </ul>
+
 
         </div>
 
+          <div class="col-md-3">
+  <div class="well">
+
+    <p><abbr title="2017-05-27T00:00:00-05:00"><i class="fa fa-calendar"></i> Sat 27 May 2017</abbr></p>
+
+      <p><address>
+        <i class="fa fa-user"></i> By
+          <a href="https://wuffalo.github.io/author/wolf.html" rel="author">Wolf</a>
+      </address></p>
+
+    <hr/>
+
+      <p>
+              <a href="https://wuffalo.github.io/category/software/" rel="tag"
+                  data-toggle="tooltip" class="label label-info"
+                  title="1 article in this category">Software</a>
+            <a href="/tag/python/" data-toggle="tooltip"
+      class="label label-default"
+      title="3 articles with this tag">python</a>
+            <a href="/tag/cpu/" data-toggle="tooltip"
+      class="label label-default"
+      title="2 articles with this tag">cpu</a>
+            <a href="/tag/linux/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">linux</a>
+            <a href="/tag/bash/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">bash</a>
+            <a href="/tag/timeit/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">timeit</a>
+            <a href="/tag/time/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">time</a>
+            <a href="/tag/runtime/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">runtime</a>
+      </p>
+      <hr/>
+
+
+
+  </div>
+            
+          </div>
 
       </div>
 
