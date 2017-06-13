@@ -158,7 +158,7 @@
 <hr>
 <p>Addendum; Here's an example usage from my program I wrote about in <a href="https://wuffalo.github.io/brs-part-1.html">this blog post</a>.</p>
 <p><img alt="Time values" src="/images/article-images/sample_time.png"></p>
-<p>I used the a timeit start at the beginning of the program in the declarations, then I stopped it at the end of the main body after the final print statements. It gives me the first time value of 3.43 seconds, showing that real time measured of the main body of program was 3.43 seconds. Real time includes user prompt and my typing time!</p>
+<p>I used a timeit start at the beginning of the program in the declarations, then I stopped it at the end of the main body after the final print statements. It gives me the first time value of 3.43 seconds, showing that real time measured of the main body of program was 3.43 seconds. Real time includes user prompt and my typing time!</p>
 <p>The next time values come from bash's time command, so its real time returned 3.75 seconds. Now this should be comparable to the timeit I ran from within the program, however the bash real will always be greater as it is run outside the program, so it also counts time to open and close the program as well as other boring system things like import statements.</p>
 <p>So far I haven't seen a time measure that doesn't include time I spent typing, and that's where the next two values are very useful. They come from bash's time, and they measure process time itself, see details above. So my user mode used my processor for 0.3 seconds (program management) and kernel calculations took 0.026 seconds. The kernel time is the best for comparing actual work performed. I can use this to compare to other programs.</p>
   </div>
@@ -258,9 +258,9 @@
     <h3>Related content</h3>
     <!-- TODO: Use fancier related layout, as in https://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/ -->
     <ul>
+        <li><a href="https://wuffalo.github.io/brs-part-2.html">BRS Part 2</a></li>
         <li><a href="https://wuffalo.github.io/brs-part-1.html">BRS Part 1</a></li>
         <li><a href="https://wuffalo.github.io/my-first-blog-ill-use-pelican.html">My first blog, I'll use Pelican!</a></li>
-        <li><a href="https://wuffalo.github.io/buying-guide-for-a-budget-gaming-pc.html">Buying Guide for a budget gaming PC</a></li>
       </ul>
 
 
@@ -284,7 +284,7 @@
                   title="1 article in this category">Software</a>
             <a href="/tag/python/" data-toggle="tooltip"
       class="label label-default"
-      title="3 articles with this tag">python</a>
+      title="4 articles with this tag">python</a>
             <a href="/tag/cpu/" data-toggle="tooltip"
       class="label label-default"
       title="2 articles with this tag">cpu</a>

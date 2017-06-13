@@ -1,0 +1,596 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>  BRS Part 2
+ | Nothing but Wolf</title>
+
+    <meta name="author" content="Wolf"/>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"/>
+    <link rel="stylesheet" href="https://wuffalo.github.io/theme/css/jquery.mglass.css"/>
+    <link rel="stylesheet" href="https://wuffalo.github.io/theme/css/style.tango.css"/>
+    <link rel="stylesheet" href="https://wuffalo.github.io/theme/css/style.css"/>
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+    <link href='https://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css'/>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'/>
+
+
+    <link rel="icon" href="https://wuffalo.github.io/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://wuffalo.github.io/favicon.ico" type="image/x-icon">
+
+    <!-- Feeds -->
+
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="page-header">
+          <a href="https://wuffalo.github.io" class="avatar-container pull-left">
+            <div class="avatar  animate ">
+              <div class="side"><img src="/images/User-icon.png" class="img-responsive"/></div>
+                <div class="side back"><p class="text-center">carpe per diem</p></div>
+            </div>
+          </a>
+        <h1><a href="https://wuffalo.github.io">Nothing but Wolf</a> <small>Click around!</small></h1>
+      </div>
+
+      <nav class="navbar navbar-default">
+
+        <!-- Hamburger menu for mobile -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#plumage-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://wuffalo.github.io" title="Click around!">Nothing but Wolf</a>
+        </div>
+
+        <!-- Menus and search forms -->
+        <div class="collapse navbar-collapse" id="plumage-navbar-collapse-1">
+
+          <ul class="nav navbar-nav">
+<li >
+                  <a href="https://wuffalo.github.io/about-me/">About Me</a>
+                </li>
+<li >
+                  <a href="https://wuffalo.github.io/category/dietfitness/">Diet&Fitness</a>
+                </li>
+<li >
+                  <a href="https://wuffalo.github.io/category/hardware/">Hardware</a>
+                </li>
+<li  class="active" >
+                  <a href="https://wuffalo.github.io/category/projects/">Projects <span class="sr-only">(current)</span></a>
+                </li>
+<li >
+                  <a href="https://wuffalo.github.io/category/software/">Software</a>
+                </li>
+          </ul>
+
+
+            <form class="navbar-form navbar-right" role="search" action="https://wuffalo.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" name="q" id="tipue_search_input" class="form-control search-query" placeholder="Search" required />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="fa
+                        fa-search fa-fw"></i></button>
+                  </span>
+                </div>
+              </div>
+            </form>
+
+        </div>
+
+      </nav>
+
+    </div>
+
+
+    <div class="container main">
+
+      <div class="row">
+        <div class=" col-md-9  ">
+  <h1>
+    <a href="https://wuffalo.github.io/brs-part-2.html" rel="bookmark" title="Permalink to BRS Part 2">BRS Part 2</a>
+  </h1>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class=" col-md-9 " id="content" role="main">
+  
+
+  <div>
+    <p>This is part two of my Blended Retirement System study. For more information please see my original article, <a href="https://wuffalo.github.io/brs-part-1.html">BRS Part 1</a>.</p>
+<p>Now that I've made a sample program which can take a user input and provide the correct pay rate, I'm going to do two things: convert my code to Python 3 (3.6) and begin creating a simulation program.</p>
+<p>The original program was written in Python 2.7 which is a legacy standard still widely used. However since I have the luxury of forward planning I will go ahead and switch to Python 3 before it becomes burdensome.</p>
+<p>I did experiment with some code conversion methods that promise to mostly automate the process, but it quickly became apparent I was just bloating my simple program. Therefore I just made the necessary changes, input and print updates.</p>
+<h3>CalcPay in Python 3</h3>
+<hr>
+<p><button class="toggle-start-hidden">Show/hide Code</button></p>
+<h2><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;Calculate 2017 US military service base pay. By Wolf&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+
+<span class="k">def</span> <span class="nf">find_pay</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="n">years</span><span class="p">,</span> <span class="n">active</span><span class="p">,</span> <span class="n">enlisted</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns cell value given rank, years, duty status, enlisted status&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">active</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">enlisted</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">ae_read</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;E_2017pay.csv&#39;</span><span class="p">)</span>
+            <span class="n">ae1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ae_read</span><span class="p">)</span>
+            <span class="n">a_e</span> <span class="o">=</span> <span class="n">ae1</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
+            <span class="n">pay</span> <span class="o">=</span> <span class="n">a_e</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">years</span><span class="p">,</span> <span class="n">rank</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">pay</span>
+        <span class="k">elif</span> <span class="n">enlisted</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ao_read</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;O_2017pay.csv&#39;</span><span class="p">)</span>
+            <span class="n">ao1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ao_read</span><span class="p">)</span>
+            <span class="n">a_o</span> <span class="o">=</span> <span class="n">ao1</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
+            <span class="n">pay</span> <span class="o">=</span> <span class="n">a_o</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">years</span><span class="p">,</span> <span class="n">rank</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">pay</span>
+    <span class="k">elif</span> <span class="n">active</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">enlisted</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">re_read</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;RE_2017pay.csv&#39;</span><span class="p">)</span>
+            <span class="n">re1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">re_read</span><span class="p">)</span>
+            <span class="n">r_e</span> <span class="o">=</span> <span class="n">re1</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
+            <span class="n">pay</span> <span class="o">=</span> <span class="n">r_e</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">years</span><span class="p">,</span> <span class="n">rank</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">pay</span>
+        <span class="k">elif</span> <span class="n">enlisted</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ro_read</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;RO_2017pay.csv&#39;</span><span class="p">)</span>
+            <span class="n">ro1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ro_read</span><span class="p">)</span>
+            <span class="n">r_o</span> <span class="o">=</span> <span class="n">ro1</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
+            <span class="n">pay</span> <span class="o">=</span> <span class="n">r_o</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">years</span><span class="p">,</span> <span class="n">rank</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">pay</span>
+
+<span class="k">def</span> <span class="nf">determine_years</span><span class="p">(</span><span class="n">service</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Takes years of service, choose experience range assigns to years&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Under 2&#39;</span>
+    <span class="k">elif</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 2&#39;</span>
+    <span class="k">elif</span> <span class="mi">3</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 3&#39;</span>
+    <span class="k">elif</span> <span class="mi">4</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 4&#39;</span>
+    <span class="k">elif</span> <span class="mi">6</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 6&#39;</span>
+    <span class="k">elif</span> <span class="mi">8</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 8&#39;</span>
+    <span class="k">elif</span> <span class="mi">10</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 10&#39;</span>
+    <span class="k">elif</span> <span class="mi">12</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">14</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 12&#39;</span>
+    <span class="k">elif</span> <span class="mi">14</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 14&#39;</span>
+    <span class="k">elif</span> <span class="mi">16</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 16&#39;</span>
+    <span class="k">elif</span> <span class="mi">18</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 18&#39;</span>
+    <span class="k">elif</span> <span class="mi">20</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">22</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 20&#39;</span>
+    <span class="k">elif</span> <span class="mi">22</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">24</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 22&#39;</span>
+    <span class="k">elif</span> <span class="mi">24</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">26</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 24&#39;</span>
+    <span class="k">elif</span> <span class="mi">26</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">30</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 26&#39;</span>
+    <span class="k">elif</span> <span class="mi">30</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">34</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 30&#39;</span>
+    <span class="k">elif</span> <span class="mi">34</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">38</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 34&#39;</span>
+    <span class="k">elif</span> <span class="mi">38</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 38&#39;</span>
+    <span class="k">elif</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">service</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Service years was entered incorrectly. Must be &gt;0 and &lt;40.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">years</span>
+
+<span class="k">def</span> <span class="nf">calc_pay</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Opens Calculator prompt&quot;&quot;&quot;</span>
+    <span class="n">separator</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Please enter rank followed by years in service.&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Format is &#39;E-1&#39; space #, ex: &#39;O-5 20&#39; or &#39;E-3 6&#39;&quot;</span><span class="p">)</span>
+    <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">separator</span><span class="p">)</span>
+    <span class="n">rank</span> <span class="o">=</span> <span class="n">user_input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">service</span> <span class="o">=</span> <span class="n">user_input</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">active_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Active duty, Y? Reserve is N.: &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="k">if</span>  <span class="n">active_input</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;yes&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">):</span>
+        <span class="n">active</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">act_out</span> <span class="o">=</span> <span class="s1">&#39;n active duty &#39;</span>
+    <span class="k">elif</span> <span class="n">active_input</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;no&quot;</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">):</span>
+        <span class="n">active</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">act_out</span> <span class="o">=</span> <span class="s1">&#39; reserve &#39;</span>
+    <span class="k">else</span><span class="p">:</span> <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;Please try again with Y or N for active duty answer.&quot;</span><span class="p">)</span>
+
+    <span class="n">enlist</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">user_input</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">if</span> <span class="nb">ord</span><span class="p">(</span><span class="n">enlist</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">):</span>
+        <span class="n">enlisted</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span> <span class="n">enlisted</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">rank</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">rank</span><span class="p">)</span>
+    <span class="n">service</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
+
+    <span class="n">years</span> <span class="o">=</span> <span class="n">determine_years</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
+    <span class="n">pay</span> <span class="o">=</span> <span class="n">find_pay</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="n">years</span><span class="p">,</span> <span class="n">active</span><span class="p">,</span> <span class="n">enlisted</span><span class="p">)</span>
+
+
+    <span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">pay</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;There doesn&#39;t exist a base pay for that rank with those years of service&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span> <span class="k">print</span><span class="p">(</span><span class="s2">&quot;The 2017 base pay for a&quot;</span><span class="o">+</span><span class="n">act_out</span><span class="o">+</span><span class="n">rank</span><span class="o">+</span><span class="s2">&quot; with &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">service</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; years of service is: &quot;</span><span class="p">,</span> <span class="s1">&#39;${:,.2f}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pay</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">calc_pay</span><span class="p">()</span>
+</pre></div></h2>
+<h3>Simulation</h3>
+<p>Now that my basic program is converted to Python 3 I can start playing with it for the purpose of this project.</p>
+<p>As a reminder the ultimate goal is to analyze cost savings of the US military's implementation of the new Blended Retirement System.</p>
+<p>I decided to create a simulator and it is here I am running into disappointment. The goal is to create a simulator that very closely mirrors reality with accurate distributions in costs as calculated by numbers in each rank and pay rate.</p>
+<p>Here is my simulator code so far:</p>
+<p><button class="toggle-start-hidden">Show/hide Code</button></p>
+<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;Calculate 2017 US military service base pay. By Wolf&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">find_pay</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="n">years</span><span class="p">,</span> <span class="n">active</span><span class="p">,</span> <span class="n">enlisted</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns cell value given rank, years, duty status, enlisted status&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">active</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">enlisted</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">ae_read</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;E_2017pay.csv&#39;</span><span class="p">)</span>
+            <span class="n">ae1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ae_read</span><span class="p">)</span>
+            <span class="n">a_e</span> <span class="o">=</span> <span class="n">ae1</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
+            <span class="n">pay</span> <span class="o">=</span> <span class="n">a_e</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">years</span><span class="p">,</span> <span class="n">rank</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">pay</span>
+        <span class="k">elif</span> <span class="n">enlisted</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ao_read</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;O_2017pay.csv&#39;</span><span class="p">)</span>
+            <span class="n">ao1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ao_read</span><span class="p">)</span>
+            <span class="n">a_o</span> <span class="o">=</span> <span class="n">ao1</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
+            <span class="n">pay</span> <span class="o">=</span> <span class="n">a_o</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">years</span><span class="p">,</span> <span class="n">rank</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">pay</span>
+    <span class="k">elif</span> <span class="n">active</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">enlisted</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">re_read</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;RE_2017pay.csv&#39;</span><span class="p">)</span>
+            <span class="n">re1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">re_read</span><span class="p">)</span>
+            <span class="n">r_e</span> <span class="o">=</span> <span class="n">re1</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
+            <span class="n">pay</span> <span class="o">=</span> <span class="n">r_e</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">years</span><span class="p">,</span> <span class="n">rank</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">pay</span>
+        <span class="k">elif</span> <span class="n">enlisted</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">ro_read</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;RO_2017pay.csv&#39;</span><span class="p">)</span>
+            <span class="n">ro1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ro_read</span><span class="p">)</span>
+            <span class="n">r_o</span> <span class="o">=</span> <span class="n">ro1</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Years&#39;</span><span class="p">)</span>
+            <span class="n">pay</span> <span class="o">=</span> <span class="n">r_o</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">years</span><span class="p">,</span> <span class="n">rank</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">pay</span>
+
+<span class="k">def</span> <span class="nf">determine_years</span><span class="p">(</span><span class="n">service</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Takes years of service, choose experience range assigns to years&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Under 2&#39;</span>
+    <span class="k">elif</span> <span class="mi">2</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 2&#39;</span>
+    <span class="k">elif</span> <span class="mi">3</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 3&#39;</span>
+    <span class="k">elif</span> <span class="mi">4</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 4&#39;</span>
+    <span class="k">elif</span> <span class="mi">6</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 6&#39;</span>
+    <span class="k">elif</span> <span class="mi">8</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 8&#39;</span>
+    <span class="k">elif</span> <span class="mi">10</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">12</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 10&#39;</span>
+    <span class="k">elif</span> <span class="mi">12</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">14</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 12&#39;</span>
+    <span class="k">elif</span> <span class="mi">14</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 14&#39;</span>
+    <span class="k">elif</span> <span class="mi">16</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">18</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 16&#39;</span>
+    <span class="k">elif</span> <span class="mi">18</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">20</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 18&#39;</span>
+    <span class="k">elif</span> <span class="mi">20</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">22</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 20&#39;</span>
+    <span class="k">elif</span> <span class="mi">22</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">24</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 22&#39;</span>
+    <span class="k">elif</span> <span class="mi">24</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">26</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 24&#39;</span>
+    <span class="k">elif</span> <span class="mi">26</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">30</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 26&#39;</span>
+    <span class="k">elif</span> <span class="mi">30</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">34</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 30&#39;</span>
+    <span class="k">elif</span> <span class="mi">34</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">38</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 34&#39;</span>
+    <span class="k">elif</span> <span class="mi">38</span> <span class="o">&lt;=</span> <span class="n">service</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="p">:</span>
+        <span class="n">years</span> <span class="o">=</span> <span class="s1">&#39;Over 38&#39;</span>
+    <span class="k">elif</span> <span class="n">service</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">service</span> <span class="o">&gt;</span> <span class="mi">40</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Service years was entered incorrectly. Must be &gt;0 and &lt;40.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">years</span>
+
+<span class="k">def</span> <span class="nf">calc_pay</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Opens Calculator prompt&quot;&quot;&quot;</span>
+    <span class="n">active</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">enlisted</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">rank1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;usarmy2017.csv&#39;</span><span class="p">)</span>
+    <span class="n">rank_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rank1</span><span class="p">)</span>
+
+    <span class="n">rank_list</span> <span class="o">=</span> <span class="n">rank_df</span><span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">]</span>
+    <span class="n">percent_list</span> <span class="o">=</span> <span class="n">rank_df</span><span class="p">[</span><span class="s1">&#39;percent&#39;</span><span class="p">]</span>
+
+    <span class="n">rank</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">rank_list</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">percent_list</span><span class="p">)</span>
+
+    <span class="n">min_year</span> <span class="o">=</span> <span class="p">(</span><span class="n">rank_df</span><span class="p">[</span><span class="n">rank_list</span> <span class="o">==</span> <span class="n">rank</span><span class="p">])</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+
+    <span class="n">service</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="n">min_year</span><span class="p">,</span> <span class="mi">41</span><span class="p">)</span>
+    <span class="n">years</span> <span class="o">=</span> <span class="n">determine_years</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">ord</span><span class="p">(</span><span class="n">rank</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">):</span>
+        <span class="n">enlisted</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span> <span class="n">enlisted</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">pay</span> <span class="o">=</span> <span class="n">find_pay</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="n">years</span><span class="p">,</span> <span class="n">active</span><span class="p">,</span> <span class="n">enlisted</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">active</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">act_out</span> <span class="o">=</span> <span class="s1">&#39;n active &#39;</span>
+    <span class="k">else</span><span class="p">:</span> <span class="n">act_out</span> <span class="o">=</span> <span class="s1">&#39; reserve &#39;</span>
+
+    <span class="k">if</span> <span class="n">math</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">pay</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;There doesn&#39;t exist a base pay for a &quot;</span><span class="o">+</span><span class="n">rank</span><span class="o">+</span><span class="s2">&quot; with &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">service</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; years of service.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span> <span class="k">print</span><span class="p">(</span><span class="s2">&quot;The 2017 base pay for a&quot;</span><span class="o">+</span><span class="n">act_out</span><span class="o">+</span><span class="n">rank</span><span class="o">+</span><span class="s2">&quot; with &quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">service</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot; years of service is: &quot;</span><span class="p">,</span> <span class="s1">&#39;${:,.2f}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">pay</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">calc_pay</span><span class="p">()</span>
+</pre></div>
+
+<hr>
+<p>You'll see I have eliminated user inputs, now the inputs are randomized with appropriate possible inputs. This program is still producing just one data point so far.</p>
+<p>To base my simulator in reality I am weighing the randomness by real world amounts by accessing a csv file with <em>numpy.random.choice()</em>.</p>
+<p>This selects a random rank based on its weighted distribution provided in the chart. You can view the chart here. Please note I have decided to narrow my development to only look at US army ranks for now. This simulator should eventually be able to work for all services and eventually return any year analysis. That's going to be a lot of csv tables! Or just redesign to operate off a database, right now I am working with PostGreSQL in other projects.</p>
+<p><img alt="US Army rank numbers" src="/images/article-images/usarmyweights.png"></p>
+<p>Notice the first weight is provided in exponent notation which is well interpreted by NumPy. However you likely noticed the last column <em>minyears</em>. This column provides the commonly understood minimum number of years of service to achieve the corresponding rank. It's not a perfect science since there are performance factors involved, and it also breaks down in the upper officer ranks where they aren't clear rules. What I have created however is a lower bounds for my service years.</p>
+<hr>
+<h3>Where now?</h3>
+<p>At this point my data is starting to become imperfect and I need to pause and analyze how far I can take this simulator. I have a perfect distribution for rank. I can also create perfect distributions for questions of enlisted/officer or active/reserve. That would create a perfect simulation, but unfortunately I need to have the crucial input of service years.</p>
+<p>The only way to fix this I see is to find data of experience by rank. I've been digging through actuary.defense.gov to see their yearly reports, but haven't found something this exact yet.</p>
+<p>So I am naturally going to take this two ways at once, keep digging for real numbers, but also begin constructing a solve-for that could populate this for me using the total costs against all the known inputs I have so far. The only variable missing is a statistical distribution of service by rank. If I create this I can then achieve a most perfect simulator.</p>
+<p>However this also makes me want to work on other projects.</p>
+  </div>
+
+  <!-- Article Footer from plug-in -->
+    <strong>Article: "BRS Part 2" by Wolf, in Projects</strong>
+
+  	<style>
+#pcs-comment-form input,
+#pcs-comment-form textarea {
+	width: 100%;
+}
+#pcs-comment-form-display-replyto {
+	border: solid 1px black;
+	padding: 2px;
+}
+#pcs-comment-form-display-replyto p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+#pcs-comments ul {
+	list-style: none;
+}
+#pcs-comments .comment-left {
+	display: table-cell;
+	padding-right: 10px;
+}
+#pcs-comments .comment-body {
+	display: table-cell;
+	vertical-align: top;
+	width: 100%;
+}
+</style>
+
+	<section id="pcs-comments">
+	<header>
+		<h2>Comments</h2>
+		<hr/>
+	</header>
+		<p>There are no comments yet.</p>
+	<section>
+	<form id="pcs-comment-form" action="#">
+		<legend>Add a Comment</legend>
+		<input type="hidden" id="pcs-comment-form-input-replyto">
+		<fieldset>
+			<label for="pcs-comment-form-input-name">Name</label>
+			<input  id="pcs-comment-form-input-name" type="text" placeholder="Enter your name or nickname" />
+		</fieldset>
+		<fieldset>
+			<label for="pcs-comment-form-input-website">Website</label>
+			<input  id="pcs-comment-form-input-website" type="text" placeholder="Enter your website (optional)" />
+		</fieldset>
+		<fieldset>
+			<label   for="pcs-comment-form-input-textarea">Your Comment</label>
+			<textarea id="pcs-comment-form-input-textarea" rows="5" style="resize:vertical;" placeholder="Your comment"></textarea>
+			<p>You can use the <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> syntax to format your comment.</p>
+			<div style="display: none; " id="pcs-comment-form-display-replyto"></div>
+		</fieldset>
+
+		<button type="submit"
+				id="pcs-comment-form-button-submit"
+				>Post via email</button>
+
+			<a href="https://wuffalo.github.io/feeds/comment.brs-part-2.atom.xml">
+				Comment Atom Feed
+			</a>
+	</form>
+</section>
+
+</section>
+
+			<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="https://wuffalo.github.io/theme/js/comments.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			CommentSystem.email_user   = "contact.wolf.site";
+			CommentSystem.email_domain = "gmail.com";
+			CommentSystem.display_replyto_html = function(comment_content, article_slug, author) {
+				return ''
+					+ '<button style="float:right;" onclick="CommentSystem.cancelReply(); return false;" title="Cancel the reply">'
+					+ 	'×'
+					+ '</button>'
+					+ '<p>This comment will be posted as a reply to \'<a title="'+comment_content+'" href="#comment-'+article_slug+'">'+author+'</a>\'</p>';
+			};
+			$('#pcs-comment-form').on("submit",
+				function( event )
+				{
+					event.preventDefault();
+					$(location).attr('href', CommentSystem.getMailtoLink("brs-part-2"));
+				}
+			);
+		});
+	</script>
+
+
+
+    <h3>Related content</h3>
+    <!-- TODO: Use fancier related layout, as in https://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/ -->
+    <ul>
+        <li><a href="https://wuffalo.github.io/brs-part-1.html">BRS Part 1</a></li>
+        <li><a href="https://wuffalo.github.io/measuring-program-time-timeit-module.html">Measuring program time (timeit module)</a></li>
+        <li><a href="https://wuffalo.github.io/my-first-blog-ill-use-pelican.html">My first blog, I'll use Pelican!</a></li>
+      </ul>
+
+
+        </div>
+
+          <div class="col-md-3">
+  <div class="well">
+
+    <p><abbr title="2017-06-09T00:00:00-05:00"><i class="fa fa-calendar"></i> Fri 09 June 2017</abbr></p>
+
+      <p><address>
+        <i class="fa fa-user"></i> By
+          <a href="https://wuffalo.github.io/author/wolf.html" rel="author">Wolf</a>
+      </address></p>
+
+    <hr/>
+
+      <p>
+              <a href="https://wuffalo.github.io/category/projects/" rel="tag"
+                  data-toggle="tooltip" class="label label-info"
+                  title="3 articles in this category">Projects</a>
+            <a href="/tag/python/" data-toggle="tooltip"
+      class="label label-default"
+      title="4 articles with this tag">python</a>
+            <a href="/tag/project/" data-toggle="tooltip"
+      class="label label-default"
+      title="2 articles with this tag">project</a>
+            <a href="/tag/calculator/" data-toggle="tooltip"
+      class="label label-default"
+      title="2 articles with this tag">calculator</a>
+            <a href="/tag/brs/" data-toggle="tooltip"
+      class="label label-default"
+      title="2 articles with this tag">BRS</a>
+            <a href="/tag/data-analysis/" data-toggle="tooltip"
+      class="label label-default"
+      title="2 articles with this tag">data analysis</a>
+            <a href="/tag/csv/" data-toggle="tooltip"
+      class="label label-default"
+      title="2 articles with this tag">csv</a>
+      </p>
+      <hr/>
+
+
+
+  </div>
+            
+          </div>
+
+      </div>
+
+    </div>
+
+    <!-- TODO: make footer sticky -->
+    <footer class="container-fluid">
+      <div class="container">
+        <div class="row">
+
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-2">
+                <h5>Links</h5>
+                <ul class="list-unstyled">
+                  <li>  <a href="https://getpelican.com/">
+      <img src="https://icons.better-idea.org/icon?url=getpelican.com&size=16" width="16" height="16" class="icon" alt="getpelican.com icon"/>
+    Pelican
+  </a></li>
+                  <li>  <a href="https://www.skyscanner.com/">
+      <img src="https://icons.better-idea.org/icon?url=www.skyscanner.com&size=16" width="16" height="16" class="icon" alt="www.skyscanner.com icon"/>
+    Skyscanner
+  </a></li>
+                </ul>
+            </div>
+
+          <div class="col-md-2">
+            <h5>Browse content by</h5>
+            <ul class="list-unstyled">
+                <li><a href="https://wuffalo.github.io/categories/index.html"><i class="fa fa-tags"></i> Categories</a></li>
+                <li><a href="https://wuffalo.github.io/archives/index.html"><i class="fa fa-calendar"></i> Dates</a></li>
+                <li><a href="https://wuffalo.github.io/tags/index.html"><i class="fa fa-tag"></i> Tags</a></li>
+            </ul>
+          </div>
+
+          <div class="col-md-2 text-muted">
+            <h5>Copyright notice</h5>
+            <p>© Copyright 2017 Wolf.</p>
+          </div>
+
+          <div class="col-md-2 text-muted">
+            <h5>Disclaimer</h5>
+              <p>All opinions expressed in this site are my own personal opinions and are not endorsed by, nor do they represent the opinions of my previous, current and future employers or any of its affiliates, partners or customers.</p>
+          </div>
+
+          <div class="col-md-2">
+          </div>
+
+        </div>
+      </div>
+
+      <h5 class="text-right"><a href="#"><i class="fa fa-arrow-up"></i> Back to top</a></h5>
+
+      <div class="container">
+        <div class="row col-md-12 text-muted text-center">
+          Site generated by <a href="https://getpelican.com"> Pelican</a>.<br/>
+          <a href="https://github.com/kdeldycke/plumage"> Plumage</a> theme by <a href="https://kevin.deldycke.com">Kevin Deldycke</a>.
+        </div>
+      </div>
+
+    </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.min.js"></script>
+
+    <!-- Enable show/hide toggler -->
+    <script src="https://wuffalo.github.io/theme/js/show_hide_toggler.js" type="text/javascript"></script>
+    
+    <script src="https://wuffalo.github.io/theme/js/jquery.mglass.js"></script>
+    <script src="https://wuffalo.github.io/theme/js/application.js"></script>
+
+  </body>
+</html>
