@@ -1,0 +1,378 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>  Weekend reading: Quandl tables, Django with Heroku
+ | Nothing but Wolf</title>
+
+    <meta name="author" content="Wolf"/>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"/>
+    <link rel="stylesheet" href="https://wuffalo.github.io/theme/css/jquery.mglass.css"/>
+    <link rel="stylesheet" href="https://wuffalo.github.io/theme/css/style.tango.css"/>
+    <link rel="stylesheet" href="https://wuffalo.github.io/theme/css/style.css"/>
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+    <link href='https://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css'/>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'/>
+
+
+    <link rel="icon" href="https://wuffalo.github.io/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://wuffalo.github.io/favicon.ico" type="image/x-icon">
+
+    <!-- Feeds -->
+
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="page-header">
+          <a href="https://wuffalo.github.io" class="avatar-container pull-left">
+            <div class="avatar  animate ">
+              <div class="side"><img src="/images/User-icon.png" class="img-responsive"/></div>
+                <div class="side back"><p class="text-center">carpe per diem</p></div>
+            </div>
+          </a>
+        <h1><a href="https://wuffalo.github.io">Nothing but Wolf</a> <small>Click around!</small></h1>
+      </div>
+
+      <nav class="navbar navbar-default">
+
+        <!-- Hamburger menu for mobile -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#plumage-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://wuffalo.github.io" title="Click around!">Nothing but Wolf</a>
+        </div>
+
+        <!-- Menus and search forms -->
+        <div class="collapse navbar-collapse" id="plumage-navbar-collapse-1">
+
+          <ul class="nav navbar-nav">
+<li >
+                  <a href="https://wuffalo.github.io/about-me/">About Me</a>
+                </li>
+<li >
+                  <a href="https://wuffalo.github.io/category/hardware/">Hardware</a>
+                </li>
+<li  class="active" >
+                  <a href="https://wuffalo.github.io/category/personal/">Personal <span class="sr-only">(current)</span></a>
+                </li>
+<li >
+                  <a href="https://wuffalo.github.io/category/projects/">Projects</a>
+                </li>
+<li >
+                  <a href="https://wuffalo.github.io/category/software/">Software</a>
+                </li>
+          </ul>
+
+
+            <form class="navbar-form navbar-right" role="search" action="https://wuffalo.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" name="q" id="tipue_search_input" class="form-control search-query" placeholder="Search" required />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="fa
+                        fa-search fa-fw"></i></button>
+                  </span>
+                </div>
+              </div>
+            </form>
+
+        </div>
+
+      </nav>
+
+    </div>
+
+
+    <div class="container main">
+
+      <div class="row">
+        <div class=" col-md-9  ">
+  <h1>
+    <a href="https://wuffalo.github.io/weekend-reading-quandl-tables-django-with-heroku.html" rel="bookmark" title="Permalink to Weekend reading: Quandl tables, Django with Heroku">Weekend reading: Quandl tables, Django with Heroku</a>
+  </h1>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class=" col-md-9 " id="content" role="main">
+  
+
+  <div>
+    <p>I've been following some machine learning tutorials for Python by Sentdex on YouTube. He's notable for his prolific output of Python tutorials on various topics and for making the topics reachable to all audiences.</p>
+<p>Here's his machine learning series:</p>
+<p>
+<iframe allowfullscreen="true" frameborder="0" height="315" src="//www.youtube.com/embed/OGxgnH8y2NM" width="560"></iframe>?list=PLQVvvaa0QuDfKTOs3Keq_kaG2P55YRn5v</p>
+<hr>
+<h3>Quandl</h3>
+<p>Sentdex pulled sample data from <a href="https://www.quandl.com/">Quandl</a> using their <a href="https://pypi.python.org/pypi/Quandl">Py module</a>. Their website includes an API section to get you started pulling the data using whatever language or software you prefer. What is Quandl? Simply put, it's one of the coolest data providers I've come across! They mainly deal in financial data, including End Of Day stock results and fundamental indicators of company and economic health. That's just the beginning, they made a name for themselves by attracting alternative data as different as satellite measurements of <a href="https://www.quandl.com/alternative-data/global-oil-storage-tank-levels">global oil tank</a> storage levels to <a href="https://www.quandl.com/data/NUFORC-National-UFO-Reporting-Center">national UFO sightings</a> (yes the last one is real, but the jury is out on whether it's <em>real</em>.)</p>
+<p>The data I was most interested in was housing data from Zillow, Federal Reserve data on the economy, European Central Bank records and even China Macroeconomic and Industrial Data. It's invigorating to see 'live' data that I can easily pull in and play with and not just read summary articles by others. Will I gain insights? At this point I highly doubt it, however it's a great playground for machine learning and maybe one day I'll contribute some ideas to how things work.</p>
+<hr>
+<h3>Heroku</h3>
+<p>What is <a href="https://www.heroku.com/home">Heroku</a>? It's technically referred to as a PaaS (Platform as a Service), meaning they provide not just a server but a managed software environment to host your apps. They take care of scaling (based on your specifications), database management and all the background infrastructure problems which could take you down. All you do is bring your app and manage it.</p>
+<p>I'm looking at some new web service projects and Heroku stood out for its popular usage. If languages can be lower or higher level based on their complexity then PaaS could be called higher level for doing more to manage infrastructure than IaaS providers do. Infrastructure as a Service (IaaS) provides the server backbone to host your own software. PaaS providers handle software licenses and other syadmin duties for you. Well maybe you already know this.</p>
+<p>I followed Heroku's free tutorial which featured downloading their CLI and uploading a premade Django web app. It honestly wasn't too complicated in concept and pretty familiar to my blog development process. Developing an app, applying git version control to track progress and push updates. The interesting parts were Heroku's management software, hosting your app locally, spinning up your one Free dyno to serve it from Heroku. All in all they seem to do a good job of separating the infrastructure from app development, and I wouldn't mind to work with them.</p>
+<hr>
+<p>That was the weekend!</p>
+  </div>
+
+  <!-- Article Footer from plug-in -->
+    <strong>Article: "Weekend reading: Quandl tables, Django with Heroku" by Wolf, in Personal</strong>
+
+  	<style>
+#pcs-comment-form input,
+#pcs-comment-form textarea {
+	width: 100%;
+}
+#pcs-comment-form-display-replyto {
+	border: solid 1px black;
+	padding: 2px;
+}
+#pcs-comment-form-display-replyto p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+#pcs-comments ul {
+	list-style: none;
+}
+#pcs-comments .comment-left {
+	display: table-cell;
+	padding-right: 10px;
+}
+#pcs-comments .comment-body {
+	display: table-cell;
+	vertical-align: top;
+	width: 100%;
+}
+</style>
+
+	<section id="pcs-comments">
+	<header>
+		<h2>Comments</h2>
+		<hr/>
+	</header>
+		<p>There are no comments yet.</p>
+	<section>
+	<form id="pcs-comment-form" action="#">
+		<legend>Add a Comment</legend>
+		<input type="hidden" id="pcs-comment-form-input-replyto">
+		<fieldset>
+			<label for="pcs-comment-form-input-name">Name</label>
+			<input  id="pcs-comment-form-input-name" type="text" placeholder="Enter your name or nickname" />
+		</fieldset>
+		<fieldset>
+			<label for="pcs-comment-form-input-website">Website</label>
+			<input  id="pcs-comment-form-input-website" type="text" placeholder="Enter your website (optional)" />
+		</fieldset>
+		<fieldset>
+			<label   for="pcs-comment-form-input-textarea">Your Comment</label>
+			<textarea id="pcs-comment-form-input-textarea" rows="5" style="resize:vertical;" placeholder="Your comment"></textarea>
+			<p>You can use the <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> syntax to format your comment.</p>
+			<div style="display: none; " id="pcs-comment-form-display-replyto"></div>
+		</fieldset>
+
+		<button type="submit"
+				id="pcs-comment-form-button-submit"
+				>Post via email</button>
+
+			<a href="https://wuffalo.github.io/feeds/comment.weekend-reading-quandl-tables-django-with-heroku.atom.xml">
+				Comment Atom Feed
+			</a>
+	</form>
+</section>
+
+</section>
+
+			<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="https://wuffalo.github.io/theme/js/comments.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			CommentSystem.email_user   = "contact.wolf.site";
+			CommentSystem.email_domain = "gmail.com";
+			CommentSystem.display_replyto_html = function(comment_content, article_slug, author) {
+				return ''
+					+ '<button style="float:right;" onclick="CommentSystem.cancelReply(); return false;" title="Cancel the reply">'
+					+ 	'×'
+					+ '</button>'
+					+ '<p>This comment will be posted as a reply to \'<a title="'+comment_content+'" href="#comment-'+article_slug+'">'+author+'</a>\'</p>';
+			};
+			$('#pcs-comment-form').on("submit",
+				function( event )
+				{
+					event.preventDefault();
+					$(location).attr('href', CommentSystem.getMailtoLink("weekend-reading-quandl-tables-django-with-heroku"));
+				}
+			);
+		});
+	</script>
+
+
+
+    <h3>Related content</h3>
+    <!-- TODO: Use fancier related layout, as in https://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/ -->
+    <ul>
+        <li><a href="https://wuffalo.github.io/measuring-program-time-timeit-module.html">Measuring program time (timeit module)</a></li>
+        <li><a href="https://wuffalo.github.io/brs-part-2.html">BRS Part 2</a></li>
+        <li><a href="https://wuffalo.github.io/brs-part-1.html">BRS Part 1</a></li>
+      </ul>
+
+
+        </div>
+
+          <div class="col-md-3">
+  <div class="well">
+
+    <p><abbr title="2017-06-19T00:00:00-05:00"><i class="fa fa-calendar"></i> Mon 19 June 2017</abbr></p>
+
+      <p><address>
+        <i class="fa fa-user"></i> By
+          <a href="https://wuffalo.github.io/author/wolf.html" rel="author">Wolf</a>
+      </address></p>
+
+    <hr/>
+
+      <p>
+              <a href="https://wuffalo.github.io/category/personal/" rel="tag"
+                  data-toggle="tooltip" class="label label-info"
+                  title="2 articles in this category">Personal</a>
+            <a href="/tag/python/" data-toggle="tooltip"
+      class="label label-default"
+      title="5 articles with this tag">Python</a>
+            <a href="/tag/bash/" data-toggle="tooltip"
+      class="label label-default"
+      title="2 articles with this tag">Bash</a>
+            <a href="/tag/django/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">Django</a>
+            <a href="/tag/heroku/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">Heroku</a>
+            <a href="/tag/quandl/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">Quandl</a>
+            <a href="/tag/database/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">database</a>
+            <a href="/tag/table/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">table</a>
+            <a href="/tag/paas/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">PaaS</a>
+            <a href="/tag/app/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">app</a>
+            <a href="/tag/gunicorn/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">gunicorn</a>
+            <a href="/tag/psql/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">psql</a>
+            <a href="/tag/postgres/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">Postgres</a>
+            <a href="/tag/git/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">Git</a>
+      </p>
+      <hr/>
+
+
+
+  </div>
+            
+          </div>
+
+      </div>
+
+    </div>
+
+    <!-- TODO: make footer sticky -->
+    <footer class="container-fluid">
+      <div class="container">
+        <div class="row">
+
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-2">
+                <h5>Links</h5>
+                <ul class="list-unstyled">
+                  <li>  <a href="https://getpelican.com/">
+      <img src="https://icons.better-idea.org/icon?url=getpelican.com&size=16" width="16" height="16" class="icon" alt="getpelican.com icon"/>
+    Pelican
+  </a></li>
+                  <li>  <a href="https://www.skyscanner.com/">
+      <img src="https://icons.better-idea.org/icon?url=www.skyscanner.com&size=16" width="16" height="16" class="icon" alt="www.skyscanner.com icon"/>
+    Skyscanner
+  </a></li>
+                </ul>
+            </div>
+
+          <div class="col-md-2">
+            <h5>Browse content by</h5>
+            <ul class="list-unstyled">
+                <li><a href="https://wuffalo.github.io/categories/index.html"><i class="fa fa-tags"></i> Categories</a></li>
+                <li><a href="https://wuffalo.github.io/archives/index.html"><i class="fa fa-calendar"></i> Dates</a></li>
+                <li><a href="https://wuffalo.github.io/tags/index.html"><i class="fa fa-tag"></i> Tags</a></li>
+            </ul>
+          </div>
+
+          <div class="col-md-2 text-muted">
+            <h5>Copyright notice</h5>
+            <p>© Copyright 2017 Wolf.</p>
+          </div>
+
+          <div class="col-md-2 text-muted">
+            <h5>Disclaimer</h5>
+              <p>All opinions expressed in this site are my own personal opinions and are not endorsed by, nor do they represent the opinions of my previous, current and future employers or any of its affiliates, partners or customers.</p>
+          </div>
+
+          <div class="col-md-2">
+          </div>
+
+        </div>
+      </div>
+
+      <h5 class="text-right"><a href="#"><i class="fa fa-arrow-up"></i> Back to top</a></h5>
+
+      <div class="container">
+        <div class="row col-md-12 text-muted text-center">
+          Site generated by <a href="https://getpelican.com"> Pelican</a>.<br/>
+          <a href="https://github.com/kdeldycke/plumage"> Plumage</a> theme by <a href="https://kevin.deldycke.com">Kevin Deldycke</a>.
+        </div>
+      </div>
+
+    </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.min.js"></script>
+
+    <!-- Enable show/hide toggler -->
+    <script src="https://wuffalo.github.io/theme/js/show_hide_toggler.js" type="text/javascript"></script>
+    
+    <script src="https://wuffalo.github.io/theme/js/jquery.mglass.js"></script>
+    <script src="https://wuffalo.github.io/theme/js/application.js"></script>
+
+  </body>
+</html>
