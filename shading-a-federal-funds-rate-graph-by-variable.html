@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>  My first blog, I'll use Pelican!
+    <title>  Shading a federal funds rate graph by variable
  | Nothing but Wolf</title>
 
     <meta name="author" content="Wolf"/>
@@ -73,11 +73,11 @@
 <li >
                   <a href="https://wuffalo.github.io/category/personal/">Personal</a>
                 </li>
-<li  class="active" >
-                  <a href="https://wuffalo.github.io/category/projects/">Projects <span class="sr-only">(current)</span></a>
-                </li>
 <li >
-                  <a href="https://wuffalo.github.io/category/software/">Software</a>
+                  <a href="https://wuffalo.github.io/category/projects/">Projects</a>
+                </li>
+<li  class="active" >
+                  <a href="https://wuffalo.github.io/category/software/">Software <span class="sr-only">(current)</span></a>
                 </li>
           </ul>
 
@@ -106,7 +106,7 @@
       <div class="row">
         <div class=" col-md-9  ">
   <h1>
-    <a href="https://wuffalo.github.io/my-first-blog-ill-use-pelican.html" rel="bookmark" title="Permalink to My first blog, I&#39;ll use Pelican!">My first blog, I'll use Pelican!</a>
+    <a href="https://wuffalo.github.io/shading-a-federal-funds-rate-graph-by-variable.html" rel="bookmark" title="Permalink to Shading a federal funds rate graph by variable">Shading a federal funds rate graph by variable</a>
   </h1>
         </div>
       </div>
@@ -117,38 +117,46 @@
   
 
   <div>
-    <p>I realized learning things and making projects doesn't mean much if I can't talk about and display my work. So after some research I learned I don't need to specialize in front end development or website design or javascript to build a presentable website. This is part of the progress of software becoming more user friendly and accessible. Higher level languages and static page generators!</p>
-<p>There are some great articles about static pages vs. dynamic ones out there and I'm a total amateur so I'll just <a href="https://www.smashingmagazine.com/2015/11/modern-static-website-generators-next-big-thing/">link one here</a>.</p>
+    <p>There's some talk in the news about economic policy at the federal reserve taking a turn to start increasing the federal funds rate. Fed president Janet Yellen has indicated on what conditions she will raise it and it appears increasingly likely.</p>
+<p>Raising rates is meant to tamp down inflation, but shouldn't it also quiet down investment and economic growth? That's an open question and to help answer that I wanted to graph both federal funds rate and years of recession.</p>
+<p>To do this I'm using Quandl's data sets, specifically their <a href="https://www.quandl.com/data/FED/RIFSPFF_N_WW-Federal-funds-effective-rate-Weekly-Wednesday">Federal Funds Effective Rate</a> and their <a href="https://www.quandl.com/data/FRED/USRECP-NBER-based-Recession-Indicators-for-the-United-States-from-the-Peak-through-the-Period-preceding-the-Trough">Recession Indicators</a>.</p>
+<p>Here is the code I'm using:</p>
+<p><button class="toggle-start-hidden">Show/hide Code</button></p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">quandl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
+
+<span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
+
+<span class="n">quandl</span><span class="o">.</span><span class="n">ApiConfig</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;my_api_key_here&#39;</span>
+
+<span class="c1">#Effective Federal Funds Rate</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">quandl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;FED/RIFSPFF_N_WW&quot;</span><span class="p">,</span> <span class="n">collapse</span><span class="o">=</span><span class="s2">&quot;monthly&quot;</span><span class="p">)</span>
+<span class="n">df2</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+
+<span class="c1">#Recession, 1=recession</span>
+<span class="n">df4</span> <span class="o">=</span> <span class="n">quandl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;FRED/USRECP&quot;</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;1955-01-01&quot;</span><span class="p">)</span>
+
+<span class="n">maxY</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">y2</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">df4</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">maxY</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">y2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Year&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Federal Funds effective rate with recession times shaded&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+<p>Note: I swapped my unique API key with a placeholder, you can run this code by deleting that line to access Quandl as an unregistered user. As an unregistered user you have low call limits.</p>
 <hr>
-<h3>Why use a static blog?</h3>
-<p>I'm interested in something that is quick, efficient, small footprint so whatever I ultimately produce can be viewed quickly and not waste time bogged down in a database heavy website. I don't have anything against a dynamic site, and my next project will be to make a django based one on AWS. For now though a simple blog meant to present data science projects can perfectly be done on a static site.</p>
-<p>As of now the blog is not finished, and I'm not an expert on everything I've done so far. This article is more of a journal on some of the things I've done so far.</p>
-<hr>
-<p>Some great resources here. Check out Nafiul Islam's <a href="https://nafiulis.me/making-a-static-blog-with-pelican.html">pelican setup guide</a>.</p>
-<hr>
-<h3>Start-up</h3>
-<p>Download Python which should include pip which is a package manager.</p>
-<p>Using pip, install Pelican.</p>
-<p>Use the quick set up, I only chose to say Yes to uploading it to a Github page one day.</p>
-<p>Once I had a test site I started looking for a theme. It's fun to learn by picking things apart, a lot better than digging around in docs and failing a million ways.</p>
-<h3>Themes</h3>
-<p>Pelican has a repository of <a href="https://github.com/getpelican/pelican-themes">default themes</a> you can choose. They recommend downloading the whole thing which I did but now seems rather unnecessary. I started by using foundation-default-colours.</p>
-<p>I poked around in the theme but then found features in another blog I wanted to work with.</p>
-<p>So off to <a href="https://github.com/kdeldycke/plumage">'Plumage'</a> I went. It's not a default theme but it was one I wanted to work with.</p>
-<h3>Customization</h3>
-<p>It took a few days to start getting something clean but customized.</p>
-<p>I changed the backgrounds to some Japanese inspired patterns that look subtle and organized to me.</p>
-<p>Changed the Pygment to the solarized light instead of the solarized dark, dark code background was too jarring.</p>
-<p>Then I found tango is a nice default Pygment so I compiled it to a css and inserted it.</p>
-<p>The theme was coded to option allow a Disqus comment section but after some research and just plain preference I decided to use <a href="https://github.com/getpelican/pelican-plugins/tree/master/pelican_comment_system">a static comment system</a>. This is a rather weird setup which won't scale well, but it's very nice for what I want now. No account needed to comment, full markdown support for comments, all personal information and data handling is performed by me not an independent service. The downside is comments aren't immediately posted and the stock handling is I have to review and add the comment manually. I may make this automatic but handling comments manually is appealing right now.</p>
-<p>Added a Show/Hide toggler courtesy of <a href="https://github.com/flavio-fernandes/pelican-blog/blob/master/content/hacks/pelican-show-hide-button.md">flavio</a>. He combines it with the pelican plug-in pelican_gist which offers a simple Markdown tactic to insert blocks of text that can easily be hidden by the reader. Concise in the article write up, concise on the article page.</p>
-<p>Added pelican_gist which pulls up stored code from my gist.</p>
-<p>At this point the blog looks good enough to put up. I'm interested in continuing to push pelican/markdown some more so I'll keep poking around. </p>
-<hr>
+<p>So what does my code produce? Exactly what I wanted of course, as you can see here:</p>
+<p><img alt="Fed Rate w/ Recessions" src="/images/article-images/recessiongraph-snapshot.png"></p>
+<p>Full confession, this isn't the most unique connection to make, and it's one that's largely uncorrelated. Most of the fun here is just figuring out how to shade under and over a line to replicate an effect often used by Financial Times and others. The key part is making it variable based on the data itself. That'll be useful for later.</p>
+<p>Now for a real world example, here is one from the <a href="https://fred.stlouisfed.org/series/FEDFUNDS">St. Louis Federal Reserve</a>.</p>
+<p><img alt="St. Louis Fed effective rate with recession" src="/images/article-images/stlouisfed-snapshot.png"></p>
   </div>
 
   <!-- Article Footer from plug-in -->
-    <strong>Article: "My first blog, I'll use Pelican!" by Wolf, in Projects</strong>
+    <strong>Article: "Shading a federal funds rate graph by variable" by Wolf, in Software</strong>
 
   	<style>
 #pcs-comment-form input,
@@ -206,7 +214,7 @@
 				id="pcs-comment-form-button-submit"
 				>Post via email</button>
 
-			<a href="https://wuffalo.github.io/feeds/comment.my-first-blog-ill-use-pelican.atom.xml">
+			<a href="https://wuffalo.github.io/feeds/comment.shading-a-federal-funds-rate-graph-by-variable.atom.xml">
 				Comment Atom Feed
 			</a>
 	</form>
@@ -231,7 +239,7 @@
 				function( event )
 				{
 					event.preventDefault();
-					$(location).attr('href', CommentSystem.getMailtoLink("my-first-blog-ill-use-pelican"));
+					$(location).attr('href', CommentSystem.getMailtoLink("shading-a-federal-funds-rate-graph-by-variable"));
 				}
 			);
 		});
@@ -242,9 +250,9 @@
     <h3>Related content</h3>
     <!-- TODO: Use fancier related layout, as in https://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/ -->
     <ul>
-        <li><a href="https://wuffalo.github.io/shading-a-federal-funds-rate-graph-by-variable.html">Shading a federal funds rate graph by variable</a></li>
         <li><a href="https://wuffalo.github.io/weekend-reading-quandl-tables-django-with-heroku.html">Weekend reading: Quandl tables, Django with Heroku</a></li>
         <li><a href="https://wuffalo.github.io/brs-part-2.html">BRS Part 2</a></li>
+        <li><a href="https://wuffalo.github.io/brs-part-1.html">BRS Part 1</a></li>
       </ul>
 
 
@@ -253,7 +261,7 @@
           <div class="col-md-3">
   <div class="well">
 
-    <p><abbr title="2017-05-01T00:00:00-05:00"><i class="fa fa-calendar"></i> Mon 01 May 2017</abbr></p>
+    <p><abbr title="2017-07-10T00:00:00-05:00"><i class="fa fa-calendar"></i> Mon 10 July 2017</abbr></p>
 
       <p><address>
         <i class="fa fa-user"></i> By
@@ -263,45 +271,27 @@
     <hr/>
 
       <p>
-              <a href="https://wuffalo.github.io/category/projects/" rel="tag"
+              <a href="https://wuffalo.github.io/category/software/" rel="tag"
                   data-toggle="tooltip" class="label label-info"
-                  title="3 articles in this category">Projects</a>
+                  title="2 articles in this category">Software</a>
             <a href="/tag/python/" data-toggle="tooltip"
       class="label label-default"
       title="6 articles with this tag">python</a>
-            <a href="/tag/website/" data-toggle="tooltip"
+            <a href="/tag/quandl/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">website</a>
-            <a href="/tag/static-blog/" data-toggle="tooltip"
+      title="2 articles with this tag">quandl</a>
+            <a href="/tag/matplotlib/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">static blog</a>
-            <a href="/tag/blog/" data-toggle="tooltip"
+      title="1 article with this tag">matplotlib</a>
+            <a href="/tag/pyplot/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">blog</a>
-            <a href="/tag/pelican/" data-toggle="tooltip"
+      title="1 article with this tag">pyplot</a>
+            <a href="/tag/graph/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">Pelican</a>
-            <a href="/tag/site/" data-toggle="tooltip"
+      title="1 article with this tag">graph</a>
+            <a href="/tag/time-series/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">site</a>
-            <a href="/tag/jquery/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">jquery</a>
-            <a href="/tag/pygment/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">pygment</a>
-            <a href="/tag/theme/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">theme</a>
-            <a href="/tag/style/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">style</a>
-            <a href="/tag/css/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">css</a>
-            <a href="/tag/html/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">html</a>
+      title="1 article with this tag">time-series</a>
       </p>
       <hr/>
 
