@@ -146,19 +146,23 @@
 <span class="n">df2</span> <span class="o">=</span> <span class="n">quandl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;FED/RIFSPFF_N_WW&quot;</span><span class="p">,</span> <span class="n">collapse</span><span class="o">=</span><span class="s2">&quot;monthly&quot;</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;1955-01-01&quot;</span><span class="p">)</span>
 <span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;EffFundsRate.pickle&quot;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
 <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">pickle</span><span class="o">.</span><span class="n">HIGHEST_PROTOCOL</span><span class="p">)</span>
+<span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="c1">#Recession, 1=recession</span>
 <span class="n">df4</span> <span class="o">=</span> <span class="n">quandl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;FRED/USRECP&quot;</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;1955-01-01&quot;</span><span class="p">)</span>
 <span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;FREDrecession.pickle&quot;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
 <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">df4</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">pickle</span><span class="o">.</span><span class="n">HIGHEST_PROTOCOL</span><span class="p">)</span>
+<span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="c1">#------#Uncomment following block to load stored dataframes</span>
 
 <span class="n">pickle_in</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;EffFundsRate.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
 <span class="n">df2</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pickle_in</span><span class="p">)</span>
+<span class="n">pickle_in</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="n">pickle_in</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;FREDrecession.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
 <span class="n">df4</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pickle_in</span><span class="p">)</span>
+<span class="n">pickle_in</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="c1">#------#</span>
 
@@ -182,13 +186,15 @@
 
 <span class="c1">#Effective Federal Funds Rate</span>
 <span class="n">df2</span> <span class="o">=</span> <span class="n">quandl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;FED/RIFSPFF_N_WW&quot;</span><span class="p">,</span> <span class="n">collapse</span><span class="o">=</span><span class="s2">&quot;monthly&quot;</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;1955-01-01&quot;</span><span class="p">)</span>
-<span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;EffFundsRate.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;EffFundsRate.pickle&quot;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
 <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">pickle</span><span class="o">.</span><span class="n">HIGHEST_PROTOCOL</span><span class="p">)</span>
+<span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="c1">#Recession, 1=recession</span>
 <span class="n">df4</span> <span class="o">=</span> <span class="n">quandl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;FRED/USRECP&quot;</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;1955-01-01&quot;</span><span class="p">)</span>
-<span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;FREDrecession.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;FREDrecession.pickle&quot;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
 <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">df4</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">pickle</span><span class="o">.</span><span class="n">HIGHEST_PROTOCOL</span><span class="p">)</span>
+<span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 
 <p>Once this has been performed it doesn't need to be rerun unless the source data has updated. (In this case I am pulling weekly data updated every Wednesday and collapsed by month.)</p>
@@ -198,9 +204,11 @@
 
 <span class="n">pickle_in</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;EffFundsRate.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
 <span class="n">df2</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pickle_in</span><span class="p">)</span>
+<span class="n">pickle_in</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="n">pickle_in</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;FREDrecession.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
 <span class="n">df4</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pickle_in</span><span class="p">)</span>
+<span class="n">pickle_in</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="c1">#------#</span>
 </pre></div>
