@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>  Shading a federal funds rate graph by variable
+    <title>  Reduce API calls and process time- or How I learned to pickle my quandl
  | Nothing but Wolf</title>
 
     <meta name="author" content="Wolf"/>
@@ -106,7 +106,7 @@
       <div class="row">
         <div class=" col-md-9  ">
   <h1>
-    <a href="https://wuffalo.github.io/shading-a-federal-funds-rate-graph-by-variable.html" rel="bookmark" title="Permalink to Shading a federal funds rate graph by variable">Shading a federal funds rate graph by variable</a>
+    <a href="https://wuffalo.github.io/reduce-api-calls-and-process-time-or-how-i-learned-to-pickle-my-quandl.html" rel="bookmark" title="Permalink to Reduce API calls and process time- or How I learned to pickle my quandl">Reduce API calls and process time- or How I learned to pickle my quandl</a>
   </h1>
         </div>
       </div>
@@ -117,25 +117,52 @@
   
 
   <div>
-    <p>There's some talk in the news about economic policy at the federal reserve taking a turn to start increasing the federal funds rate. Fed president Janet Yellen has indicated on what conditions she will raise it and it appears increasingly likely.</p>
-<p>Raising rates is meant to tamp down inflation, but shouldn't it also quiet down investment and economic growth? That's an open question and to help answer that I wanted to graph both federal funds rate and years of recession.</p>
-<p>To do this I'm using Quandl's data sets, specifically their <a href="https://www.quandl.com/data/FED/RIFSPFF_N_WW-Federal-funds-effective-rate-Weekly-Wednesday">Federal Funds Effective Rate</a> and their <a href="https://www.quandl.com/data/FRED/USRECP-NBER-based-Recession-Indicators-for-the-United-States-from-the-Peak-through-the-Period-preceding-the-Trough">Recession Indicators</a>.</p>
-<p>Here is the code I'm using:</p>
+    <p>I've written about <a href="https://pypi.python.org/pypi/Quandl">Quandl</a> before and the wealth of information they provide in an easy to process way. However their generosity does know limits. While it's difficult to brush up against their daily call limits, I might as well do what I can to be respectful of their service and my efficiency.</p>
+<p>Introducing another Python package to discuss- <a href="https://docs.python.org/3/library/pickle.html">Pickle</a>. In short pickle allows python objects to be converted to streams and stored, then later accessed. The concept behind this is serialization. This also would allow objects to be transmitted to sockets and reproduced accurately, although pickle versioning is important. Pickle does not provide any form of security, all pickles imported are assumed to be in working order and not tampered with.</p>
+<p>Using pickle allows me to store my python dataframes and open them from their binary rather than make additional calls to quandl. The most immediate benefit is speed. This program from a previous article is now run entirely offline.</p>
+<hr>
+<h2>Full Program here</h2>
 <p><button class="toggle-start-hidden">Show/hide Code</button></p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">quandl</span>
+<div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Effective Federal Funds Rate over time with economic recessions</span>
+<span class="sd">@author: wolf</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">quandl</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">style</span>
 
 <span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;ggplot&#39;</span><span class="p">)</span>
 
-<span class="n">quandl</span><span class="o">.</span><span class="n">ApiConfig</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;my_api_key_here&#39;</span>
+<span class="n">quandl</span><span class="o">.</span><span class="n">ApiConfig</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;your-api-key-here&#39;</span>
+
+<span class="c1">#-----#Uncomment following block to pull and create updated dataframes</span>
 
 <span class="c1">#Effective Federal Funds Rate</span>
-<span class="n">df2</span> <span class="o">=</span> <span class="n">quandl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;FED/RIFSPFF_N_WW&quot;</span><span class="p">,</span> <span class="n">collapse</span><span class="o">=</span><span class="s2">&quot;monthly&quot;</span><span class="p">)</span>
-<span class="n">df2</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">quandl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;FED/RIFSPFF_N_WW&quot;</span><span class="p">,</span> <span class="n">collapse</span><span class="o">=</span><span class="s2">&quot;monthly&quot;</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;1955-01-01&quot;</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;EffFundsRate.pickle&quot;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">pickle</span><span class="o">.</span><span class="n">HIGHEST_PROTOCOL</span><span class="p">)</span>
 
 <span class="c1">#Recession, 1=recession</span>
 <span class="n">df4</span> <span class="o">=</span> <span class="n">quandl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;FRED/USRECP&quot;</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;1955-01-01&quot;</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;FREDrecession.pickle&quot;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">df4</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">pickle</span><span class="o">.</span><span class="n">HIGHEST_PROTOCOL</span><span class="p">)</span>
+
+<span class="c1">#------#Uncomment following block to load stored dataframes</span>
+
+<span class="n">pickle_in</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;EffFundsRate.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pickle_in</span><span class="p">)</span>
+
+<span class="n">pickle_in</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;FREDrecession.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="n">df4</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pickle_in</span><span class="p">)</span>
+
+<span class="c1">#------#</span>
+
+<span class="n">df2</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
 
 <span class="n">maxY</span> <span class="o">=</span> <span class="n">df2</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 <span class="n">y2</span> <span class="o">=</span> <span class="n">df4</span><span class="p">[</span><span class="s1">&#39;Value&#39;</span><span class="p">]</span>
@@ -146,17 +173,45 @@
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
-<p>Note: I swapped my unique API key with a placeholder, you can run this code by deleting that line to access Quandl as an unregistered user. As an unregistered user you have low call limits.</p>
+<p>Note: I swapped my unique API key with a placeholder, you can run this code by deleting that line to access Quandl as an unregistered user. As an unregistered user you have lower call limits.</p>
 <hr>
-<p>So what does my code produce? Exactly what I wanted of course, as you can see here:</p>
-<p><img alt="Fed Rate w/ Recessions" src="/images/article-images/recessiongraph-snapshot.png"></p>
-<p>Full confession, this isn't the most unique connection to make, and it's one that's largely uncorrelated. Most of the fun here is just figuring out how to shade under and over a line to replicate an effect often used by Financial Times and others. The key part is making it variable based on the data itself. That'll be useful for later.</p>
-<p>Now for a real world example, here is one from the <a href="https://fred.stlouisfed.org/series/FEDFUNDS">St. Louis Federal Reserve</a>.</p>
-<p><img alt="St. Louis Fed effective rate with recession" src="/images/article-images/stlouisfed-snapshot.png"></p>
+<h2>Key points</h2>
+<p>For now the source is a manual choice of commenting one block or the other. Both blocks run uncommented works but this is a complete reset, as it pulls fresh data and then overwrites the old pickle files.</p>
+<p>To run a fresh pull from quandl and write new pickle files the first block is run:</p>
+<div class="highlight"><pre><span></span><span class="c1">#-----#Uncomment following block to pull and create updated dataframes</span>
+
+<span class="c1">#Effective Federal Funds Rate</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">quandl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;FED/RIFSPFF_N_WW&quot;</span><span class="p">,</span> <span class="n">collapse</span><span class="o">=</span><span class="s2">&quot;monthly&quot;</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;1955-01-01&quot;</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;EffFundsRate.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">pickle</span><span class="o">.</span><span class="n">HIGHEST_PROTOCOL</span><span class="p">)</span>
+
+<span class="c1">#Recession, 1=recession</span>
+<span class="n">df4</span> <span class="o">=</span> <span class="n">quandl</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;FRED/USRECP&quot;</span><span class="p">,</span> <span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;1955-01-01&quot;</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;FREDrecession.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span>
+<span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">df4</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">pickle</span><span class="o">.</span><span class="n">HIGHEST_PROTOCOL</span><span class="p">)</span>
+</pre></div>
+
+<p>Once this has been performed it doesn't need to be rerun unless the source data has updated. (In this case I am pulling weekly data updated every Wednesday and collapsed by month.)</p>
+<hr>
+<p>After commenting out the previous block I can now uncomment the following:</p>
+<div class="highlight"><pre><span></span><span class="c1">#------#Uncomment following block to load stored dataframes</span>
+
+<span class="n">pickle_in</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;EffFundsRate.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="n">df2</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pickle_in</span><span class="p">)</span>
+
+<span class="n">pickle_in</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;FREDrecession.pickle&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+<span class="n">df4</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">pickle_in</span><span class="p">)</span>
+
+<span class="c1">#------#</span>
+</pre></div>
+
+<p>This block is now all I need to run to import my stored pickle data as a python object, as originally stored.</p>
+<p>Now I can enjoy fast 'free' data that is stored offline.</p>
+<p>Improvements: The use cases I've seen all used this commenting/uncommenting strategy, but this is a choice that would have to be made by a programmer. To make this more user friendly I could have a user prompt at the beginning when run on a command line or window asking, "Would you like to refresh to latest source data?" Otherwise you could be at risk of using outdated data when quandl was chosen for its up to the minute accuracy.</p>
   </div>
 
   <!-- Article Footer from plug-in -->
-    <strong>Article: "Shading a federal funds rate graph by variable" by Wolf, in Software</strong>
+    <strong>Article: "Reduce API calls and process time- or How I learned to pickle my quandl" by Wolf, in Software</strong>
 
   	<style>
 #pcs-comment-form input,
@@ -214,7 +269,7 @@
 				id="pcs-comment-form-button-submit"
 				>Post via email</button>
 
-			<a href="https://wuffalo.github.io/feeds/comment.shading-a-federal-funds-rate-graph-by-variable.atom.xml">
+			<a href="https://wuffalo.github.io/feeds/comment.reduce-api-calls-and-process-time-or-how-i-learned-to-pickle-my-quandl.atom.xml">
 				Comment Atom Feed
 			</a>
 	</form>
@@ -239,7 +294,7 @@
 				function( event )
 				{
 					event.preventDefault();
-					$(location).attr('href', CommentSystem.getMailtoLink("shading-a-federal-funds-rate-graph-by-variable"));
+					$(location).attr('href', CommentSystem.getMailtoLink("reduce-api-calls-and-process-time-or-how-i-learned-to-pickle-my-quandl"));
 				}
 			);
 		});
@@ -250,7 +305,7 @@
     <h3>Related content</h3>
     <!-- TODO: Use fancier related layout, as in https://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/ -->
     <ul>
-        <li><a href="https://wuffalo.github.io/reduce-api-calls-and-process-time-or-how-i-learned-to-pickle-my-quandl.html">Reduce API calls and process time- or How I learned to pickle my quandl</a></li>
+        <li><a href="https://wuffalo.github.io/shading-a-federal-funds-rate-graph-by-variable.html">Shading a federal funds rate graph by variable</a></li>
         <li><a href="https://wuffalo.github.io/weekend-reading-quandl-tables-django-with-heroku.html">Weekend reading: Quandl tables, Django with Heroku</a></li>
         <li><a href="https://wuffalo.github.io/brs-part-2.html">BRS Part 2</a></li>
       </ul>
@@ -261,7 +316,7 @@
           <div class="col-md-3">
   <div class="well">
 
-    <p><abbr title="2017-07-10T00:00:00-05:00"><i class="fa fa-calendar"></i> Mon 10 July 2017</abbr></p>
+    <p><abbr title="2017-08-02T00:00:00-05:00"><i class="fa fa-calendar"></i> Wed 02 August 2017</abbr></p>
 
       <p><address>
         <i class="fa fa-user"></i> By
@@ -286,12 +341,12 @@
             <a href="/tag/time-series/" data-toggle="tooltip"
       class="label label-default"
       title="2 articles with this tag">time-series</a>
-            <a href="/tag/matplotlib/" data-toggle="tooltip"
+            <a href="/tag/pickle/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">matplotlib</a>
-            <a href="/tag/pyplot/" data-toggle="tooltip"
+      title="1 article with this tag">pickle</a>
+            <a href="/tag/serialization/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">pyplot</a>
+      title="1 article with this tag">serialization</a>
       </p>
       <hr/>
 
