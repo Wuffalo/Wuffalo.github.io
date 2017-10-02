@@ -1,0 +1,383 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>  Hurricane Harvey's Effect on Gas Price
+ | Nothing but Wolf</title>
+
+    <meta name="author" content="Wolf"/>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"/>
+    <link rel="stylesheet" href="https://wuffalo.github.io/theme/css/jquery.mglass.css"/>
+    <link rel="stylesheet" href="https://wuffalo.github.io/theme/css/style.tango.css"/>
+    <link rel="stylesheet" href="https://wuffalo.github.io/theme/css/style.css"/>
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+    <link href='https://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css'/>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'/>
+
+
+    <link rel="icon" href="https://wuffalo.github.io/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://wuffalo.github.io/favicon.ico" type="image/x-icon">
+
+    <!-- Feeds -->
+
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="page-header">
+          <a href="https://wuffalo.github.io" class="avatar-container pull-left">
+            <div class="avatar  animate ">
+              <div class="side"><img src="/images/User-icon.png" class="img-responsive"/></div>
+                <div class="side back"><p class="text-center">seize today tomorrow</p></div>
+            </div>
+          </a>
+        <h1><a href="https://wuffalo.github.io">Nothing but Wolf</a> <small>tinkering around</small></h1>
+      </div>
+
+      <nav class="navbar navbar-default">
+
+        <!-- Hamburger menu for mobile -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#plumage-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://wuffalo.github.io" title="tinkering around">Nothing but Wolf</a>
+        </div>
+
+        <!-- Menus and search forms -->
+        <div class="collapse navbar-collapse" id="plumage-navbar-collapse-1">
+
+          <ul class="nav navbar-nav">
+<li >
+                  <a href="https://wuffalo.github.io/about-me/">About Me</a>
+                </li>
+<li >
+                  <a href="https://wuffalo.github.io/category/hardware/">Hardware</a>
+                </li>
+<li >
+                  <a href="https://wuffalo.github.io/category/personal/">Personal</a>
+                </li>
+<li  class="active" >
+                  <a href="https://wuffalo.github.io/category/projects/">Projects <span class="sr-only">(current)</span></a>
+                </li>
+<li >
+                  <a href="https://wuffalo.github.io/category/software/">Software</a>
+                </li>
+          </ul>
+
+
+            <form class="navbar-form navbar-right" role="search" action="https://wuffalo.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" name="q" id="tipue_search_input" class="form-control search-query" placeholder="Search" required />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="fa
+                        fa-search fa-fw"></i></button>
+                  </span>
+                </div>
+              </div>
+            </form>
+
+        </div>
+
+      </nav>
+
+    </div>
+
+
+    <div class="container main">
+
+      <div class="row">
+        <div class=" col-md-9  ">
+  <h1>
+    <a href="https://wuffalo.github.io/hurricane-harveys-effect-on-gas-price.html" rel="bookmark" title="Permalink to Hurricane Harvey&#39;s Effect on Gas Price">Hurricane Harvey's Effect on Gas Price</a>
+  </h1>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class=" col-md-9 " id="content" role="main">
+  
+
+  <div>
+    <p>What was the economic impact of Hurricane Harvey on the price of gasoline? I can answer this personally from a Houston perspective and say it pushed my $2.09 to $2.35, and immediately after the storm it was common not only to experience prices around $3/gallon but shortages in availability.</p>
+<hr>
+<p><em>A quick note: $2/gallon equals €1.70/gallon equals €0.24/Liter. Scanning Berlin, Germany now I see €1.35/Liter there.</em></p>
+<hr>
+<p>So before I look at anything I should go ahead and check how much it's already been looked at. I found a <a href="https://www.cnbc.com/2017/08/28/stocks-will-likely-remain-unaffected-by-hurricane-harvey-tragedy.html">CNBC article</a> that claimed there wouldn't be much of a general impact but noted the RBOB gasoline futures jump of 6.8%. First thing first, what is RBOB? <a href="http://commodityhq.com/investing-ideas/ultimate-guide-to-rbob-gasoline-investing/">RBOB description linked here.</a> Then of course CNBC's tracker is <a href="https://www.cnbc.com/quotes/?symbol=%40RB.1">linked here.</a></p>
+<hr>
+<p>Now let's say I'm not satisfied clicking around on their website and playing with their provided tools, though they have an impressive list of built in browser tools, I want to download this dataset. I'll go back to my favorite source, Quandl. The exact thing I'm looking for <a href="https://www.quandl.com/data/EOD/UGA">EOD/UGA</a>, but unfortunately this is listed under the Premium databases. Thankfully this only makes me go sideways. I found a free version listed under <a href="https://www.quandl.com/data/FRED/DRGASLA">FRED/DRGASLA</a>, downsides are it hasn't been refreshed in two days and it appears to describe gas prices in Los Angeles... But I'm just looking for historical trends so this will work. They also have a source for weekly and monthly, but I always look for the finest data (daily) and transform it if I need to.</p>
+<hr>
+<p>The Daily data looks pretty messy. I'd like to smooth it out, but first I'll address some of the CNBC trader's lack of concern. Here is the daily price data over the past 14 years.</p>
+<p><img alt="Chart area above recent peak month" src="/images/article-images/gas_area_above_avg.png"></p>
+<p>Since the peak as you can see to the far right of the graph was a little extreme, I found the average price for that peak month instead. This chart shows the area above that month's average and below for comparison. This shows in the past two years this price stood out somewhat, but seems more in line with the prior decade. Since prices have dropped back down after this recent peak we don't appear to be approaching the higher price levels of the past decade yet.</p>
+<hr>
+<p>I'd like to go a little deeper in the analysis of general trends so if interested read on.</p>
+<hr>
+<p>While the daily data looks messy I can go ahead and use it for a daily % change in price seen here.</p>
+<p><img alt="Daily % difference" src="/images/article-images/daily_loess_gas.png"></p>
+<p>This data would be overwhelming if not for a loess smoother showing a trend with predicted values. A trend along the horizontal 0 line would indicate a steady fluctuation, but instead we see our trend (in red) is hovering slightly below a 0.001% daily increase in price. The trend only dives into a negative rate around 2012 and reemerges in 2016. What does this chart illustrate? Well for one it suggests someone graduating in 2014 would've had the absolute worst timing this generation to try and get into Oil &amp; Gas, unfortunately. But also in my opinion we have discovered the normal inflationary rate of gas price and also seen the dramatic change brought on by the <a href="https://en.wikipedia.org/wiki/2010s_oil_glut">2010's Oil Glut</a>. We might expect the rate to stabilize again at 0.001%+ daily.</p>
+<hr>
+<p>Now I'm going to smooth things to a more manageable level visually, I'll be going with a monthly average.</p>
+<p><em>Note: Monthly averaging is smoother than monthly sampling</em></p>
+<p><button class="toggle-start-hidden">Show/hide Note</button></p>
+<p>If I collapse monthly my Daily report using their built in function it is in fact sampling at monthly intervals. I could use their FRED/MRGASLA dataset which provides the monthly average, or if I only have access to the daily report I can calculate the monthly average in R. How big can this difference be?
+<img alt="Monthly average vs sample" src="/images/article-images/monthly_avg_vs_sample.png">
+Here is a chart showing monthly average in blue. The red line represents the monthly sample and appears more erratic. To emphasize how strongly these individual samples can differ from the average, I have dotted the points as well. Since my goal here is to smooth my chart, I will take the monthly averages.</p>
+<hr>
+<p>Now that I've made a monthly chart I can plot and examine its loess curve.</p>
+<p><img alt="Average monthly price with loess" src="/images/article-images/gas_monthly_avg_loess.png"></p>
+<p>Well, there it is. It isn't very convincing. Other curves follow the data too well for me. Even though I've smoothed things to monthly averages, individual months still appear dramatic particularly around 2008. Do I buy the loess curve? No, but any better trend predictions will have to wait another article. Thanks for reading.</p>
+<hr>
+  </div>
+
+  <!-- Article Footer from plug-in -->
+    <strong>Article: "Hurricane Harvey's Effect on Gas Price" by Wolf, in Projects</strong>
+
+  	<style>
+#pcs-comment-form input,
+#pcs-comment-form textarea {
+	width: 100%;
+}
+#pcs-comment-form-display-replyto {
+	border: solid 1px black;
+	padding: 2px;
+}
+#pcs-comment-form-display-replyto p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+#pcs-comments ul {
+	list-style: none;
+}
+#pcs-comments .comment-left {
+	display: table-cell;
+	padding-right: 10px;
+}
+#pcs-comments .comment-body {
+	display: table-cell;
+	vertical-align: top;
+	width: 100%;
+}
+</style>
+
+	<section id="pcs-comments">
+	<header>
+		<h2>Comments</h2>
+		<hr/>
+	</header>
+		<p>There are no comments yet.</p>
+	<section>
+	<form id="pcs-comment-form" action="#">
+		<legend>Add a Comment</legend>
+		<input type="hidden" id="pcs-comment-form-input-replyto">
+		<fieldset>
+			<label for="pcs-comment-form-input-name">Name</label>
+			<input  id="pcs-comment-form-input-name" type="text" placeholder="Enter your name or nickname" />
+		</fieldset>
+		<fieldset>
+			<label for="pcs-comment-form-input-website">Website</label>
+			<input  id="pcs-comment-form-input-website" type="text" placeholder="Enter your website (optional)" />
+		</fieldset>
+		<fieldset>
+			<label   for="pcs-comment-form-input-textarea">Your Comment</label>
+			<textarea id="pcs-comment-form-input-textarea" rows="5" style="resize:vertical;" placeholder="Your comment"></textarea>
+			<p>You can use the <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> syntax to format your comment.</p>
+			<div style="display: none; " id="pcs-comment-form-display-replyto"></div>
+		</fieldset>
+
+		<button type="submit"
+				id="pcs-comment-form-button-submit"
+				>Post via email</button>
+
+			<a href="https://wuffalo.github.io/feeds/comment.hurricane-harveys-effect-on-gas-price.atom.xml">
+				Comment Atom Feed
+			</a>
+	</form>
+</section>
+
+</section>
+
+			<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="https://wuffalo.github.io/theme/js/comments.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			CommentSystem.email_user   = "contact.wolf.site";
+			CommentSystem.email_domain = "gmail.com";
+			CommentSystem.display_replyto_html = function(comment_content, article_slug, author) {
+				return ''
+					+ '<button style="float:right;" onclick="CommentSystem.cancelReply(); return false;" title="Cancel the reply">'
+					+ 	'×'
+					+ '</button>'
+					+ '<p>This comment will be posted as a reply to \'<a title="'+comment_content+'" href="#comment-'+article_slug+'">'+author+'</a>\'</p>';
+			};
+			$('#pcs-comment-form').on("submit",
+				function( event )
+				{
+					event.preventDefault();
+					$(location).attr('href', CommentSystem.getMailtoLink("hurricane-harveys-effect-on-gas-price"));
+				}
+			);
+		});
+	</script>
+
+
+
+    <h3>Related content</h3>
+    <!-- TODO: Use fancier related layout, as in https://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/ -->
+    <ul>
+        <li><a href="https://wuffalo.github.io/reduce-api-calls-and-process-time-or-how-i-learned-to-pickle-my-quandl.html">Reduce API calls and process time- or How I learned to pickle my quandl</a></li>
+        <li><a href="https://wuffalo.github.io/shading-a-federal-funds-rate-graph-by-variable.html">Shading a federal funds rate graph by variable</a></li>
+        <li><a href="https://wuffalo.github.io/weekend-reading-quandl-tables-django-with-heroku.html">Weekend reading: Quandl tables, Django with Heroku</a></li>
+      </ul>
+
+
+        </div>
+
+          <div class="col-md-3">
+  <div class="well">
+
+    <p><abbr title="2017-09-25T00:00:00-05:00"><i class="fa fa-calendar"></i> Mon 25 September 2017</abbr></p>
+
+      <p><address>
+        <i class="fa fa-user"></i> By
+          <a href="https://wuffalo.github.io/author/wolf.html" rel="author">Wolf</a>
+      </address></p>
+
+    <hr/>
+
+      <p>
+              <a href="https://wuffalo.github.io/category/projects/" rel="tag"
+                  data-toggle="tooltip" class="label label-info"
+                  title="4 articles in this category">Projects</a>
+            <a href="/tag/quandl/" data-toggle="tooltip"
+      class="label label-default"
+      title="4 articles with this tag">Quandl</a>
+            <a href="/tag/r/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">R</a>
+            <a href="/tag/gas/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">gas</a>
+            <a href="/tag/harvey/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">Harvey</a>
+            <a href="/tag/hurricane-harvey/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">Hurricane Harvey</a>
+            <a href="/tag/price/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">price</a>
+            <a href="/tag/loess/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">loess</a>
+            <a href="/tag/visualization/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">visualization</a>
+            <a href="/tag/chart/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">chart</a>
+            <a href="/tag/houston/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">Houston</a>
+      </p>
+      <hr/>
+
+
+
+  </div>
+            
+          </div>
+
+      </div>
+
+    </div>
+
+    <!-- TODO: make footer sticky -->
+    <footer class="container-fluid">
+      <div class="container">
+        <div class="row">
+
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-2">
+                <h5>Links</h5>
+                <ul class="list-unstyled">
+                  <li>  <a href="https://getpelican.com/">
+      <img src="https://icons.better-idea.org/icon?url=getpelican.com&size=16" width="16" height="16" class="icon" alt="getpelican.com icon"/>
+    Pelican
+  </a></li>
+                  <li>  <a href="https://www.skyscanner.com/">
+      <img src="https://icons.better-idea.org/icon?url=www.skyscanner.com&size=16" width="16" height="16" class="icon" alt="www.skyscanner.com icon"/>
+    Skyscanner
+  </a></li>
+                </ul>
+            </div>
+
+          <div class="col-md-2">
+            <h5>Browse content by</h5>
+            <ul class="list-unstyled">
+                <li><a href="https://wuffalo.github.io/categories/index.html"><i class="fa fa-tags"></i> Categories</a></li>
+                <li><a href="https://wuffalo.github.io/archives/index.html"><i class="fa fa-calendar"></i> Dates</a></li>
+                <li><a href="https://wuffalo.github.io/tags/index.html"><i class="fa fa-tag"></i> Tags</a></li>
+            </ul>
+          </div>
+
+          <div class="col-md-2 text-muted">
+            <h5>Copyright notice</h5>
+            <p>© Copyright 2017 Wolf.</p>
+          </div>
+
+          <div class="col-md-2 text-muted">
+            <h5>Disclaimer</h5>
+              <p>All opinions expressed in this site are my own personal opinions and are not endorsed by, nor do they represent the opinions of my previous, current and future employers or any of its affiliates, partners or customers.</p>
+          </div>
+
+          <div class="col-md-2">
+          </div>
+
+        </div>
+      </div>
+
+      <h5 class="text-right"><a href="#"><i class="fa fa-arrow-up"></i> Back to top</a></h5>
+
+      <div class="container">
+        <div class="row col-md-12 text-muted text-center">
+          Site generated by <a href="https://getpelican.com"> Pelican</a>.<br/>
+          <a href="https://github.com/kdeldycke/plumage"> Plumage</a> theme by <a href="https://kevin.deldycke.com">Kevin Deldycke</a>.
+        </div>
+      </div>
+
+    </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.min.js"></script>
+
+    <!-- Enable show/hide toggler -->
+    <script src="https://wuffalo.github.io/theme/js/show_hide_toggler.js" type="text/javascript"></script>
+    
+    <script src="https://wuffalo.github.io/theme/js/jquery.mglass.js"></script>
+    <script src="https://wuffalo.github.io/theme/js/application.js"></script>
+
+  </body>
+</html>
