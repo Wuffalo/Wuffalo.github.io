@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>  My first blog, I'll use Pelican!
+    <title>  Hurricane Harvey's Effect on Gas
  | Nothing but Wolf</title>
 
     <meta name="author" content="Wolf"/>
@@ -106,7 +106,7 @@
       <div class="row">
         <div class=" col-md-9  ">
   <h1>
-    <a href="https://wuffalo.github.io/my-first-blog-ill-use-pelican.html" rel="bookmark" title="Permalink to My first blog, I&#39;ll use Pelican!">My first blog, I'll use Pelican!</a>
+    <a href="https://wuffalo.github.io/hurricane-harveys-effect-on-gas.html" rel="bookmark" title="Permalink to Hurricane Harvey&#39;s Effect on Gas">Hurricane Harvey's Effect on Gas</a>
   </h1>
         </div>
       </div>
@@ -117,38 +117,35 @@
   
 
   <div>
-    <p>I realized learning things and making projects doesn't mean much if I can't talk about and display my work. So after some research I learned I don't need to specialize in front end development or website design or javascript to build a presentable website. This is part of the progress of software becoming more user friendly and accessible. Higher level languages and static page generators!</p>
-<p>There are some great articles about static pages vs. dynamic ones out there and I'm a total amateur so I'll just <a href="https://www.smashingmagazine.com/2015/11/modern-static-website-generators-next-big-thing/">link one here</a>.</p>
+    <p>What was the economic impact of Hurricane Harvey on the price of gasoline? I can answer this personally from a Houston perspective and say it pushed my $2.09 to $2.35, and immediately after the storm it was common not only to experience prices around $3/gallon but shortages in availability.</p>
+<p><em>A quick note: $2/gallon equals €1.70/gallon equals €0.24/Liter. Scanning Berlin, Germany now I see €1.35/Liter there.</em></p>
 <hr>
-<h3>Why use a static blog?</h3>
-<p>I'm interested in something that is quick, efficient, small footprint so whatever I ultimately produce can be viewed quickly and not waste time bogged down in a database heavy website. I don't have anything against a dynamic site, and my next project will be to make a django based one on AWS. For now though a simple blog meant to present data science projects can perfectly be done on a static site.</p>
-<p>As of now the blog is not finished, and I'm not an expert on everything I've done so far. This article is more of a journal on some of the things I've done so far.</p>
+<p>So before I look at anything I should go ahead and check how much it's already been looked at. I found a <a href="https://www.cnbc.com/2017/08/28/stocks-will-likely-remain-unaffected-by-hurricane-harvey-tragedy.html">CNBC article</a> that claimed there wouldn't be much of a general impact but noted the RBOB gasoline futures jump of 6.8%. First thing first, what is RBOB? <a href="http://commodityhq.com/investing-ideas/ultimate-guide-to-rbob-gasoline-investing/">RBOB description linked here.</a> Then of course CNBC's tracker is <a href="https://www.cnbc.com/quotes/?symbol=%40RB.1">linked here.</a></p>
+<p>Now let's say I'm not satisfied clicking around on their website and playing with their provided tools, though they have an impressive list of built in browser tools, I want to download this dataset. I'll go back to my favorite source, Quandl. The exact thing I'm looking for <a href="https://www.quandl.com/data/EOD/UGA">EOD/UGA</a>, but unfortunately this is listed under the Premium databases. Thankfully this only makes me go sideways. I found a free version listed under <a href="https://www.quandl.com/data/FRED/DRGASLA">FRED/DRGASLA</a>, downsides are it hasn't been refreshed in two days and it appears to describe gas prices in Los Angeles... But I'm just looking for historical trends so this will work. They also have a source for weekly and monthly, but I always look for the finest data (daily) and transform it if I need to.</p>
+<p>The Daily data looks pretty messy. I'd like to smooth it out, but first I'll address some of the CNBC trader's lack of concern. Here is the daily price data over the past 14 years.</p>
+<p><img alt="Chart area above recent peak month" src="/images/gas_area_above_avg.png"></p>
+<p>Since the peak as you can see to the far right of the graph was a little extreme, I found the average price for that peak month instead. This chart shows the area above that month's average and below for comparison. This shows in the past two years this price stood out somewhat, but seems more in line with the prior decade. Since prices have dropped back down after this recent peak we don't appear to be approaching the higher price levels of the past decade yet.</p>
 <hr>
-<p>Some great resources here. Check out Nafiul Islam's <a href="https://nafiulis.me/making-a-static-blog-with-pelican.html">pelican setup guide</a>.</p>
+<p>I'd like to go a little deeper in the analysis of general trends so if interested read on.</p>
 <hr>
-<h3>Start-up</h3>
-<p>Download Python which should include pip which is a package manager.</p>
-<p>Using pip, install Pelican.</p>
-<p>Use the quick set up, I only chose to say Yes to uploading it to a Github page one day.</p>
-<p>Once I had a test site I started looking for a theme. It's fun to learn by picking things apart, a lot better than digging around in docs and failing a million ways.</p>
-<h3>Themes</h3>
-<p>Pelican has a repository of <a href="https://github.com/getpelican/pelican-themes">default themes</a> you can choose. They recommend downloading the whole thing which I did but now seems rather unnecessary. I started by using foundation-default-colours.</p>
-<p>I poked around in the theme but then found features in another blog I wanted to work with.</p>
-<p>So off to <a href="https://github.com/kdeldycke/plumage">'Plumage'</a> I went. It's not a default theme but it was one I wanted to work with.</p>
-<h3>Customization</h3>
-<p>It took a few days to start getting something clean but customized.</p>
-<p>I changed the backgrounds to some Japanese inspired patterns that look subtle and organized to me.</p>
-<p>Changed the Pygment to the solarized light instead of the solarized dark, dark code background was too jarring.</p>
-<p>Then I found tango is a nice default Pygment so I compiled it to a css and inserted it.</p>
-<p>The theme was coded to option allow a Disqus comment section but after some research and just plain preference I decided to use <a href="https://github.com/getpelican/pelican-plugins/tree/master/pelican_comment_system">a static comment system</a>. This is a rather weird setup which won't scale well, but it's very nice for what I want now. No account needed to comment, full markdown support for comments, all personal information and data handling is performed by me not an independent service. The downside is comments aren't immediately posted and the stock handling is I have to review and add the comment manually. I may make this automatic but handling comments manually is appealing right now.</p>
-<p>Added a Show/Hide toggler courtesy of <a href="https://github.com/flavio-fernandes/pelican-blog/blob/master/content/hacks/pelican-show-hide-button.md">flavio</a>. He combines it with the pelican plug-in pelican_gist which offers a simple Markdown tactic to insert blocks of text that can easily be hidden by the reader. Concise in the article write up, concise on the article page.</p>
-<p>Added pelican_gist which pulls up stored code from my gist.</p>
-<p>At this point the blog looks good enough to put up. I'm interested in continuing to push pelican/markdown some more so I'll keep poking around. </p>
+<p>While the daily data looks messy I can go ahead and use it for a daily % change in price seen here.</p>
+<p><img alt="Daily % difference" src="/images/article-images/daily_loess_gas.png"></p>
+<p>This data would be overwhelming if not for a loess smoother showing a trend with predicted values. A trend along the horizontal 0 line would indicate a steady fluctuation, but instead we see our trend (in red) is hovering slightly below a 0.001% daily increase in price. The trend only dives into a negative rate around 2012 and reemerges in 2016. What does this chart illustrate? Well for one it suggests someone graduating in 2014 would've had the absolute worst timing this generation to try and get into Oil &amp; Gas, unfortunately. But also in my opinion we have discovered the normal inflationary rate of gas price and also seen the dramatic change brought on by the <a href="https://en.wikipedia.org/wiki/2010s_oil_glut">2010's Oil Glut</a>. We might expect the rate to stabilize again at 0.001%+ daily.</p>
 <hr>
+<p>Now I'm going to smooth things to a more manageable level visually, I'll be going with a monthly average.</p>
+<p><em>Note: Monthly averaging is smoother than monthly sampling</em></p>
+<p><button class="toggle-start-hidden">Show/hide Note</button></p>
+<p>If I collapse monthly my Daily report using their built in function it is in fact sampling at monthly intervals. I could use their FRED/MRGASLA dataset which provides the monthly average, or if I only have access to the daily report I can calculate the monthly average in R. How big can this difference be?
+<img alt="Monthly average vs sample" src="/images/article-images/monthly_avg_vs_sample.png">
+Here is a chart showing monthly average in blue. The red line represents the monthly sample and appears more erratic. To emphasize how strongly these individual samples can differ from the average, I have dotted the points as well. Since my goal here is to smooth my chart, I will take the monthly averages.</p>
+<hr>
+<p>Now that I've made a monthly chart I can plot and examine its loess curve.</p>
+<p><img alt="Average monthly price with loess" src="/images/article-images/gas_monthly_avg_loess.png"></p>
+<p>Well, there it is. It isn't very convincing. Other curves follow the data too well for me. Even though I've smoothed things to monthly averages, individual months still appear dramatic particularly around 2008. Do I buy the loess curve? No, but any better trend predictions will have to wait another article. Thanks for reading.</p>
   </div>
 
   <!-- Article Footer from plug-in -->
-    <strong>Article: "My first blog, I'll use Pelican!" by Wolf, in Projects</strong>
+    <strong>Article: "Hurricane Harvey's Effect on Gas" by Wolf, in Projects</strong>
 
   	<style>
 #pcs-comment-form input,
@@ -206,7 +203,7 @@
 				id="pcs-comment-form-button-submit"
 				>Post via email</button>
 
-			<a href="https://wuffalo.github.io/feeds/comment.my-first-blog-ill-use-pelican.atom.xml">
+			<a href="https://wuffalo.github.io/feeds/comment.hurricane-harveys-effect-on-gas.atom.xml">
 				Comment Atom Feed
 			</a>
 	</form>
@@ -231,7 +228,7 @@
 				function( event )
 				{
 					event.preventDefault();
-					$(location).attr('href', CommentSystem.getMailtoLink("my-first-blog-ill-use-pelican"));
+					$(location).attr('href', CommentSystem.getMailtoLink("hurricane-harveys-effect-on-gas"));
 				}
 			);
 		});
@@ -253,7 +250,7 @@
           <div class="col-md-3">
   <div class="well">
 
-    <p><abbr title="2017-05-01T00:00:00-05:00"><i class="fa fa-calendar"></i> Mon 01 May 2017</abbr></p>
+    <p><abbr title="2017-09-25T00:00:00-05:00"><i class="fa fa-calendar"></i> Mon 25 September 2017</abbr></p>
 
       <p><address>
         <i class="fa fa-user"></i> By
@@ -266,42 +263,36 @@
               <a href="https://wuffalo.github.io/category/projects/" rel="tag"
                   data-toggle="tooltip" class="label label-info"
                   title="4 articles in this category">Projects</a>
-            <a href="/tag/python/" data-toggle="tooltip"
+            <a href="/tag/quandl/" data-toggle="tooltip"
       class="label label-default"
-      title="7 articles with this tag">python</a>
-            <a href="/tag/website/" data-toggle="tooltip"
+      title="4 articles with this tag">Quandl</a>
+            <a href="/tag/r/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">website</a>
-            <a href="/tag/static-blog/" data-toggle="tooltip"
+      title="1 article with this tag">R</a>
+            <a href="/tag/gas/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">static blog</a>
-            <a href="/tag/blog/" data-toggle="tooltip"
+      title="1 article with this tag">gas</a>
+            <a href="/tag/harvey/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">blog</a>
-            <a href="/tag/pelican/" data-toggle="tooltip"
+      title="1 article with this tag">Harvey</a>
+            <a href="/tag/hurricane-harvey/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">Pelican</a>
-            <a href="/tag/site/" data-toggle="tooltip"
+      title="1 article with this tag">Hurricane Harvey</a>
+            <a href="/tag/price/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">site</a>
-            <a href="/tag/jquery/" data-toggle="tooltip"
+      title="1 article with this tag">price</a>
+            <a href="/tag/loess/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">jquery</a>
-            <a href="/tag/pygment/" data-toggle="tooltip"
+      title="1 article with this tag">loess</a>
+            <a href="/tag/visualization/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">pygment</a>
-            <a href="/tag/theme/" data-toggle="tooltip"
+      title="1 article with this tag">visualization</a>
+            <a href="/tag/chart/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">theme</a>
-            <a href="/tag/style/" data-toggle="tooltip"
+      title="1 article with this tag">chart</a>
+            <a href="/tag/houston/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">style</a>
-            <a href="/tag/css/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">css</a>
-            <a href="/tag/html/" data-toggle="tooltip"
-      class="label label-default"
-      title="1 article with this tag">html</a>
+      title="1 article with this tag">Houston</a>
       </p>
       <hr/>
 
