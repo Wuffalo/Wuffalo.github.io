@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>  Learning GIS with QGIS - HPD recent crime
+ | Nothing but Wolf</title>
+
+    <meta name="author" content="Wolf"/>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"/>
+    <link rel="stylesheet" href="https://wuffalo.github.io/theme/css/jquery.mglass.css"/>
+    <link rel="stylesheet" href="https://wuffalo.github.io/theme/css/style.tango.css"/>
+    <link rel="stylesheet" href="https://wuffalo.github.io/theme/css/style.css"/>
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+    <link href='https://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css'/>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'/>
+
+
+    <link rel="icon" href="https://wuffalo.github.io/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://wuffalo.github.io/favicon.ico" type="image/x-icon">
+
+    <!-- Feeds -->
+
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="page-header">
+          <a href="https://wuffalo.github.io" class="avatar-container pull-left">
+            <div class="avatar  animate ">
+              <div class="side"><img src="/images/Icon4.jpg" class="img-responsive"/></div>
+                <div class="side back"><p class="text-center">Wenn Schon Denn Schon</p></div>
+            </div>
+          </a>
+        <h1><a href="https://wuffalo.github.io">Nothing but Wolf</a> <small>~</small></h1>
+      </div>
+
+      <nav class="navbar navbar-default">
+
+        <!-- Hamburger menu for mobile -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#plumage-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://wuffalo.github.io" title="~">Nothing but Wolf</a>
+        </div>
+
+        <!-- Menus and search forms -->
+        <div class="collapse navbar-collapse" id="plumage-navbar-collapse-1">
+
+          <ul class="nav navbar-nav">
+<li >
+                  <a href="https://wuffalo.github.io/about-me/">About Me</a>
+                </li>
+<li >
+                  <a href="https://wuffalo.github.io/category/hardware/">Hardware</a>
+                </li>
+<li >
+                  <a href="https://wuffalo.github.io/category/personal/">Personal</a>
+                </li>
+<li  class="active" >
+                  <a href="https://wuffalo.github.io/category/projects/">Projects <span class="sr-only">(current)</span></a>
+                </li>
+<li >
+                  <a href="https://wuffalo.github.io/category/software/">Software</a>
+                </li>
+          </ul>
+
+
+            <form class="navbar-form navbar-right" role="search" action="https://wuffalo.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" name="q" id="tipue_search_input" class="form-control search-query" placeholder="Search" required />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="fa
+                        fa-search fa-fw"></i></button>
+                  </span>
+                </div>
+              </div>
+            </form>
+
+        </div>
+
+      </nav>
+
+    </div>
+
+
+    <div class="container main">
+
+      <div class="row">
+        <div class=" col-md-9  ">
+  <h1>
+    <a href="https://wuffalo.github.io/learning-gis-with-qgis-hpd-recent-crime.html" rel="bookmark" title="Permalink to Learning GIS with QGIS - HPD recent crime">Learning GIS with QGIS - HPD recent crime</a>
+  </h1>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class=" col-md-9 " id="content" role="main">
+  
+
+  <div>
+    <p>I've had fun with Tableau recently, but I've had to trust Tableau's data processing and sometimes settle for what the software can do and not what the data can do. One particular area is working with geographic data. So I've decided to learn software for Geographic Information Systems.</p>
+<p>Perhaps the most notable GIS software is ArcGIS, but this is paid software so I continued my pattern of exploring open software and have decided to use <a href="http://qgis.org/en/site/">QGIS</a>. I chose QGIS for its large established community.</p>
+<p>Alright, I've got a long ways to go, but I wanted to share a quick visual examination of some GIS data to show how quick and powerful geographic data can be. The Houston Police Department makes available recent crime data so I've grabbed the latest issue to look at.</p>
+<hr>
+<h3>HPD Recent Crime</h3>
+<p>Here is the data as you first see it. Just a collection of points with associated reports. You can see some curiousities already. Open "crime free" areas within the city and some geographical shape to the border of the city.</p>
+<p><img alt="img" src="/images/article-images/HPD_1.PNG"></p>
+<hr>
+<p>Now I'll start adding layers to better understand these patterns. Here I add Zillow's neighborhood data which includes shape files that trace out residential neighborhoods. This does an alright job of orientating someone who is familiar with Houston. Now you can see the Buffalo Bayou boundary, the Bellaire cutout, even the neighborhood shaping by 610.</p>
+<p><img alt="img" src="/images/article-images/HPD_2.PNG"></p>
+<hr>
+<p>However there was something I was noticing when I zoomed in that I needed one more layer to tease this answer out from the data. Here I use TxDOT's road map of Texas as another layer. With GIS software, layering multiple map layers is mostly automatic and highly accurate. Now you can see the effect of roads and freeways. You can see the I-45 to Galveston is a strong area of crime and downtown has a heavy general level of crime.</p>
+<p><img alt="img" src="/images/article-images/HPD_3.PNG"></p>
+<hr>
+<p>This final zoom section focuses on SW Houston where you can see what I consider to be the most interesting part of the data visually. (Also personally.) Here we see multiple horizontal bands of crime. While I'd expect to see that around I-10, I also see it around Bissonnet-S.Braeswood but especially all along Westheimer. Even higher prevalence of crime than I-10!</p>
+<p><img alt="img" src="/images/article-images/HPD_4.PNG"></p>
+<hr>
+<p>Based on just this shallow exploration with GIS, I'd consider Westheimer to be a "highway to crime" considering it is only second to the I-45 corridor in directional crime prevalence.</p>
+<p>Note: These dots are often overlapped address data, I found many addresses which had 7+ recent crimes reported. (Last month or two.)</p>
+<p>There's so much more to learn from this data so I'll continue. I hope you enjoyed this look at GIS data and you avoid Westheimer late at night. (Just last week a friend of mine was robbed on Westheimer.)</p>
+<hr>
+  </div>
+
+  <!-- Article Footer from plug-in -->
+    <strong>Article: "Learning GIS with QGIS - HPD recent crime" by Wolf, in Projects</strong>
+
+  	<style>
+#pcs-comment-form input,
+#pcs-comment-form textarea {
+	width: 100%;
+}
+#pcs-comment-form-display-replyto {
+	border: solid 1px black;
+	padding: 2px;
+}
+#pcs-comment-form-display-replyto p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+#pcs-comments ul {
+	list-style: none;
+}
+#pcs-comments .comment-left {
+	display: table-cell;
+	padding-right: 10px;
+}
+#pcs-comments .comment-body {
+	display: table-cell;
+	vertical-align: top;
+	width: 100%;
+}
+</style>
+
+	<section id="pcs-comments">
+	<header>
+		<h2>Comments</h2>
+		<hr/>
+	</header>
+		<p>There are no comments yet.</p>
+	<section>
+	<form id="pcs-comment-form" action="#">
+		<legend>Add a Comment</legend>
+		<input type="hidden" id="pcs-comment-form-input-replyto">
+		<fieldset>
+			<label for="pcs-comment-form-input-name">Name</label>
+			<input  id="pcs-comment-form-input-name" type="text" placeholder="Enter your name or nickname" />
+		</fieldset>
+		<fieldset>
+			<label for="pcs-comment-form-input-website">Website</label>
+			<input  id="pcs-comment-form-input-website" type="text" placeholder="Enter your website (optional)" />
+		</fieldset>
+		<fieldset>
+			<label   for="pcs-comment-form-input-textarea">Your Comment</label>
+			<textarea id="pcs-comment-form-input-textarea" rows="5" style="resize:vertical;" placeholder="Your comment"></textarea>
+			<p>You can use the <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> syntax to format your comment.</p>
+			<div style="display: none; " id="pcs-comment-form-display-replyto"></div>
+		</fieldset>
+
+		<button type="submit"
+				id="pcs-comment-form-button-submit"
+				>Post via email</button>
+
+			<a href="https://wuffalo.github.io/feeds/comment.learning-gis-with-qgis-hpd-recent-crime.atom.xml">
+				Comment Atom Feed
+			</a>
+	</form>
+</section>
+
+</section>
+
+			<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="https://wuffalo.github.io/theme/js/comments.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			CommentSystem.email_user   = "contact.wolf.site";
+			CommentSystem.email_domain = "gmail.com";
+			CommentSystem.display_replyto_html = function(comment_content, article_slug, author) {
+				return ''
+					+ '<button style="float:right;" onclick="CommentSystem.cancelReply(); return false;" title="Cancel the reply">'
+					+ 	'×'
+					+ '</button>'
+					+ '<p>This comment will be posted as a reply to \'<a title="'+comment_content+'" href="#comment-'+article_slug+'">'+author+'</a>\'</p>';
+			};
+			$('#pcs-comment-form').on("submit",
+				function( event )
+				{
+					event.preventDefault();
+					$(location).attr('href', CommentSystem.getMailtoLink("learning-gis-with-qgis-hpd-recent-crime"));
+				}
+			);
+		});
+	</script>
+
+
+
+    <h3>Related content</h3>
+    <!-- TODO: Use fancier related layout, as in https://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/ -->
+    <ul>
+        <li><a href="https://wuffalo.github.io/studying-houstons-air-transportation-in-tableau.html">Studying Houston's air transportation - in Tableau</a></li>
+        <li><a href="https://wuffalo.github.io/tableau-study-of-top-150-us-ports-and-shipping-tonnage.html">Tableau study of top 150 U.S. ports and shipping tonnage</a></li>
+        <li><a href="https://wuffalo.github.io/hurricane-harveys-effect-on-gas-price.html">Hurricane Harvey's Effect on Gas Price</a></li>
+      </ul>
+
+
+        </div>
+
+          <div class="col-md-3">
+  <div class="well">
+
+    <p><abbr title="2017-11-04T00:00:00-05:00"><i class="fa fa-calendar"></i> Sat 04 November 2017</abbr></p>
+
+      <p><address>
+        <i class="fa fa-user"></i> By
+          <a href="https://wuffalo.github.io/author/wolf.html" rel="author">Wolf</a>
+      </address></p>
+
+    <hr/>
+
+      <p>
+              <a href="https://wuffalo.github.io/category/projects/" rel="tag"
+                  data-toggle="tooltip" class="label label-info"
+                  title="8 articles in this category">Projects</a>
+            <a href="/tag/houston/" data-toggle="tooltip"
+      class="label label-default"
+      title="4 articles with this tag">Houston</a>
+            <a href="/tag/texas/" data-toggle="tooltip"
+      class="label label-default"
+      title="2 articles with this tag">Texas</a>
+            <a href="/tag/gis/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">GIS</a>
+            <a href="/tag/qgis/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">QGIS</a>
+            <a href="/tag/zillow/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">Zillow</a>
+            <a href="/tag/hpd/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">HPD</a>
+      </p>
+      <hr/>
+
+
+
+  </div>
+            
+          </div>
+
+      </div>
+
+    </div>
+
+    <!-- TODO: make footer sticky -->
+    <footer class="container-fluid">
+      <div class="container">
+        <div class="row">
+
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-2">
+            </div>
+
+          <div class="col-md-2">
+            <h5>Browse content by</h5>
+            <ul class="list-unstyled">
+                <li><a href="https://wuffalo.github.io/categories/index.html"><i class="fa fa-tags"></i> Categories</a></li>
+                <li><a href="https://wuffalo.github.io/archives/index.html"><i class="fa fa-calendar"></i> Dates</a></li>
+                <li><a href="https://wuffalo.github.io/tags/index.html"><i class="fa fa-tag"></i> Tags</a></li>
+            </ul>
+          </div>
+
+          <div class="col-md-2 text-muted">
+            <h5>Copyright notice</h5>
+            <p>© Copyright 2017 Wolf.</p>
+          </div>
+
+          <div class="col-md-2 text-muted">
+            <h5>Disclaimer</h5>
+              <p>All opinions expressed in this site are my own personal opinions.</p>
+          </div>
+
+          <div class="col-md-2">
+          </div>
+
+        </div>
+      </div>
+
+      <h5 class="text-right"><a href="#"><i class="fa fa-arrow-up"></i> Back to top</a></h5>
+
+      <div class="container">
+        <div class="row col-md-12 text-muted text-center">
+          <a href="https://github.com/kdeldycke/plumage"> Plumage</a> theme by <a href="https://kevin.deldycke.com">Kevin Deldycke</a>.
+        </div>
+      </div>
+
+    </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.min.js"></script>
+
+    <!-- Enable show/hide toggler -->
+    <script src="https://wuffalo.github.io/theme/js/show_hide_toggler.js" type="text/javascript"></script>
+
+    <script src="https://wuffalo.github.io/theme/js/jquery.mglass.js"></script>
+    <script src="https://wuffalo.github.io/theme/js/application.js"></script>
+
+  </body>
+</html>
