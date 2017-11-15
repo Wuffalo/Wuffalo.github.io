@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>  Excel work samples
+    <title>  Racial diversity of Silicon Valley companies
  | Nothing but Wolf</title>
 
     <meta name="author" content="Wolf"/>
@@ -106,7 +106,7 @@
       <div class="row">
         <div class=" col-md-9  ">
   <h1>
-    <a href="https://wuffalo.github.io/excel-work-samples.html" rel="bookmark" title="Permalink to Excel work samples">Excel work samples</a>
+    <a href="https://wuffalo.github.io/racial-diversity-of-silicon-valley-companies.html" rel="bookmark" title="Permalink to Racial diversity of Silicon Valley companies">Racial diversity of Silicon Valley companies</a>
   </h1>
         </div>
       </div>
@@ -117,33 +117,69 @@
   
 
   <div>
-    <p>I consider my skill level with the Office Suite to be Advanced, but while I've been making efforts to demonstrate other skills I feel I haven't done enough to show work in more standard business skills. Here I'll compile a few problems I enjoyed working on in Excel.</p>
+    <p>This is the second part of my dive into Reveal's diversity data of silicon valley companies. They have an ongoing investigation, <a href="https://www.revealnews.org/article/hidden-figures-how-silicon-valley-keeps-diversity-data-secret/">Hidden figures: How Silicon Valley keeps diversity data secret</a>. You can also view my first article where I examined gender data.</p>
+<p>For this article I examined the racial makeup of silicon valley companies. Only 11% of companies contacted by <em>Reveal</em> responded to diversity data inquiries, so I am only examining the data of the 22 companies who cooperated.</p>
 <hr>
-<h3>Examples</h3>
+<p>Source: <a href="https://public.tableau.com/shared/JPNR3T879?:display_count=yes">https://public.tableau.com/shared/JPNR3T879?:display_count=yes</a></p>
+<p><a href="/images/article-images/silicon_race.png">img</a></p>
+<p>Note: This Tableau study cannot be embedded, please use the <a href="https://public.tableau.com/shared/JPNR3T879?:display_count=yes">link</a> to see the data on the three sheets.</p>
 <hr>
-<h4>Two Product Transportation Network</h4>
-<p>Here's a model for a company processing two products in its network of three plants, two warehouses and two customers. Transportation costs for each possible transfer are given as well as various constraints on demand, storage space and production rate. The optimal supply chain volumes are calculated.</p>
-<p><img alt="img" src="/images/article-images/two_prod_shipping.PNG"></p>
+<p>The numbers are surprising.</p>
 <hr>
-<h4>Plant Selection</h4>
-<p>This model looks at a national company which has received customer orders at various bid prices in multiple cities. Since the company has a large production network they wish to minimize shipping costs while satisfying all customer orders. The optimal production plants are calculated to allow for the maximum profit while satisfying all customer orders.</p>
-<p><img alt="img" src="/images/article-images/custBids_logModel.PNG"></p>
+<h3>Summary statistics</h3>
+<p>Time to go deeper with Excel for some stats analysis.</p>
 <hr>
-<h4>Vendor Selection</h4>
-<p>Here a university is choosing computers from various vendors seeking to minimize total cost while acquiring all that they need. They have to take into account vendor constraints and prices. Here they arrive at the optimal vendor selection and order amounts.</p>
-<p><img alt="img" src="/images/article-images/Vendor_selection.PNG"></p>
+<p>The following table is calculated by finding the difference from actual representation to what we might expect from the general US population.</p>
+<p>I found that information from the US Census bureau using their 2016 projection based on the 2010 census.  Here is the <a href="https://www.census.gov/quickfacts/fact/table/US/PST045216">source</a>.</p>
+<p><button class="toggle-start-hidden">Show/Hide Note on analysis</button></p>
+<p>There are some important notes to make when analyzing census information and all the calculations I create using them. The U.S. does not recognize Latino or Hispanic as a race, instead they require Hispanics to identify as one of the other races. The census only differentiates between those of Hispanic origin or culture with those who are not in one race, White. So while White alone is estimated at 76.9% White not Hispanic is estimated at 61.3% This suggests 15.6% of Whites in America are of Hispanic origin or culture. Meaning about 2.2% of the population is Hispanic and does not consider themselves White. Rather than try to guess which categories they place themselves in, I've simply gone with a higher total percentage to compare to (102.2), and then I analyze my data with a margin of 3%. This way even if every non-white Hispanic identifies as one other race, my findings on representation will still be correct.</p>
+<p><em>--</em></p>
+<p>These are the findings of the U.S. census for the demographics of America, with my adjustments.</p>
+<table>
+<thead>
+<tr>
+<th align="left">American Indian or Alaskan Native</th>
+<th align="right">Asian</th>
+<th align="right">African-American or Black</th>
+<th align="right">Latino or Hispanic</th>
+<th align="right">Hawaiian Native or Pacific Islander</th>
+<th align="right">Two or more races</th>
+<th align="right">White non-Hispanic</th>
+<th align="right"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Percentage</td>
+<td align="right">1.3%</td>
+<td align="right">5.7%</td>
+<td align="right">13.3%</td>
+<td align="right">17.8%</td>
+<td align="right">.2%</td>
+<td align="right">2.6%</td>
+<td align="right">61.3%</td>
+</tr>
+</tbody>
+</table>
 <hr>
-<h4>5 Job Sequence</h4>
-<p>I chose some of the nicer easier to understand samples so far, so here's one on job shop scheduling. It iterates a heuristic to calculate optimal job configuration.</p>
-<p><img alt="img" src="/images/article-images/five_job_scheduling_excel.PNG"></p>
+<p>If you've looked through the Tableau exploration above, then you should know how different silicon valley tends to be. So I decided to evaluate just how different it is from the general US population.</p>
+<p>This table finds the percentage change between silicon valley and what we could expect using US percentages for those same races. I only shade differences less than or greater than 3%. Differences greater than 3% are shaded <strong>green</strong> indicating representation <em>above</em> what we could expect from the US population. <strong>Red</strong> shading indicates it is <em>lower</em> than expected.</p>
 <hr>
+<p>1
+<a href="/images/article-images/silr_3.png">img</a></p>
 <hr>
-<p>I hope these work samples were fun to look over, there are a lot more I left out which weren't as friendly looking. For my degree, among other tools, I used Excel to solve assignments and projects for three years.</p>
+<p>In the first pass we can note the smaller proportioned races Am. Indian, Pacific Islander, Multiracial. Their share of the total U.S. population is less than 4.1% total. Meaning even a company with thousands of employees might have their numbers skewed by a few for those races. We can note however that they're underrepresented except for Hawaiians or Pacific Islanders. <em>Reveal</em> in their investigation discovered one company was miscategorizing Asians as Hawaiian or Pacific Islander, and only a few could swing the representation dramatically. However due to the power of small numbers here, I'll note Apple and Intel might bear a second look for possible miscategorization, but I'll go ahead and remove these categories and focus on the larger races which should have stronger statistical value.</p>
+<hr>
+<p>2
+<a href="/images/article-images/silr_4.png">img</a></p>
+<hr>
+<p>Now we're down to the largest four races recognized by the U.S. census. You can identify Latinos are underrepresented at every company, but Blacks are more heavily underrepresented with View being an exception. Whites are overrepresented at five companies but underrepresented at most companies. In the Tableau study you saw Asians make up a large percentage of silicon valley companies and are the majority of employees at Nvidia and eBay. When compared to their relatively small percentage of the U.S. population (5.7%), it's now clear just how dramatic their representation is.</p>
+<p>The averages show Asians are 414% overrepresented in silicon valley today and are the only race not currently underrepresented. (Current for 2016.)</p>
 <hr>
   </div>
 
   <!-- Article Footer from plug-in -->
-    <strong>Article: "Excel work samples" by Wolf, in Projects</strong>
+    <strong>Article: "Racial diversity of Silicon Valley companies" by Wolf, in Projects</strong>
 
   	<style>
 #pcs-comment-form input,
@@ -201,7 +237,7 @@
 				id="pcs-comment-form-button-submit"
 				>Post via email</button>
 
-			<a href="https://wuffalo.github.io/feeds/comment.excel-work-samples.atom.xml">
+			<a href="https://wuffalo.github.io/feeds/comment.racial-diversity-of-silicon-valley-companies.atom.xml">
 				Comment Atom Feed
 			</a>
 	</form>
@@ -226,7 +262,7 @@
 				function( event )
 				{
 					event.preventDefault();
-					$(location).attr('href', CommentSystem.getMailtoLink("excel-work-samples"));
+					$(location).attr('href', CommentSystem.getMailtoLink("racial-diversity-of-silicon-valley-companies"));
 				}
 			);
 		});
@@ -234,6 +270,13 @@
 
 
 
+    <h3>Related content</h3>
+    <!-- TODO: Use fancier related layout, as in https://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/ -->
+    <ul>
+        <li><a href="https://wuffalo.github.io/gender-diversity-of-silicon-valley-companies.html">Gender diversity of Silicon Valley companies</a></li>
+        <li><a href="https://wuffalo.github.io/studying-houstons-air-transportation-in-tableau.html">Studying Houston's air transportation - in Tableau</a></li>
+        <li><a href="https://wuffalo.github.io/tableau-study-of-top-150-us-ports-and-shipping-tonnage.html">Tableau study of top 150 U.S. ports and shipping tonnage</a></li>
+      </ul>
 
 
         </div>
@@ -241,7 +284,7 @@
           <div class="col-md-3">
   <div class="well">
 
-    <p><abbr title="2017-10-11T00:00:00-05:00"><i class="fa fa-calendar"></i> Wed 11 October 2017</abbr></p>
+    <p><abbr title="2017-11-12T00:00:00-06:00"><i class="fa fa-calendar"></i> Sun 12 November 2017</abbr></p>
 
       <p><address>
         <i class="fa fa-user"></i> By
@@ -254,9 +297,15 @@
               <a href="https://wuffalo.github.io/category/projects/" rel="tag"
                   data-toggle="tooltip" class="label label-info"
                   title="10 articles in this category">Projects</a>
-            <a href="/tag/excel/" data-toggle="tooltip"
+            <a href="/tag/tableau/" data-toggle="tooltip"
       class="label label-default"
-      title="1 article with this tag">excel</a>
+      title="4 articles with this tag">Tableau</a>
+            <a href="/tag/diversity/" data-toggle="tooltip"
+      class="label label-default"
+      title="2 articles with this tag">diversity</a>
+            <a href="/tag/silicon-valley/" data-toggle="tooltip"
+      class="label label-default"
+      title="2 articles with this tag">Silicon Valley</a>
       </p>
       <hr/>
 
