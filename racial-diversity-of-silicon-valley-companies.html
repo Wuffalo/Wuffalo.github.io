@@ -117,22 +117,20 @@
   
 
   <div>
-    <p>This is the second part of my dive into Reveal's diversity data of silicon valley companies. They have an ongoing investigation, <a href="https://www.revealnews.org/article/hidden-figures-how-silicon-valley-keeps-diversity-data-secret/">Hidden figures: How Silicon Valley keeps diversity data secret</a>. You can also view my first article where I examined gender data.</p>
-<p>For this article I examined the racial makeup of silicon valley companies. Only 11% of companies contacted by <em>Reveal</em> responded to diversity data inquiries, so I am only examining the data of the 22 companies who cooperated.</p>
+    <p>This is the second part of my dive into Reveal's diversity data of silicon valley companies. They have an ongoing investigation, <a href="https://www.revealnews.org/article/hidden-figures-how-silicon-valley-keeps-diversity-data-secret/">Hidden figures: How Silicon Valley keeps diversity data secret</a>. You can also view my <a href="https://wuffalo.github.io/gender-diversity-of-silicon-valley-companies.html">first article</a> where I examined gender data.</p>
+<p>For this article I examined the racial makeup of silicon valley companies. Only 11% of companies contacted by <em>Reveal</em> responded to diversity data inquiries, so I am only examining the data of the 22 companies who have participated so far.</p>
 <hr>
 <p>Source: <a href="https://public.tableau.com/shared/JPNR3T879?:display_count=yes">https://public.tableau.com/shared/JPNR3T879?:display_count=yes</a></p>
 <p><img alt="img" src="/images/article-images/silicon_race.png"></p>
 <p>Note: This Tableau study cannot be embedded, please use the <a href="https://public.tableau.com/shared/JPNR3T879?:display_count=yes">link</a> to see the data on the three sheets.</p>
 <hr>
-<p>The numbers are surprising.</p>
-<hr>
 <h3>Summary statistics</h3>
 <p>Time to go deeper with Excel for some stats analysis.</p>
 <hr>
 <p>The following table is calculated by finding the difference from actual representation to what we might expect from the general US population.</p>
-<p>I found that information from the US Census bureau using their 2016 projection based on the 2010 census.  Here is the <a href="https://www.census.gov/quickfacts/fact/table/US/PST045216">source</a>.</p>
+<p>I found the information from the US Census bureau using their 2016 projection based on the 2010 census.  Here is the <a href="https://www.census.gov/quickfacts/fact/table/US/PST045216">source</a>.</p>
 <p><button class="toggle-start-hidden">Show/Hide Note on analysis</button></p>
-<p>There are some important notes to make when analyzing census information and all the calculations I create using them. The U.S. does not recognize Latino or Hispanic as a race, instead they require Hispanics to identify as one of the other races. The census only differentiates between those of Hispanic origin or culture with those who are not in one race, White. So while White alone is estimated at 76.9% White not Hispanic is estimated at 61.3% This suggests 15.6% of Whites in America are of Hispanic origin or culture. Meaning about 2.2% of the population is Hispanic and does not consider themselves White. Rather than try to guess which categories they place themselves in, I've simply gone with a higher total percentage to compare to (102.2), and then I analyze my data with a margin of 3%. This way even if every non-white Hispanic identifies as one other race, my findings on representation will still be correct.</p>
+<p>There are some important notes to make when analyzing census information and all the calculations I create using them. The U.S. does not recognize Latino or Hispanic as a race, instead they require Hispanics to identify as one of the other races. The census only differentiates between those of Hispanic origin or culture with those who aren't, in one race, White. So while White alone is estimated at 76.9%, White not Hispanic is estimated at 61.3%. This suggests 15.6% of Whites in America are of Hispanic origin or culture. Meaning about 2.2% of the population is Hispanic and does not consider themselves White. Rather than try to guess which categories they place themselves in, I've simply gone with a higher total percentage to compare to (102.2), and then I analyze my data with a margin of 3%. This way even if every non-white Hispanic identifies as one other race, my findings on over or under representation will still be correct.</p>
 <p><em>--</em></p>
 <p>These are the findings of the U.S. census for the demographics of America, with my adjustments.</p>
 <table>
@@ -168,13 +166,20 @@
 <p>1
 <img alt="img" src="/images/article-images/silr_3.png"></p>
 <hr>
-<p>In the first pass we can note the smaller proportioned races Am. Indian, Pacific Islander, Multiracial. Their share of the total U.S. population is less than 4.1% total. Meaning even a company with thousands of employees might have their numbers skewed by a few for those races. We can note however that they're underrepresented except for Hawaiians or Pacific Islanders. <em>Reveal</em> in their investigation discovered one company was miscategorizing Asians as Hawaiian or Pacific Islander, and only a few could swing the representation dramatically. However due to the power of small numbers here, I'll note Apple and Intel might bear a second look for possible miscategorization, but I'll go ahead and remove these categories and focus on the larger races which should have stronger statistical value.</p>
+<p>In the first pass we can note the smaller proportioned categories Am. Indian, Pacific Islander, Multiracial. Their share of the total U.S. population is less than 4.1% total. Meaning even a company with thousands of employees might have their numbers skewed by a few in those categories. We can note however that they're underrepresented except for Hawaiians or Pacific Islanders. <em>Reveal</em> in their investigation discovered one company was miscategorizing Asians as Hawaiian or Pacific Islander, and only a few could swing the representation dramatically. However due to the power of small numbers here, I'll note Apple and Intel might bear a second look for possible miscategorization (and possibly 23andMe for Multiracial), but I'll go ahead and remove these categories and focus on the larger races which should have stronger statistical value.</p>
 <hr>
 <p>2
 <img alt="img" src="/images/article-images/silr_4.png"></p>
 <hr>
-<p>Now we're down to the largest four races recognized by the U.S. census. You can identify Latinos are underrepresented at every company, but Blacks are more heavily underrepresented with View being an exception. Whites are overrepresented at five companies but underrepresented at most companies. In the Tableau study you saw Asians make up a large percentage of silicon valley companies and are the majority of employees at Nvidia and eBay. When compared to their relatively small percentage of the U.S. population (5.7%), it's now clear just how dramatic their representation is.</p>
+<p>Now we're down to the largest three races and Latino ethnicity recognized by the U.S. census. You can observe Latinos are underrepresented at every company, but Blacks are more heavily underrepresented with View being an exception. Whites are overrepresented at five companies but underrepresented at most companies. In the Tableau study you saw Asians make up a large percentage of silicon valley companies and are the majority of employees at Nvidia and eBay. When compared to their relatively small percentage of the U.S. population (5.7%), it's now clear just how dramatic their representation is.</p>
 <p>The averages show Asians are 414% overrepresented in silicon valley today and are the only race not currently underrepresented. (Current for 2016.)</p>
+<hr>
+<h3>Observations</h3>
+<p>If you remember from analysis of my previous article on <a href="https://wuffalo.github.io/gender-diversity-of-silicon-valley-companies.html">gender diversity in Silicon Valley</a>, Nvidia and View sat in the bottom two for female percentage of popular roles like Executives, Managers and Professionals. They are also remarkable here for separate reasons, View is the only company to employ a relatively high percentage of Black employees and Nvidia is the highest percentage employer of Asians.</p>
+<hr>
+<p>One final observation, I was at first surprised by <em>Apple</em>'s relatively high employment of Black and Latino employees. Far higher than the rest of Silicon Valley. However after some research and some filtering of the data (which you can perform for yourself in the Tableau), it's now apparent Apple is including their store employees, to the extent that they employ 3,822 Latino sales workers as well as 2,624 Black technicians. When only examining Executive, Managerial and Professional roles they fall to the industry average.</p>
+<hr>
+<p>Looking forward I hope I contributed to the best of my ability in analyzing this new data, and I encourage anyone who comes to different results to contact me. These are only the industry numbers that I have now. Many large companies like Netflix, Amazon, Oracle have so far not contributed to <em>Reveal</em>'s investigation.</p>
 <hr>
   </div>
 
@@ -306,6 +311,9 @@
             <a href="/tag/silicon-valley/" data-toggle="tooltip"
       class="label label-default"
       title="2 articles with this tag">Silicon Valley</a>
+            <a href="/tag/reveal/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">Reveal</a>
       </p>
       <hr/>
 
