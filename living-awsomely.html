@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>  Living AWSomely
+ | Nothing but Wolf</title>
+
+    <meta name="author" content="Wolf"/>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"/>
+    <link rel="stylesheet" href="https://wuffalo.github.io/theme/css/jquery.mglass.css"/>
+    <link rel="stylesheet" href="https://wuffalo.github.io/theme/css/style.tango.css"/>
+    <link rel="stylesheet" href="https://wuffalo.github.io/theme/css/style.css"/>
+
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+    <link href='https://fonts.googleapis.com/css?family=Istok+Web' rel='stylesheet' type='text/css'/>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'/>
+
+
+    <link rel="icon" href="https://wuffalo.github.io/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="https://wuffalo.github.io/favicon.ico" type="image/x-icon">
+
+    <!-- Feeds -->
+
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="page-header">
+          <a href="https://wuffalo.github.io" class="avatar-container pull-left">
+            <div class="avatar  animate ">
+              <div class="side"><img src="/images/Icon4.jpg" class="img-responsive"/></div>
+                <div class="side back"><p class="text-center">Wenn Schon Denn Schon</p></div>
+            </div>
+          </a>
+        <h1><a href="https://wuffalo.github.io">Nothing but Wolf</a> <small>~</small></h1>
+      </div>
+
+      <nav class="navbar navbar-default">
+
+        <!-- Hamburger menu for mobile -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#plumage-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="https://wuffalo.github.io" title="~">Nothing but Wolf</a>
+        </div>
+
+        <!-- Menus and search forms -->
+        <div class="collapse navbar-collapse" id="plumage-navbar-collapse-1">
+
+          <ul class="nav navbar-nav">
+<li >
+                  <a href="https://wuffalo.github.io/about-me/">About Me</a>
+                </li>
+<li >
+                  <a href="https://wuffalo.github.io/category/hardware/">Hardware</a>
+                </li>
+<li  class="active" >
+                  <a href="https://wuffalo.github.io/category/personal/">Personal <span class="sr-only">(current)</span></a>
+                </li>
+<li >
+                  <a href="https://wuffalo.github.io/category/projects/">Projects</a>
+                </li>
+<li >
+                  <a href="https://wuffalo.github.io/category/software/">Software</a>
+                </li>
+          </ul>
+
+
+            <form class="navbar-form navbar-right" role="search" action="https://wuffalo.github.io/search.html" onsubmit="return validateForm(this.elements['q'].value);">
+              <div class="form-group">
+                <div class="input-group">
+                  <input type="text" name="q" id="tipue_search_input" class="form-control search-query" placeholder="Search" required />
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="fa
+                        fa-search fa-fw"></i></button>
+                  </span>
+                </div>
+              </div>
+            </form>
+
+        </div>
+
+      </nav>
+
+    </div>
+
+
+    <div class="container main">
+
+      <div class="row">
+        <div class=" col-md-9  ">
+  <h1>
+    <a href="https://wuffalo.github.io/living-awsomely.html" rel="bookmark" title="Permalink to Living AWSomely">Living AWSomely</a>
+  </h1>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class=" col-md-9 " id="content" role="main">
+  
+
+  <div>
+    <p>Today I attended AWSome Day Houston, a conference all about Amazon Web Services. The topics were aimed at new or potential adopters. I happen to be one.</p>
+<p>Now perhaps I'm not totally new to AWS, I've recently completed a django webapp hosted on AWS, but I can't pretend I've done everything perfectly. I learned a lot and wrote down many jump off points for further research.</p>
+<hr>
+<h3>django webapp</h3>
+<p>Which Amazon web services am I using? So far my new Django project is hosted on an EC2 instance running Ubuntu. The static files are hosted on S3 including the cache files. I'm using Route53 to manage a custom domain. Not yet, but soon I will be configuring Cloudfront and Relational Database Service. The current priority is cleaning up the front end as the EC2+S3 backend is more than speedy. Learning and setting up Cloudfront+RDS will be purely educational.</p>
+<p>This Django webapp is managed through Mezzanine, a Content Management System. They streamline the design and deployment process, and I'll be writing some tutorials in the near future. Even though this means I now have a new portfolio/blog site, I'll continue focusing on this one for content as I like the simplicity and durability of a static website.</p>
+<hr>
+<h3>Amazon/Intel</h3>
+<p>The conference was sponsored by Intel, but I can't help but notice how contrasting these companies' fortunes are. Amazon is surging, its eCommerce division is a tsunami smashing down upon brick and mortar commerce. Like early Walmart, Amazon is doing this with a small focus on profit, more interested in market expansion at the existential expense of competitors. Very unlike their AWS division which is printing money in the IaaS space.</p>
+<p>Then we have Intel. The presentation's instance lineup showed Intel is a key partner, every chip for every specialty was Intel. However rumblings elsewhere suggest this is a death grip by Intel, clamping onto a growth leader. When I saw Jeff Dean, senior fellow at Google, and Doug Burger, Microsoft distinguished engineer, both research leaders detailed their need for highly specialized chips. Jeff Dean's Google Brain project is using custom FPGA chips, and Microsoft's experiments move beyond Intel's capabilities.</p>
+<p>My unqualified opinion is that Intel can't stretch across the entirety of the future chip industry. If you short Intel and blame me when Amazon doubles their Intel orders, shame, shame on you.</p>
+<hr>
+<h3>A challenger approaches</h3>
+<p>Now just hold on. It's not all sunshine and roses for Amazon. There's a nasty thorn in Amazon's side called Alibaba. When Facebook failed to enter China, it wasn't just China's Golden Wall which blocked them out, but the very dominating Weibo standing in the gate. Amazon is also wrestling with their own little juggernaut in Alibaba.</p>
+<p>This struggle between Amazon and Alibaba is bigger than determining which company is shipping you a replacement car remote from a Chinese warehouse, it's about the Cloud and if you believe some hyperbolists: the future of mankind in a world of AI. The question is data science and machine learning in particular. Who comes up with the techniques and talent necessary for answering this challenge will have a large hand in determining future industry and geopolitics.</p>
+<p>Even Vladimir Putin wants in on this battle of hyperbole over Artificial Intelligence.</p>
+<blockquote>
+<p>“Whoever becomes the leader in this sphere will become the ruler of the world.”</p>
+</blockquote>
+<p>If you can access <a href="https://www.ft.com/content/e33a6994-447e-11e8-93cf-67ac3a6482fd">this FT article</a> I recommend it. Otherwise be sure to keep track of <em>AI, deep learning, AWS, Alibaba</em> and every other participant in this new frontier.</p>
+  </div>
+
+  <!-- Article Footer from plug-in -->
+    <strong>Article: "Living AWSomely" by Wolf, in Personal</strong>
+
+  	<style>
+#pcs-comment-form input,
+#pcs-comment-form textarea {
+	width: 100%;
+}
+#pcs-comment-form-display-replyto {
+	border: solid 1px black;
+	padding: 2px;
+}
+#pcs-comment-form-display-replyto p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+#pcs-comments ul {
+	list-style: none;
+}
+#pcs-comments .comment-left {
+	display: table-cell;
+	padding-right: 10px;
+}
+#pcs-comments .comment-body {
+	display: table-cell;
+	vertical-align: top;
+	width: 100%;
+}
+</style>
+
+	<section id="pcs-comments">
+	<header>
+		<h2>Comments</h2>
+		<hr/>
+	</header>
+		<p>There are no comments yet.</p>
+	<section>
+	<form id="pcs-comment-form" action="#">
+		<legend>Add a Comment</legend>
+		<input type="hidden" id="pcs-comment-form-input-replyto">
+		<fieldset>
+			<label for="pcs-comment-form-input-name">Name</label>
+			<input  id="pcs-comment-form-input-name" type="text" placeholder="Enter your name or nickname" />
+		</fieldset>
+		<fieldset>
+			<label for="pcs-comment-form-input-website">Website</label>
+			<input  id="pcs-comment-form-input-website" type="text" placeholder="Enter your website (optional)" />
+		</fieldset>
+		<fieldset>
+			<label   for="pcs-comment-form-input-textarea">Your Comment</label>
+			<textarea id="pcs-comment-form-input-textarea" rows="5" style="resize:vertical;" placeholder="Your comment"></textarea>
+			<p>You can use the <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> syntax to format your comment.</p>
+			<div style="display: none; " id="pcs-comment-form-display-replyto"></div>
+		</fieldset>
+
+		<button type="submit"
+				id="pcs-comment-form-button-submit"
+				>Post via email</button>
+
+			<a href="https://wuffalo.github.io/feeds/comment.living-awsomely.atom.xml">
+				Comment Atom Feed
+			</a>
+	</form>
+</section>
+
+</section>
+
+			<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="https://wuffalo.github.io/theme/js/comments.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			CommentSystem.email_user   = "contact.wolf.site";
+			CommentSystem.email_domain = "gmail.com";
+			CommentSystem.display_replyto_html = function(comment_content, article_slug, author) {
+				return ''
+					+ '<button style="float:right;" onclick="CommentSystem.cancelReply(); return false;" title="Cancel the reply">'
+					+ 	'×'
+					+ '</button>'
+					+ '<p>This comment will be posted as a reply to \'<a title="'+comment_content+'" href="#comment-'+article_slug+'">'+author+'</a>\'</p>';
+			};
+			$('#pcs-comment-form').on("submit",
+				function( event )
+				{
+					event.preventDefault();
+					$(location).attr('href', CommentSystem.getMailtoLink("living-awsomely"));
+				}
+			);
+		});
+	</script>
+
+
+
+    <h3>Related content</h3>
+    <!-- TODO: Use fancier related layout, as in https://kevin.deldycke.com/2012/04/beautify-contextual-related-posts-wordpress-plugin/ -->
+    <ul>
+        <li><a href="https://wuffalo.github.io/weekend-reading-quandl-tables-django-with-heroku.html">Weekend reading: Quandl tables, Django with Heroku</a></li>
+        <li><a href="https://wuffalo.github.io/measuring-program-time-timeit-module.html">Measuring program time (timeit module)</a></li>
+      </ul>
+
+
+        </div>
+
+          <div class="col-md-3">
+  <div class="well">
+
+    <p><abbr title="2018-05-01T00:00:00-05:00"><i class="fa fa-calendar"></i> Tue 01 May 2018</abbr></p>
+
+      <p><address>
+        <i class="fa fa-user"></i> By
+          <a href="https://wuffalo.github.io/author/wolf.html" rel="author">Wolf</a>
+      </address></p>
+
+    <hr/>
+
+      <p>
+              <a href="https://wuffalo.github.io/category/personal/" rel="tag"
+                  data-toggle="tooltip" class="label label-info"
+                  title="12 articles in this category">Personal</a>
+            <a href="/tag/django/" data-toggle="tooltip"
+      class="label label-default"
+      title="2 articles with this tag">Django</a>
+            <a href="/tag/linux/" data-toggle="tooltip"
+      class="label label-default"
+      title="2 articles with this tag">Linux</a>
+            <a href="/tag/aws/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">AWS</a>
+            <a href="/tag/conference/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">conference</a>
+            <a href="/tag/intel/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">Intel</a>
+            <a href="/tag/fpga/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">FPGA</a>
+            <a href="/tag/google/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">Google</a>
+            <a href="/tag/microsoft/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">Microsoft</a>
+            <a href="/tag/alibaba/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">Alibaba</a>
+            <a href="/tag/s3/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">S3</a>
+            <a href="/tag/cloudfront/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">Cloudfront</a>
+            <a href="/tag/rds/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">RDS</a>
+            <a href="/tag/ec2/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">EC2</a>
+            <a href="/tag/postgresql/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">PostgreSQL</a>
+            <a href="/tag/ubuntu/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">Ubuntu</a>
+            <a href="/tag/mezzanine/" data-toggle="tooltip"
+      class="label label-default"
+      title="1 article with this tag">Mezzanine</a>
+      </p>
+      <hr/>
+
+
+
+  </div>
+            
+          </div>
+
+      </div>
+
+    </div>
+
+    <!-- TODO: make footer sticky -->
+    <footer class="container-fluid">
+      <div class="container">
+        <div class="row">
+
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-2">
+            </div>
+
+          <div class="col-md-2">
+            <h5>Browse content by</h5>
+            <ul class="list-unstyled">
+                <li><a href="https://wuffalo.github.io/categories/index.html"><i class="fa fa-tags"></i> Categories</a></li>
+                <li><a href="https://wuffalo.github.io/archives/index.html"><i class="fa fa-calendar"></i> Dates</a></li>
+                <li><a href="https://wuffalo.github.io/tags/index.html"><i class="fa fa-tag"></i> Tags</a></li>
+            </ul>
+          </div>
+
+          <div class="col-md-2 text-muted">
+            <h5>Copyright notice</h5>
+            <p>© Copyright 2017-2018 Wolf.</p>
+          </div>
+
+          <div class="col-md-2 text-muted">
+            <h5>Disclaimer</h5>
+              <p>All opinions expressed in this site are my own personal opinions.</p>
+          </div>
+
+          <div class="col-md-2">
+          </div>
+
+        </div>
+      </div>
+
+      <h5 class="text-right"><a href="#"><i class="fa fa-arrow-up"></i> Back to top</a></h5>
+
+      <div class="container">
+        <div class="row col-md-12 text-muted text-center">
+          <a href="https://github.com/kdeldycke/plumage"> Plumage</a> theme by <a href="https://kevin.deldycke.com">Kevin Deldycke</a>.
+        </div>
+      </div>
+
+    </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fitvids/1.1.0/jquery.fitvids.min.js"></script>
+
+    <!-- Enable show/hide toggler -->
+    <script src="https://wuffalo.github.io/theme/js/show_hide_toggler.js" type="text/javascript"></script>
+
+    <script src="https://wuffalo.github.io/theme/js/jquery.mglass.js"></script>
+    <script src="https://wuffalo.github.io/theme/js/application.js"></script>
+
+  </body>
+</html>
